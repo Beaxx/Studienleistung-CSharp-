@@ -115,10 +115,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\CourseDatabase.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\MemberDatabase.xml" />
+    <Resource Include="Data\Database.xml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Forms\Graphics\Bamberg.ico" />

@@ -34,7 +34,8 @@ namespace StudentManager
         {
             InitializeComponent();
             StudentTab.DataContext = dBManager.Students;
-
+            LecturerTab.DataContext = dBManager.Lecturers;
+            CourseTab.DataContext = dBManager.Courses;
         }
 
         private void AddStudentMenuButton_Click(object sender, RoutedEventArgs e)

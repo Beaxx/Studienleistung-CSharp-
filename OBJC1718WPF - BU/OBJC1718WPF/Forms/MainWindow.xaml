@@ -12,7 +12,7 @@
 
             <!--Datei Menü-->
             <MenuItem x:Name="FileMenuButton" Header="Datei">
-                <MenuItem x:Name="ExitApplicationMenuButton" Header="Beenden"/>
+                <MenuItem x:Name="ExitApplicationMenuButton" Header="Beenden" Click="ExitApplicationMenuButton_Click"/>
             </MenuItem>
 
             <!--Datenbank Menü-->

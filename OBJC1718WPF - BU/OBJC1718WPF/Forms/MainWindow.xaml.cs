@@ -49,5 +49,10 @@ namespace StudentManager
             AddCourseWindow addCourseWindow = new AddCourseWindow(dBManager);
             addCourseWindow.ShowDialog();
         }
+
+        private void ExitApplicationMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

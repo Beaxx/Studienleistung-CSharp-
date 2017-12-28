@@ -6,16 +6,21 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
 
 namespace StudentManager
 {
+    [DataContract]
     public abstract class Person : INotifyPropertyChanged
     {
+        [DataMember]
         public int ID { get; set; }
 
         /// <summary>
         /// Vorname einer Person. Überprüfung des Eingabeparameters
         /// </summary>
+        [DataMember]
         private string firstName;
         public string FirstName
         {
@@ -34,6 +39,7 @@ namespace StudentManager
         /// <summary>
         /// Nachname einer Person. Übeprüfung des Eingabeparameter
         /// </summary>
+        [DataMember]
         private string lastName;
         public string LastName
         {
@@ -52,6 +58,7 @@ namespace StudentManager
         /// <summary>
         /// Geburtsdatum einer Person. Überprüfung des Eingabeparameters
         /// </summary>
+        [DataMember]
         private DateTime birthdate;
         public DateTime Birthdate
         {
@@ -71,6 +78,7 @@ namespace StudentManager
         /// <summary>
         /// Wohnstraße einer Person. Überprüfung des Eingabeparameters
         /// </summary>
+        [DataMember]
         private string street;
         public string Street
         {
@@ -85,10 +93,11 @@ namespace StudentManager
 
             }
         }
-        
+
         /// <summary>
         /// Hausnummer einer Person. Überprüfung des Eingabeparameters
         /// </summary>
+        [DataMember]
         private string houseNumber;
         public string HouseNumber
         {
@@ -107,15 +116,14 @@ namespace StudentManager
         /// Postleitzahl einer Person. Überprüfung erfolgt in Methode die 
         /// den Konstruktor aufruft
         /// </summary>
+        [DataMember]
         public int Zip { get; set; }
 
         /// <summary>
         /// Stadt einer Person. Überprüfung des Eingabeparameters
         /// </summary>
+        [DataMember]
         private string city;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public string City
         {
             get { return city; }
@@ -129,6 +137,8 @@ namespace StudentManager
                     
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public Person(
             int id,

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 
 
 namespace StudentManager
@@ -58,7 +60,21 @@ namespace StudentManager
             Lecturers.Add(new Lecturer("Hans", "Meier", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Westfalenweg", "25a", 49086, "Osnabrück"));
             Lecturers.Add(new Lecturer("Friedirch", "Schiller", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Hasenheide", "25a", 96050, "Bamberg"));
             Students.Add(new Student("Pter", "Arndt", new DateTime(1980, 10, 15), Degree.MasterOfArts, "Straßestraße", "34", 58874, "Oldenburg", Semester.WS0910));
+
+            MemoryStream stream1 = new MemoryStream();
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Student));
+
+            foreach (Student student in Students)
+            {
+                ser.WriteObject(stream1, student);
+            }
+            stream1.Position = 0;
+            StreamReader sr = new StreamReader(stream1);
+            Console.Write("JSON form of Person object: ");
+            Console.WriteLine(sr.ReadToEnd());
         }
+
+
 
         public class ZIP
         {

@@ -5,17 +5,22 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
 
 namespace StudentManager
 {
+    [DataContract]
     public class Course: INotifyPropertyChanged
     {
         private static int counter = 0;
+        [DataMember]
         public int ID { get; set; }
 
         /// <summary>
         /// Name eines Kurses. Überprüfung des Eingabeparameters
         /// </summary>
+        [DataMember]
         private string name;
         public string Name
         {
@@ -34,6 +39,7 @@ namespace StudentManager
         /// <summary>
         /// Beschreibung eines Kurses. Überprüfung des Eingabeparameters
         /// </summary>
+        [DataMember]
         private string description;
         public string Description
         {
@@ -56,6 +62,7 @@ namespace StudentManager
         /// <summary>
         /// Semester, in dem der Kurs stattfindet. Überprüfung der Eingabe.
         /// </summary>
+        [DataMember]
         private Semester semester;
         public Semester Semester
         {
@@ -70,6 +77,7 @@ namespace StudentManager
             }
         }
 
+        [DataMember]
         private DateTime startDate; //AddMethoden, dioe Konstruktor aufrufen müssen DateTime? auf (DateTime) casten
         public DateTime StartDate
         {
@@ -81,6 +89,7 @@ namespace StudentManager
             }
         }
 
+        [DataMember]
         private DateTime endDate;
         public DateTime EndDate
         {

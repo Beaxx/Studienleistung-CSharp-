@@ -4,15 +4,19 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
 
 namespace StudentManager
 {
+    [DataContract]
     public class Lecturer : Person
     {
         private static int counter = 0;
         /// <summary>
         /// Höchster Abschluss eines Dozenten. Überprüfung der Eingabe
         /// </summary>
+        [DataMember]
         private Degree degree;
         public Degree Degree
         {

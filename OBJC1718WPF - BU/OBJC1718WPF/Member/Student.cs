@@ -4,15 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 
 namespace StudentManager
 {
+    [DataContract]
     public class Student : Person
     {
         private static int counter = 0;
         /// <summary>
         /// Semester, in dem sich ein Student befindet. Überprüfung der Eingabe.
         /// </summary>
+        [DataMember]
         private Semester semester;
         public Semester Semester
         {
@@ -30,6 +33,7 @@ namespace StudentManager
         /// <summary>
         /// Angestrebter Abschluss eines Studenten. Überprüfung der Eingabe.
         /// </summary>
+        [DataMember]
         private Degree degree;
         public Degree Degree
         {

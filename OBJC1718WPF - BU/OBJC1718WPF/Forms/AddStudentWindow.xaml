@@ -1,0 +1,70 @@
+﻿<Window x:Name="AddMemberForm" x:Class="StudentManager.AddStudentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentManager"
+        mc:Ignorable="d"
+        Title="Hinzufügen" Height="345" Width="450" MinHeight="345" MinWidth="450">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--StackPanel mit Feldbezeichnungen-->
+        <StackPanel >
+            <TextBlock x:Name="NameTextBlock" MinHeight="16" MinWidth="116" Margin="0,4,0,3">Nachname / Vorname</TextBlock>
+            <TextBlock x:Name="BirthdateTextBlock" MinHeight="16" MinWidth="116" Margin="0,6,0,3">Geburtsdatum</TextBlock>
+            <TextBlock x:Name="Adress1TextBlock" MinHeight="16" MinWidth="116" Margin="0,6,0,3">Straße / Hausnummer</TextBlock>
+            <TextBlock x:Name="Adress2TextBlock" MinHeight="16" MinWidth="116" Margin="0,6,0,3">PLZ / Stadt</TextBlock>
+
+            <TextBlock MinHeight="16" MinWidth="116" Margin="0,6,25,3"></TextBlock>
+            <TextBlock x:Name="DegreeTextBlock" MinHeight="16" MinWidth="116" Margin="0,6,0,3">Angestrebter Abschl.</TextBlock>
+            <TextBlock x:Name="SemesterTextBlock" MinHeight="16" MinWidth="116" Margin="0,6,0,3">Semester</TextBlock>
+            <TextBlock x:Name="CoursesTextBlock" MinHeight="16" MinWidth="116" Margin="0,6,0,3">Kurse</TextBlock>
+        </StackPanel>
+
+        <!--Name-->
+        <TextBox x:Name="FirstnameTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,0,10,0" TextWrapping="Wrap" Text="Max" VerticalAlignment="Top"  
+                 Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="LastnameTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,0,10,0" TextWrapping="Wrap" Text="Mustermann" VerticalAlignment="Top" 
+                 Grid.Column="3" Grid.ColumnSpan="2"/>
+
+        <!--Geburtsdatum-->
+        <DatePicker x:Name="BirthdateDatepicker" HorizontalAlignment="Stretch" Height="24" Margin="10,25,10,0" VerticalAlignment="Top" Grid.Column="1" 
+                    Grid.ColumnSpan="2" FirstDayOfWeek="Monday"/>
+
+        <!--Adresse1-->
+        <TextBox x:Name="StreetTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,50,10,0" TextWrapping="Wrap" Text="Musterweg" VerticalAlignment="Top" 
+                 Grid.Column="1" Grid.ColumnSpan="3"/>
+        <TextBox x:Name="HouseNumberTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,50,10,0" TextWrapping="Wrap" Text="35" VerticalAlignment="Top" 
+                 Grid.Column="4" />
+
+        <!--Adresse2-->
+        <TextBox x:Name="ZIPTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,75,10,0" TextWrapping="Wrap" Text="96050" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox x:Name="CityTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,75,10,0" TextWrapping="Wrap" Text="Bamberg" VerticalAlignment="Top" Grid.Column="2" 
+                 Grid.ColumnSpan="3"/>
+
+        <!--Abschluss-->
+        <ComboBox x:Name="DegreeComboBox" HorizontalAlignment="Stretch" Height="23" Margin="10,125,10,0" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="3" Text="Wählen..."
+                  />
+
+        <!--Semester-->
+        <ComboBox x:Name="SemesterComboBox" HorizontalAlignment="Stretch" Height="23" Margin="10,150,10,0" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="3" Text="Wählen..."/>
+
+        <!--Kurse-->
+        <ListBox x:Name="CourseListbox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,180,10,14"/>
+        <ComboBox x:Name="CourseComboBox" Grid.Column="3" HorizontalAlignment="Stretch" Margin="10,180,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="22"/>
+        <Button  x:Name="DeleteButton" Grid.Column="2" Grid.ColumnSpan="2" Width="15" Height="15" Background="White" BorderBrush="White"  Margin="0,0,41,14" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Image Source="Graphics/Delete.ico"/>
+        </Button>
+
+        <!--OK-->
+        <Button x:Name="ConfirmationButton" Content="OK" VerticalAlignment="Top" Margin="23,260,23,0" Click="ConfirmationButton_Click"/>
+
+    </Grid>
+</Window>

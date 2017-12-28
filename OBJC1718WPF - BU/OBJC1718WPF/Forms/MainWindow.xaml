@@ -1,0 +1,106 @@
+﻿<Window x:Class="StudentManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentManager"
+        mc:Ignorable="d"
+        Title="Studiengangverwaltung: Otto-Friedrich-Universität Bamberg" Height="500" Width="800" WindowStartupLocation="CenterScreen" Icon="Graphics/Bamberg.ico">
+    <Grid>
+        <!--Menüleiste-->
+        <Menu x:Name="MenuBar" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="20">
+
+            <!--Datei Menü-->
+            <MenuItem x:Name="FileMenuButton" Header="Datei">
+                <MenuItem x:Name="ExitApplicationMenuButton" Header="Beenden"/>
+            </MenuItem>
+
+            <!--Datenbank Menü-->
+            <MenuItem x:Name="DatabaseMenuButton" Header="Datenbank">
+                <!--Student hinzufügen-->
+                <MenuItem x:Name="AddStudentMenuButton" Header="Student hinzufügen" Click="AddStudentMenuButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="Graphics/AddPerson.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <!--Dozent hinzufügen-->
+                <MenuItem x:Name="AddLecturerMenuButton" Header="Dozent hinzufügen">
+                    <MenuItem.Icon>
+                        <Image Source="Graphics/AddPerson.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <!--Kurs hinzufügen-->
+                <MenuItem x:Name="AddCourseMenuButton" Header="Kurs hinzufügen" Click="AddCourseMenuButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="Graphics/AddCourse.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <!--Reiter für Listen-->
+        <TabControl HorizontalAlignment="Stretch" Height="294" VerticalAlignment="Bottom">
+
+            <!--Studenten Tab-->
+            <TabItem x:Name="StudentTab" Header="Studenten">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Source = Students}" AutoGenerateColumns="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID"             Binding="{Binding ID}"/>
+                            <DataGridTextColumn Header="Vorname"        Binding="{Binding FirstName}"/>
+                            <DataGridTextColumn Header="Nachname"       Binding="{Binding LastName}"/>
+                            <DataGridTextColumn Header="Geburtsdatum"   Binding="{Binding Birthdate}"/>
+                            <DataGridTextColumn Header="Straße"         Binding="{Binding Street}"/>
+                            <DataGridTextColumn Header="Hausnummer"     Binding="{Binding HouseNumber}"/>
+                            <DataGridTextColumn Header="PLZ"            Binding="{Binding ZIP}"/>
+                            <DataGridTextColumn Header="Stadt"          Binding="{Binding City}"/>
+                            <DataGridTextColumn Header="Semester"       Binding="{Binding Semester}"/>
+                            <DataGridTextColumn Header="Abschluss"      Binding="{Binding Degree}"/>
+                            <DataGridTextColumn Header="Kurse"          Binding="{Binding Courses}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!--Dozenten Tab-->
+            <TabItem x:Name="LecturerTab" Header="Dozenten">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Members}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                            <DataGridTextColumn Header="Vorname" Binding="{Binding FirstName}"/>
+                            <DataGridTextColumn Header="Nachname" Binding="{Binding LastName}"/>
+                            <DataGridTextColumn Header="Geburtsdatum" Binding="{Binding Birthdate}"/>
+                            <DataGridTextColumn Header="Straße" Binding="{Binding Street}"/>
+                            <DataGridTextColumn Header="Hausnummer" Binding="{Binding HouseNumber}"/>
+                            <DataGridTextColumn Header="PLZ" Binding="{Binding ZIP}"/>
+                            <DataGridTextColumn Header="Stadt" Binding="{Binding City}"/>
+                            <DataGridTextColumn Header="Abschluss" Binding="{Binding Degree}"/>
+                            <DataGridTextColumn Header="Kurse" Binding="{Binding Courses}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!--Kurs Tab-->
+            <TabItem x:Name="CourseTab" Header="Kurse">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Courses}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Beschreibung" Binding="{Binding Description}"/>
+                            <DataGridTextColumn Header="Semester" Binding="{Binding Semester}"/>
+                            <DataGridTextColumn Header="Start" Binding="{Binding StartDate}"/>
+                            <DataGridTextColumn Header="Ende" Binding="{Binding EndDate}"/>
+                            <DataGridTextColumn Header="Dozent" Binding="{Binding Lecturer}"/>
+                            <DataGridTextColumn Header="Teilnehmer" Binding="{Binding Students}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

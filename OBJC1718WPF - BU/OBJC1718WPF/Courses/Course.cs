@@ -13,7 +13,6 @@ namespace StudentManager
     [DataContract]
     public class Course: INotifyPropertyChanged
     {
-        private static int counter = 0;
         [DataMember]
         public int ID { get; set; }
 
@@ -103,9 +102,9 @@ namespace StudentManager
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Course(string name, string description, Semester semester, DateTime startDate, DateTime endDate)
+        public Course(DBManager manager, string name, string description, Semester semester, DateTime startDate, DateTime endDate)
         {
-            ID = counter++;
+            ID = manager.Courses.Count;
             Name = name;
             Description = description;
             Semester = semester;

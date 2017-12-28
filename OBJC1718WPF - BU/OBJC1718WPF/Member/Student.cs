@@ -11,7 +11,6 @@ namespace StudentManager
     [DataContract]
     public class Student : Person
     {
-        private static int counter = 0;
         /// <summary>
         /// Semester, in dem sich ein Student befindet. Überprüfung der Eingabe.
         /// </summary>
@@ -49,6 +48,7 @@ namespace StudentManager
         }
 
         public Student(
+            DBManager manager,
             string firstName,
             string lastName,
             DateTime birthdate,
@@ -57,8 +57,9 @@ namespace StudentManager
             string houseNumber,
             int zip,
             string city,
-            Semester semester) : base(counter++, firstName, lastName, birthdate, street, houseNumber, zip, city)
+            Semester semester) : base(firstName, lastName, birthdate, street, houseNumber, zip, city)
         {
+            ID = manager.Students.Count;
             Degree = degree;
             Semester = semester;
         }

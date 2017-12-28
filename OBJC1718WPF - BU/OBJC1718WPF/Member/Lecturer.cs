@@ -12,7 +12,6 @@ namespace StudentManager
     [DataContract]
     public class Lecturer : Person
     {
-        private static int counter = 0;
         /// <summary>
         /// Höchster Abschluss eines Dozenten. Überprüfung der Eingabe
         /// </summary>
@@ -32,6 +31,7 @@ namespace StudentManager
         }
 
         public Lecturer(
+            DBManager manager,
             string firstName,
             string lastName,
             DateTime birthdate,
@@ -39,8 +39,9 @@ namespace StudentManager
             string street,
             string houseNumber,
             int zip,
-            string city) : base(counter++, firstName,lastName,birthdate,street,houseNumber,zip,city)
+            string city) : base(firstName,lastName,birthdate,street,houseNumber,zip,city)
         {
+            ID = manager.Lecturers.Count;
             Degree = degree;
         }
     }

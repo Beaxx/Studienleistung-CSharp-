@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
 
 
 namespace StudentManager
@@ -40,16 +41,22 @@ namespace StudentManager
         SS30
     }
 
+    [DataContract]
     public class DBManager
     {
         /// <summary>
         /// Collection hält die in der Anwendung dargestellten Studenten und Dozenten. Aktualisierung erfolgt bei
         /// Änderung - wichtig für aktuelle Darstellung in im Applikationsfenster
         /// </summary>
+        [DataMember]
         public ObservableCollection<Student> Students { get; set; } = new ObservableCollection<Student>();
+        [DataMember]
         public ObservableCollection<Lecturer> Lecturers { get; set; } = new ObservableCollection<Lecturer>();
+        [DataMember]
         public ObservableCollection<Holds> Holds { get; set; } = new ObservableCollection<Holds>();
+        [DataMember]
         public ObservableCollection<Listens> Listens { get; set; } = new ObservableCollection<Listens>();
+        [DataMember]
         public ObservableCollection<Course> Courses { get; set; } = new ObservableCollection<Course>();
 
         /// <summary>
@@ -57,24 +64,19 @@ namespace StudentManager
         /// </summary>
         public DBManager()
         {
-            Lecturers.Add(new Lecturer("Hans", "Meier", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Westfalenweg", "25a", 49086, "Osnabrück"));
-            Lecturers.Add(new Lecturer("Friedirch", "Schiller", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Hasenheide", "25a", 96050, "Bamberg"));
-            Students.Add(new Student("Pter", "Arndt", new DateTime(1980, 10, 15), Degree.MasterOfArts, "Straßestraße", "34", 58874, "Oldenburg", Semester.WS0910));
+            Lecturers.Add(new Lecturer(this, "Hans", "Meier", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Westfalenweg", "25a", 49086, "Osnabrück"));
+            Lecturers.Add(new Lecturer(this, "Friedirch", "Schiller", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Hasenheide", "25a", 96050, "Bamberg"));
+            Students.Add(new Student(this, "Pter", "Arndt", new DateTime(1980, 10, 15), Degree.MasterOfArts, "Straßestraße", "34", 58874, "Oldenburg", Semester.WS0910));
 
             MemoryStream stream1 = new MemoryStream();
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Student));
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(DBManager));
 
-            foreach (Student student in Students)
-            {
-                ser.WriteObject(stream1, student);
-            }
+            ser.WriteObject(stream1, this);
             stream1.Position = 0;
             StreamReader sr = new StreamReader(stream1);
             Console.Write("JSON form of Person object: ");
             Console.WriteLine(sr.ReadToEnd());
         }
-
-
 
         public class ZIP
         {
@@ -98,7 +100,7 @@ namespace StudentManager
             Semester semester)
         {
             DateTime castBirthdate = (DateTime)birthdate;
-            Students.Add(new Student(firstName, lastName, castBirthdate, degree, street, houseNumber, new ZIP(zip).Number, city, semester));
+            Students.Add(new Student(this, firstName, lastName, castBirthdate, degree, street, houseNumber, new ZIP(zip).Number, city, semester));
         }
 
         public void AddLecturer(
@@ -112,7 +114,7 @@ namespace StudentManager
             string city)
         {
             DateTime castBirthdate = (DateTime)birthdate;
-            Lecturers.Add(new Lecturer(firstName, lastName, castBirthdate, degree, street, houseNumber, new ZIP(zip).Number, city));
+            Lecturers.Add(new Lecturer(this, firstName, lastName, castBirthdate, degree, street, houseNumber, new ZIP(zip).Number, city));
         }
 
         public void RemovePerson(Person person)

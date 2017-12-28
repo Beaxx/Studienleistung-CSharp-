@@ -46,7 +46,11 @@
             <!--Studenten Tab-->
             <TabItem x:Name="StudentTab" Header="Studenten">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Source = Students}" AutoGenerateColumns="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="17*"/>
+                        <ColumnDefinition Width="376*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding}" AutoGenerateColumns="False" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID"             Binding="{Binding ID}"/>
                             <DataGridTextColumn Header="Vorname"        Binding="{Binding FirstName}"/>

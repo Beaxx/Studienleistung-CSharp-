@@ -33,6 +33,8 @@ namespace StudentManager
         public MainWindow()
         {
             InitializeComponent();
+            StudentTab.DataContext = dBManager.Students;
+
         }
 
         private void AddStudentMenuButton_Click(object sender, RoutedEventArgs e)

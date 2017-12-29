@@ -28,7 +28,7 @@ namespace StudentManager
     /// </summary>
     public partial class MainWindow : Window
     {
-        public DBManager dBManager = new DBManager();
+        public DBManager dBManager = DBManager.LoadFromDatabase();
 
         public MainWindow()
         {
@@ -57,7 +57,7 @@ namespace StudentManager
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            dBManager.SaveToFile();
+            dBManager.SaveToDatabase();
         }
     }
 }

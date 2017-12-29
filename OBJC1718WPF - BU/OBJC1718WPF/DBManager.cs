@@ -66,9 +66,9 @@ namespace StudentManager
         /// </summary>
         public DBManager()
         {
-            Lecturers.Add(new Lecturer(this, "Hans", "Meier", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Westfalenweg", "25a", 49086, "Osnabrück"));
-            Lecturers.Add(new Lecturer(this, "Friedirch", "Schiller", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Hasenheide", "25a", 96050, "Bamberg"));
-            Students.Add(new Student(this, "Pter", "Arndt", new DateTime(1980, 10, 15), Degree.MasterOfArts, "Straßestraße", "34", 58874, "Oldenburg", Semester.WS0910));
+            //Lecturers.Add(new Lecturer(this, "Hans", "Meier", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Westfalenweg", "25a", 49086, "Osnabrück"));
+            //Lecturers.Add(new Lecturer(this, "Friedirch", "Schiller", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Hasenheide", "25a", 96050, "Bamberg"));
+            //Students.Add(new Student(this, "Pter", "Arndt", new DateTime(1980, 10, 15), Degree.MasterOfArts, "Straßestraße", "34", 58874, "Oldenburg", Semester.WS0910));
         }
         /// <summary>
         /// Klasse für komplexen Datentyp ZIP. Dieser wird gebraucht, um die Konvertierung der Benutzereingabe
@@ -124,7 +124,7 @@ namespace StudentManager
         /// <summary>
         /// Serialisiert das DBManager Objekt, dass alle Listen enthält und schreibt es in die Datenbank
         /// </summary>
-        public void SaveToFile()
+        public void SaveToDatabase()
         {
             MemoryStream stream = new MemoryStream();
             DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(DBManager));
@@ -133,6 +133,30 @@ namespace StudentManager
 
             using (FileStream file = new FileStream(@"..\..\Data\Database.json", FileMode.Create, FileAccess.Write))
                 stream.CopyTo(file);
+        }
+
+        /// <summary>
+        /// Deserialisiert den Datenbankinhalt und rekonstruiert das DBManager objekt. Ist keine Datenbank vorhanden,
+        /// wir der Konstruktor aufgerufen.
+        /// </summary>
+        /// <returns>Ein DBManager Objekt</returns>
+        public static DBManager LoadFromDatabase()
+        {
+            MemoryStream stream = new MemoryStream();
+            DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(DBManager));
+            try
+            {
+                using (FileStream file = new FileStream(@"..\..\Data\Database.json", FileMode.Open, FileAccess.Read))
+                    file.CopyTo(stream);
+                stream.Position = 0;
+                return (DBManager)jsonSerializer.ReadObject(stream);
+            }
+            catch (FileNotFoundException)
+            {
+                return new DBManager();
+            }
+            
+            
         }
     }
 }

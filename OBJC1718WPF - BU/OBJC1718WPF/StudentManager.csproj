@@ -59,6 +59,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\AddLecturerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Forms\AddStudentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -75,6 +79,9 @@
     <Compile Include="Courses\Holds.cs" />
     <Compile Include="Forms\AddCourseWindow.xaml.cs">
       <DependentUpon>AddCourseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddLecturerWindow.xaml.cs">
+      <DependentUpon>AddLecturerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\AddStudentWindow.xaml.cs">
       <DependentUpon>AddStudentWindow.xaml</DependentUpon>

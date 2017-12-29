@@ -25,7 +25,7 @@
                 </MenuItem>
 
                 <!--Dozent hinzufügen-->
-                <MenuItem x:Name="AddLecturerMenuButton" Header="Dozent hinzufügen">
+                <MenuItem x:Name="AddLecturerMenuButton" Header="Dozent hinzufügen" Click="AddLecturerMenuButton_Click">
                     <MenuItem.Icon>
                         <Image Source="Graphics/AddPerson.ico"/>
                     </MenuItem.Icon>

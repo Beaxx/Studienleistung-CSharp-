@@ -69,14 +69,6 @@ namespace StudentManager
             Lecturers.Add(new Lecturer(this, "Hans", "Meier", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Westfalenweg", "25a", 49086, "Osnabrück"));
             Lecturers.Add(new Lecturer(this, "Friedirch", "Schiller", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Hasenheide", "25a", 96050, "Bamberg"));
             Students.Add(new Student(this, "Pter", "Arndt", new DateTime(1980, 10, 15), Degree.MasterOfArts, "Straßestraße", "34", 58874, "Oldenburg", Semester.WS0910));
-
-            MemoryStream stream = new MemoryStream();
-            DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(DBManager));
-            jsonSerializer.WriteObject(stream, this);
-            stream.Position = 0;
-
-            using (FileStream file = new FileStream(@"..\..\Data\Database.json", FileMode.Create, FileAccess.Write))
-                stream.CopyTo(file);
         }
         /// <summary>
         /// Klasse für komplexen Datentyp ZIP. Dieser wird gebraucht, um die Konvertierung der Benutzereingabe
@@ -129,17 +121,18 @@ namespace StudentManager
                 Lecturers.Remove((Lecturer)person);
         }
 
+        /// <summary>
+        /// Serialisiert das DBManager Objekt, dass alle Listen enthält und schreibt es in die Datenbank
+        /// </summary>
         public void SaveToFile()
         {
             MemoryStream stream = new MemoryStream();
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(DBManager));
-            StreamWriter sw = new StreamWriter(@"\Data\Database.json", true);
-            sw.Write(ser);
-
-            ser.WriteObject(stream, this);
+            DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(DBManager));
+            jsonSerializer.WriteObject(stream, this);
             stream.Position = 0;
-            StreamReader sr = new StreamReader(stream);
-            Console.WriteLine(sr.ReadToEnd());
+
+            using (FileStream file = new FileStream(@"..\..\Data\Database.json", FileMode.Create, FileAccess.Write))
+                stream.CopyTo(file);
         }
     }
 }

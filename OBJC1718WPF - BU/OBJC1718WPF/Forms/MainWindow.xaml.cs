@@ -57,7 +57,7 @@ namespace StudentManager
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            // TODO: Speicherung der serialisierung in JSON über Delegate
+            dBManager.SaveToFile();
         }
     }
 }

@@ -41,6 +41,7 @@ namespace StudentManager
         SS30
     }
 
+    #region Datacontract Properties
     [DataContract]
     public class DBManager
     {
@@ -58,9 +59,10 @@ namespace StudentManager
         public ObservableCollection<Listens> Listens { get; set; } = new ObservableCollection<Listens>();
         [DataMember]
         public ObservableCollection<Course> Courses { get; set; } = new ObservableCollection<Course>();
+        #endregion
 
         /// <summary>
-        /// Konstruktor initialisiert Listen
+        /// Construktor
         /// </summary>
         public DBManager()
         {
@@ -68,16 +70,18 @@ namespace StudentManager
             Lecturers.Add(new Lecturer(this, "Friedirch", "Schiller", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Hasenheide", "25a", 96050, "Bamberg"));
             Students.Add(new Student(this, "Pter", "Arndt", new DateTime(1980, 10, 15), Degree.MasterOfArts, "Straßestraße", "34", 58874, "Oldenburg", Semester.WS0910));
 
-            MemoryStream stream1 = new MemoryStream();
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(DBManager));
+            MemoryStream stream = new MemoryStream();
+            DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(DBManager));
+            jsonSerializer.WriteObject(stream, this);
+            stream.Position = 0;
 
-            ser.WriteObject(stream1, this);
-            stream1.Position = 0;
-            StreamReader sr = new StreamReader(stream1);
-            Console.Write("JSON form of Person object: ");
-            Console.WriteLine(sr.ReadToEnd());
+            using (FileStream file = new FileStream(@"..\..\Data\Database.json", FileMode.Create, FileAccess.Write))
+                stream.CopyTo(file);
         }
-
+        /// <summary>
+        /// Klasse für komplexen Datentyp ZIP. Dieser wird gebraucht, um die Konvertierung der Benutzereingabe
+        /// von ZIP im Form von String zu Interger vorzunehmen, die nicht im Setter der Property erfolgen kann.
+        /// </summary>
         public class ZIP
         {
             public int Number { get; private set; }
@@ -93,9 +97,9 @@ namespace StudentManager
             string lastName,
             DateTime? birthdate,
             Degree degree,
-            string street, 
-            string houseNumber, 
-            string zip, 
+            string street,
+            string houseNumber,
+            string zip,
             string city,
             Semester semester)
         {
@@ -125,5 +129,17 @@ namespace StudentManager
                 Lecturers.Remove((Lecturer)person);
         }
 
+        public void SaveToFile()
+        {
+            MemoryStream stream = new MemoryStream();
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(DBManager));
+            StreamWriter sw = new StreamWriter(@"\Data\Database.json", true);
+            sw.Write(ser);
+
+            ser.WriteObject(stream, this);
+            stream.Position = 0;
+            StreamReader sr = new StreamReader(stream);
+            Console.WriteLine(sr.ReadToEnd());
+        }
     }
 }

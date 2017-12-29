@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentManager"
         mc:Ignorable="d"
-        Title="Studiengangverwaltung: Otto-Friedrich-Universität Bamberg" Height="500" Width="800" WindowStartupLocation="CenterScreen" Icon="Graphics/Bamberg.ico">
+        Title="Studiengangverwaltung: Otto-Friedrich-Universität Bamberg" Height="500" Width="800" WindowStartupLocation="CenterScreen" Icon="Graphics/Bamberg.ico" Closing="Window_Closing">
     <Grid>
         <!--Menüleiste-->
         <Menu x:Name="MenuBar" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="20">

@@ -16,12 +16,12 @@ using System.Data;
 
 namespace StudentManager
 {
-    //Delegates
-    public delegate bool CheckFieldInputAllLetter(string input);
-    public delegate bool CheckFieldInputAllNumber(string input);
-    public delegate bool CheckFieldInputNumberOrLetterShort(string input);
-    public delegate bool CheckFieldInputDate(string input);
-    public delegate bool CheckFieldInput(string input);
+    ////Delegates
+    //public delegate bool CheckFieldInputAllLetter(string input);
+    //public delegate bool CheckFieldInputAllNumber(string input);
+    //public delegate bool CheckFieldInputNumberOrLetterShort(string input);
+    //public delegate bool CheckFieldInputDate(string input);
+    //public delegate bool CheckFieldInput(string input);
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -65,6 +65,7 @@ namespace StudentManager
         {
             dBManager.SaveToDatabase();
         }
+
 
       
     }

@@ -23,14 +23,14 @@
             <TextBlock x:Name="Adress2TextBlock" MinHeight="16" MinWidth="116" Margin="0,6,0,3">PLZ / Stadt</TextBlock>
 
             <TextBlock MinHeight="16" MinWidth="116" Margin="0,6,25,3"></TextBlock>
-            <TextBlock x:Name="DegreeTextBlock" MinHeight="16" MinWidth="116" Margin="0,6,0,3">Angestrebter Abschl.</TextBlock>
+            <TextBlock x:Name="DegreeTextBlock" MinHeight="16" MinWidth="116" Margin="0,6,0,3">Höchster Abschl.</TextBlock>
             <TextBlock x:Name="CoursesTextBlock" MinHeight="16" MinWidth="116" Margin="0,6,0,3">Kurse</TextBlock>
         </StackPanel>
 
         <!--Name-->
-        <TextBox x:Name="FirstnameTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,0,10,0" TextWrapping="Wrap" Text="Max" VerticalAlignment="Top"  
+        <TextBox x:Name="FirstnameTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,0,10,0" TextWrapping="Wrap" VerticalAlignment="Top"  
                  Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="LastnameTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,0,10,0" TextWrapping="Wrap" Text="Mustermann" VerticalAlignment="Top" 
+        <TextBox x:Name="LastnameTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,0,10,0" TextWrapping="Wrap" VerticalAlignment="Top" 
                  Grid.Column="3" Grid.ColumnSpan="2"/>
 
         <!--Geburtsdatum-->
@@ -38,14 +38,14 @@
                     Grid.ColumnSpan="2" FirstDayOfWeek="Monday"/>
 
         <!--Adresse1-->
-        <TextBox x:Name="StreetTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,50,10,0" TextWrapping="Wrap" Text="Musterweg" VerticalAlignment="Top" 
+        <TextBox x:Name="StreetTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,50,10,0" TextWrapping="Wrap" VerticalAlignment="Top" 
                  Grid.Column="1" Grid.ColumnSpan="3"/>
-        <TextBox x:Name="HouseNumberTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,50,10,0" TextWrapping="Wrap" Text="35" VerticalAlignment="Top" 
+        <TextBox x:Name="HouseNumberTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,50,10,0" TextWrapping="Wrap" VerticalAlignment="Top" 
                  Grid.Column="4" />
 
         <!--Adresse2-->
-        <TextBox x:Name="ZIPTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,75,10,0" TextWrapping="Wrap" Text="96050" VerticalAlignment="Top" Grid.Column="1"/>
-        <TextBox x:Name="CityTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,75,10,0" TextWrapping="Wrap" Text="Bamberg" VerticalAlignment="Top" Grid.Column="2" 
+        <TextBox x:Name="ZIPTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,75,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox x:Name="CityTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,75,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" 
                  Grid.ColumnSpan="3"/>
 
         <!--Abschluss-->

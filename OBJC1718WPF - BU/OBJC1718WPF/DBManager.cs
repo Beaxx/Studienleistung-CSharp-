@@ -69,6 +69,7 @@ namespace StudentManager
             //Lecturers.Add(new Lecturer(this, "Hans", "Meier", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Westfalenweg", "25a", 49086, "Osnabrück"));
             //Lecturers.Add(new Lecturer(this, "Friedirch", "Schiller", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Hasenheide", "25a", 96050, "Bamberg"));
             //Students.Add(new Student(this, "Pter", "Arndt", new DateTime(1980, 10, 15), Degree.MasterOfArts, "Straßestraße", "34", 58874, "Oldenburg", Semester.WS0910));
+            //Courses.Add(new Course(this, "Mathematik-1", "Ziemlich langweilig", Semester.SS04, new DateTime(2005, 10, 10), new DateTime(2010, 10, 10)));
         }
         /// <summary>
         /// Klasse für komplexen Datentyp ZIP. Dieser wird gebraucht, um die Konvertierung der Benutzereingabe
@@ -113,6 +114,22 @@ namespace StudentManager
             Lecturers.Add(new Lecturer(this, firstName, lastName, castBirthdate, degree, street, houseNumber, new ZIP(zip).Number, city));
         }
 
+        public void AddCourse(
+            string name,
+            string description,
+            DateTime? startDate,
+            DateTime? endDate,
+            Semester semester)
+        {
+            DateTime castStartDate = (DateTime)startDate;
+            DateTime castEndDate = (DateTime)endDate;
+            Courses.Add(new Course(this, name, description, semester, castStartDate, castEndDate));
+        }
+
+        /// <summary>
+        /// Entfernt einee Person aus "Students" oder "Lecturers"
+        /// </summary>
+        /// <param name="person"></param>
         public void RemovePerson(Person person)
         {
             if (person is Student)

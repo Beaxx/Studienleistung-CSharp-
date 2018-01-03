@@ -25,7 +25,7 @@ namespace StudentManager
         public string FirstName
         {
             get { return firstName; }
-            private set
+            set
             {
                 if (Validation.CheckInputAllLetters(value))
                 {
@@ -44,7 +44,7 @@ namespace StudentManager
         public string LastName
         {
             get { return lastName; }
-            private set
+            set
             {
                 if (Validation.CheckInputAllLetters(value))
                 {
@@ -63,7 +63,7 @@ namespace StudentManager
         public DateTime Birthdate
         {
             get { return birthdate; }
-            private set
+            set
             {
                 if (Validation.CheckMemberBirthdateInput(value))
                 {
@@ -83,7 +83,7 @@ namespace StudentManager
         public string Street
         {
             get { return street; }
-            private set
+            set
             {
                 if (Validation.CheckInputAllLetters(value))
                 {
@@ -102,7 +102,7 @@ namespace StudentManager
         public string HouseNumber
         {
             get { return houseNumber; }
-            private set
+            set
             {
                 if (Validation.CheckMemberHouseNumberInput(value))
                 {

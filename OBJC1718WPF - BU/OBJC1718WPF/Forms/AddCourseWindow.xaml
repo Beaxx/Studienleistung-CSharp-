@@ -29,7 +29,7 @@
         </StackPanel>
 
         <!--Name-->
-        <TextBox x:Name="NameTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,0,10,0" TextWrapping="Wrap" Text="Max" VerticalAlignment="Top"  
+        <TextBox x:Name="NameTextbox" HorizontalAlignment="Stretch" Height="23" Margin="10,0,10,0" TextWrapping="Wrap" VerticalAlignment="Top"  
                  Grid.Column="1" Grid.ColumnSpan="5"/>
 
         <!--Datum-->
@@ -40,7 +40,7 @@
 
         <!--Beschreibung-->
         <TextBox x:Name="DescriptionTextbox" HorizontalAlignment="Stretch" Height="70" Margin="10,52,10,0" TextWrapping="Wrap" 
-                 Text="Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet." VerticalAlignment="Top" 
+                  VerticalAlignment="Top" 
                  Grid.Column="1" Grid.ColumnSpan="5"/>
 
         <!--Dozent-->

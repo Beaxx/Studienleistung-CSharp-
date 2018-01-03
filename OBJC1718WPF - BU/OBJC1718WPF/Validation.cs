@@ -10,7 +10,7 @@ namespace StudentManager
     {
         public static bool CheckInputAllLetters(string input)
         {
-            if (input.Length < 3 | !input.All(Char.IsLetter))
+            if (input.Length < 3)
                 throw new ArgumentException("Namen müssen länger als drei Zeichen sein und \n dürfen ausschließlich Buchstaben enthalten.");
             else return true;
         }
@@ -26,7 +26,7 @@ namespace StudentManager
         public static bool CheckMemberZIPInput(string input)
         {
             //Eingabeüberprüfung Adresse
-            if (input.Length != 5 | !input.All(Char.IsLetter))
+            if (input.Length != 5 | !input.All(Char.IsDigit))
                 throw new ArgumentException("Bitte überprüfen Sie die Adresseingaben.");
             else return true;
         }

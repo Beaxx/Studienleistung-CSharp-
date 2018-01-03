@@ -32,24 +32,26 @@ namespace StudentManager
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    dBManager.AddMember(
-            //        FirstnameTextbox.Text,
-            //        LastnameTextbox.Text,
-            //        BirthdateDatepicker.SelectedDate,
-            //        (Degree)DegreeComboBox.SelectedItem,
-            //        StreetTextbox.Text,
-            //        HouseNumberTextbox.Text,
-            //        ZIPTextbox.Text,
-            //        CityTextbox.Text,
-            //        (Semester)SemesterComboBox.SelectedItem);
-            //}
-            //catch (Exception)
-            //{
+            try
+            {
+                dBManager.AddStudent(
+                FirstnameTextbox.Text,
+                LastnameTextbox.Text,
+                BirthdateDatepicker.SelectedDate,
+                (Degree)DegreeComboBox.SelectedItem,
+                StreetTextbox.Text,
+                HouseNumberTextbox.Text,
+                ZIPTextbox.Text,
+                CityTextbox.Text,
+                (Semester)SemesterComboBox.SelectedItem);
+            }
+            catch (Exception)
+            {
 
-            //    throw;
-            //}
+                throw;
+            }
+            Close();
+            
         }
     }
 }

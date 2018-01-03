@@ -31,7 +31,22 @@ namespace StudentManager
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO
+            try
+            {
+                dBManager.AddCourse(
+                NameTextbox.Text,
+                DescriptionTextbox.Text,
+                //LecturerComboBox.SelectedItem,
+                StartDateDatepicker.SelectedDate,
+                EndDateDatepicker.SelectedDate,
+                (Semester)SemesterComboBox.SelectedItem);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            Close();
+            
         }
     }
 }

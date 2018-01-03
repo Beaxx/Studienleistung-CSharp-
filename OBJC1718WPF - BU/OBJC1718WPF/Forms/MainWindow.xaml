@@ -46,14 +46,10 @@
             <!--Studenten Tab-->
             <TabItem x:Name="StudentTab" Header="Studenten">
                 <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="17*"/>
-                        <ColumnDefinition Width="376*"/>
-                    </Grid.ColumnDefinitions>
-                    <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding}" AutoGenerateColumns="False" Grid.ColumnSpan="2">
+                    <DataGrid x:Name="StudentDataGrid" AlternatingRowBackground="LightBlue" SelectionMode="Extended" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID"             Binding="{Binding ID}"/>
-                            <DataGridTextColumn Header="Vorname"        Binding="{Binding FirstName}"/>
+                            <DataGridTextColumn Header="ID"             Binding="{Binding ID}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Vorname"        Binding="{Binding FirstName}" />
                             <DataGridTextColumn Header="Nachname"       Binding="{Binding LastName}"/>
                             <DataGridTextColumn Header="Geburtsdatum"   Binding="{Binding Birthdate}"/>
                             <DataGridTextColumn Header="Straße"         Binding="{Binding Street}"/>
@@ -71,9 +67,9 @@
             <!--Dozenten Tab-->
             <TabItem x:Name="LecturerTab" Header="Dozenten">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                    <DataGrid AlternatingRowBackground="LightGreen" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID"             Binding="{Binding ID}"/>
+                            <DataGridTextColumn Header="ID"             Binding="{Binding ID}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Vorname"        Binding="{Binding FirstName}"/>
                             <DataGridTextColumn Header="Nachname"       Binding="{Binding LastName}"/>
                             <DataGridTextColumn Header="Geburtsdatum"   Binding="{Binding Birthdate}"/>
@@ -91,16 +87,16 @@
             <!--Kurs Tab-->
             <TabItem x:Name="CourseTab" Header="Kurse">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding Courses}" AutoGenerateColumns="False">
+                    <DataGrid HorizontalAlignment="Stretch" AlternatingRowBackground="LightPink" VerticalAlignment="Stretch" ItemsSource="{Binding}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Beschreibung" Binding="{Binding Description}"/>
-                            <DataGridTextColumn Header="Semester" Binding="{Binding Semester}"/>
-                            <DataGridTextColumn Header="Start" Binding="{Binding StartDate}"/>
-                            <DataGridTextColumn Header="Ende" Binding="{Binding EndDate}"/>
-                            <DataGridTextColumn Header="Dozent" Binding="{Binding Lecturer}"/>
-                            <DataGridTextColumn Header="Teilnehmer" Binding="{Binding Students}"/>
+                            <DataGridTextColumn Header="ID"             Binding="{Binding ID}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Name"           Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Beschreibung"   Binding="{Binding Description}"/>
+                            <DataGridTextColumn Header="Semester"       Binding="{Binding Semester}"/>
+                            <DataGridTextColumn Header="Start"          Binding="{Binding StartDate}"/>
+                            <DataGridTextColumn Header="Ende"           Binding="{Binding EndDate}"/>
+                            <!--<DataGridTextColumn Header="Dozent"         Binding="{Binding Lecturer}"/>-->
+                            <!--<DataGridTextColumn Header="Teilnehmer"     Binding="{Binding Students}"/>-->
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

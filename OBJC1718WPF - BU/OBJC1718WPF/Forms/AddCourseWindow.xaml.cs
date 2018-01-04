@@ -61,5 +61,10 @@ namespace StudentManager
         {
             tempData.StudentTempCollection.Add((Student)StudentComboBox.SelectedItem);
         }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            tempData.StudentTempCollection.Remove((Student)StudentListbox.SelectedItem);
+        }
     }
 }

@@ -20,13 +20,15 @@ namespace StudentManager
     public partial class AddLecturerWindow : Window
     {
         private DBManager dBManager;
+        private RuntimeTempData tempData = new RuntimeTempData();
 
         public AddLecturerWindow(DBManager dBManager)
         {
             this.dBManager = dBManager;
             InitializeComponent();
             DegreeComboBox.ItemsSource = Enum.GetValues(typeof(Degree));
-            //CourseComboBox.ItemsSource = dBManager.Courses;
+            CourseListbox.ItemsSource = tempData.CourseTempCollection;
+            CourseComboBox.ItemsSource = dBManager.Courses;
         }
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
@@ -49,6 +51,11 @@ namespace StudentManager
             }
             Close();
             
+        }
+
+        private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tempData.CourseTempCollection.Add((Course)CourseComboBox.SelectedItem);
         }
     }
 }

@@ -77,7 +77,7 @@ namespace StudentManager
         }
 
         [DataMember]
-        private DateTime startDate; //AddMethoden, dioe Konstruktor aufrufen müssen DateTime? auf (DateTime) casten
+        private DateTime startDate;
         public DateTime StartDate
         {
             get { return startDate; }
@@ -115,6 +115,11 @@ namespace StudentManager
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

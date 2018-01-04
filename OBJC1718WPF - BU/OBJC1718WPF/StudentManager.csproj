@@ -95,6 +95,7 @@
     <Compile Include="DBManager.cs" />
     <Compile Include="Member\Person.cs" />
     <Compile Include="Member\Student.cs" />
+    <Compile Include="RuntimeTempData.cs" />
     <Compile Include="Validation.cs" />
     <Compile Include="Member\Lecturer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

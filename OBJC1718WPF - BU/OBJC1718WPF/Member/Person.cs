@@ -114,7 +114,7 @@ namespace StudentManager
 
         /// <summary>
         /// Postleitzahl einer Person. Überprüfung erfolgt in Methode die 
-        /// den Konstruktor aufruft
+        /// den Konstruktor aufruft, da für Überprüfung ein komplexer Datentyp verwendet wird.
         /// </summary>
         [DataMember]
         public int Zip { get; set; }
@@ -160,7 +160,14 @@ namespace StudentManager
             City = city;
         }
 
-        public Person(string firstName, string lastName, DateTime birthdate, string street, string houseNumber, int zip, string city)
+        public Person(
+            string firstName, 
+            string lastName, 
+            DateTime birthdate,
+            string street, 
+            string houseNumber, 
+            int zip, 
+            string city)
         {
             FirstName = firstName;
             LastName = lastName;

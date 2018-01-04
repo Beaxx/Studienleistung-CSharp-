@@ -57,8 +57,8 @@
         <ComboBox x:Name="SemesterComboBox" HorizontalAlignment="Stretch" Height="23" Margin="10,150,10,0" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="3" Text="Wählen..."/>
 
         <!--Kurse-->
-        <ListBox x:Name="CourseListbox" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,180,10,14"/>
-        <ComboBox x:Name="CourseComboBox" Grid.Column="3" HorizontalAlignment="Stretch" Margin="10,180,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="22"/>
+        <ListBox x:Name="CourseListbox" ItemsSource="{Binding}" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,180,10,14"/>
+        <ComboBox x:Name="CourseComboBox" Grid.Column="3" HorizontalAlignment="Stretch" Margin="10,180,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="22" SelectionChanged="CourseComboBox_SelectionChanged"/>
         <Button  x:Name="DeleteButton" Grid.Column="2" Grid.ColumnSpan="2" Width="15" Height="15" Background="White" BorderBrush="White"  Margin="0,0,41,14" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Image Source="Graphics/Delete.ico"/>
         </Button>

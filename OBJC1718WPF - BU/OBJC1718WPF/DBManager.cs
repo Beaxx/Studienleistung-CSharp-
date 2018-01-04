@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization;
-
+using System.Collections.Generic;
 
 namespace StudentManager
 {
@@ -41,7 +41,6 @@ namespace StudentManager
         SS30
     }
 
-    #region Datacontract Properties
     [DataContract]
     public class DBManager
     {
@@ -49,6 +48,7 @@ namespace StudentManager
         /// Collection hält die in der Anwendung dargestellten Studenten und Dozenten. Aktualisierung erfolgt bei
         /// Änderung - wichtig für aktuelle Darstellung in im Applikationsfenster
         /// </summary>
+        #region Datacontract Properties
         [DataMember]
         public ObservableCollection<Student> Students { get; set; } = new ObservableCollection<Student>();
         [DataMember]
@@ -66,11 +66,12 @@ namespace StudentManager
         /// </summary>
         public DBManager()
         {
-            //Lecturers.Add(new Lecturer(this, "Hans", "Meier", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Westfalenweg", "25a", 49086, "Osnabrück"));
-            //Lecturers.Add(new Lecturer(this, "Friedirch", "Schiller", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Hasenheide", "25a", 96050, "Bamberg"));
-            //Students.Add(new Student(this, "Pter", "Arndt", new DateTime(1980, 10, 15), Degree.MasterOfArts, "Straßestraße", "34", 58874, "Oldenburg", Semester.WS0910));
-            //Courses.Add(new Course(this, "Mathematik-1", "Ziemlich langweilig", Semester.SS04, new DateTime(2005, 10, 10), new DateTime(2010, 10, 10)));
-        }
+        //Lecturers.Add(new Lecturer(this, "Hans", "Meier", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Westfalenweg", "25a", 49086, "Osnabrück"));
+        //Lecturers.Add(new Lecturer(this, "Friedirch", "Schiller", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Hasenheide", "25a", 96050, "Bamberg"));
+        //Students.Add(new Student(this, "Pter", "Arndt", new DateTime(1980, 10, 15), Degree.MasterOfArts, "Straßestraße", "34", 58874, "Oldenburg", Semester.WS0910));
+        //Courses.Add(new Course(this, "Mathematik-1", "Ziemlich langweilig", Semester.SS04, new DateTime(2005, 10, 10), new DateTime(2010, 10, 10)));
+    }
+
         /// <summary>
         /// Klasse für komplexen Datentyp ZIP. Dieser wird gebraucht, um die Konvertierung der Benutzereingabe
         /// von ZIP im Form von String zu Interger vorzunehmen, die nicht im Setter der Property erfolgen kann.

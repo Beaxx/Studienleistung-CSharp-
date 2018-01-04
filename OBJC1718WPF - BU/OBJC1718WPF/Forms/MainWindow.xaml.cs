@@ -28,7 +28,11 @@ namespace StudentManager
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// DBManager Instanzierung zum Programstart
+        /// </summary>
         public DBManager dBManager = DBManager.LoadFromDatabase();
+        private RuntimeTempData tempData = new RuntimeTempData();
 
         public MainWindow()
         {
@@ -36,6 +40,7 @@ namespace StudentManager
             StudentTab.DataContext = dBManager.Students;
             LecturerTab.DataContext = dBManager.Lecturers;
             CourseTab.DataContext = dBManager.Courses;
+            
         }
 
         private void AddStudentMenuButton_Click(object sender, RoutedEventArgs e)
@@ -66,7 +71,5 @@ namespace StudentManager
             dBManager.SaveToDatabase();
         }
 
-
-      
     }
 }

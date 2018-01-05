@@ -49,8 +49,10 @@ namespace StudentManager
             {
                 throw;
             }
+
+            dBManager.JoinLecturerAndCourse(dBManager.Lecturers.Last(), tempData.CourseTempCollection);
+
             Close();
-            
         }
 
         private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

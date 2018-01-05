@@ -66,11 +66,16 @@ namespace StudentManager
         /// </summary>
         public DBManager()
         {
-        //Lecturers.Add(new Lecturer(this, "Hans", "Meier", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Westfalenweg", "25a", 49086, "Osnabrück"));
-        //Lecturers.Add(new Lecturer(this, "Friedirch", "Schiller", new DateTime(1990, 10, 10), Degree.BachelorOfArts, "Hasenheide", "25a", 96050, "Bamberg"));
-        //Students.Add(new Student(this, "Pter", "Arndt", new DateTime(1980, 10, 15), Degree.MasterOfArts, "Straßestraße", "34", 58874, "Oldenburg", Semester.WS0910));
-        //Courses.Add(new Course(this, "Mathematik-1", "Ziemlich langweilig", Semester.SS04, new DateTime(2005, 10, 10), new DateTime(2010, 10, 10)));
-    }
+        ////lecturers.add(new lecturer(this, "hans", "meier", new datetime(1990, 10, 10), degree.bachelorofarts, "westfalenweg", "25a", 49086, "osnabrück"));
+        ////lecturers.add(new lecturer(this, "friedirch", "schiller", new datetime(1990, 10, 10), degree.bachelorofarts, "hasenheide", "25a", 96050, "bamberg"));
+        ////students.add(new student(this, "pter", "arndt", new datetime(1980, 10, 15), degree.masterofarts, "straßestraße", "34", 58874, "oldenburg", semester.ws0910));
+        ////courses.add(new course(this, "mathematik-1", "ziemlich langweilig", semester.ss04, new datetime(2005, 10, 10), new datetime(2010, 10, 10)));
+        ////    holds.add(new holds(0, 0));
+        ////    listens.add(new listens(1, 0));
+        ////courses.add(new course(this, "informatik", "höchstspannend", semester.ss08, new datetime(2015, 10, 10), new datetime(2017, 10, 10)));
+        ////    holds.add(new holds(1, 1));
+        ////    listens.add(new listens(0, 1));
+        }
 
         /// <summary>
         /// Klasse für komplexen Datentyp ZIP. Dieser wird gebraucht, um die Konvertierung der Benutzereingabe
@@ -86,6 +91,41 @@ namespace StudentManager
             }
         }
 
+
+        /// <summary>
+        /// Entfernt einee Person aus "Students" oder "Lecturers"
+        /// </summary>
+        /// <param name="person"></param>
+        public void RemovePerson(Person person)
+        {
+            if (person is Student)
+                Students.Remove((Student)person);
+            else
+                Lecturers.Remove((Lecturer)person);
+        }
+
+        public void JoinStudentAndCourse(Student student, ObservableCollection<Course> tempCourses)
+        {
+            foreach (Course course in tempCourses)
+            {
+                Listens.Add(new Listens(student.ID, course.ID));
+            }
+        }
+
+        public void JoinLecturerAndCourse(Lecturer lecturer, ObservableCollection<Course> tempCourses)
+        {
+            foreach(Course course in tempCourses)
+            {
+                Holds.Add(new Holds(lecturer.ID, course.ID));
+            }
+        }
+
+        public void JoinLecturerAndCourse(Lecturer lecturer, Course course)
+        {
+                Holds.Add(new Holds(lecturer.ID, course.ID));
+        }
+
+        //Collections
         public void AddStudent(
             string firstName,
             string lastName,
@@ -126,19 +166,8 @@ namespace StudentManager
             DateTime castEndDate = (DateTime)endDate;
             Courses.Add(new Course(this, name, description, semester, castStartDate, castEndDate));
         }
-
-        /// <summary>
-        /// Entfernt einee Person aus "Students" oder "Lecturers"
-        /// </summary>
-        /// <param name="person"></param>
-        public void RemovePerson(Person person)
-        {
-            if (person is Student)
-                Students.Remove((Student)person);
-            else
-                Lecturers.Remove((Lecturer)person);
-        }
-
+        
+        //Datenbank
         /// <summary>
         /// Serialisiert das DBManager Objekt, dass alle Listen enthält und schreibt es in die Datenbank
         /// </summary>

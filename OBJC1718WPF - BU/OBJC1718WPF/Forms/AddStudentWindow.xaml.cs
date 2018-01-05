@@ -49,9 +49,11 @@ namespace StudentManager
             }
             catch (Exception)
             {
-
                 throw;
             }
+
+            dBManager.JoinStudentAndCourse(dBManager.Students.Last(), tempData.CourseTempCollection);
+
             Close();
             
         }

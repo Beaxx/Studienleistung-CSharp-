@@ -75,8 +75,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Courses\Listens.cs" />
-    <Compile Include="Courses\Holds.cs" />
+    <Compile Include="Member\Listens_Holds.cs" />
     <Compile Include="Forms\AddCourseWindow.xaml.cs">
       <DependentUpon>AddCourseWindow.xaml</DependentUpon>
     </Compile>

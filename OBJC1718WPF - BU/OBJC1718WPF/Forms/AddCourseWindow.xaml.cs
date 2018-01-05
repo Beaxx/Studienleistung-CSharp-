@@ -44,15 +44,14 @@ namespace StudentManager
                 EndDateDatepicker.SelectedDate,
                 (Semester)SemesterComboBox.SelectedItem);
 
-                // TODO: Füge Dozent.ID zu Holds hinzu
-
-                // TODO: Füge Student.ID zu Listens hinzu
-
             }
             catch (Exception)
             {
                 throw;
             }
+
+            dBManager.JoinLecturerAndCourse((Lecturer)LecturerComboBox.SelectedItem, dBManager.Courses.Last());
+
             Close();
             
         }

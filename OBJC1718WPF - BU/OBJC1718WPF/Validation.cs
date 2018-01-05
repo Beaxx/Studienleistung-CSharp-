@@ -52,10 +52,5 @@ namespace StudentManager
             else return true;
         }
 
-        public static bool CheckCourseListInputInput(List<Course> input)
-        {
-            //TODO
-            return true;
-        }
     }
 }

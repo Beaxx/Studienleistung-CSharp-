@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Studiengangverwaltung: Otto-Friedrich-Universität Bamberg" Height="500" Width="800" WindowStartupLocation="CenterScreen" Icon="Graphics/Bamberg.ico" Closing="Window_Closing">
     <Grid>
+
         <!--Menüleiste-->
         <Menu x:Name="MenuBar" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="20">
 
@@ -48,6 +49,7 @@
                 <Grid Background="#FFE5E5E5">
                     <DataGrid x:Name="StudentDataGrid" AlternatingRowBackground="LightBlue" SelectionMode="Extended" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
+
                             <DataGridTextColumn Header="ID"             Binding="{Binding ID}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Vorname"        Binding="{Binding FirstName}" />
                             <DataGridTextColumn Header="Nachname"       Binding="{Binding LastName}"/>
@@ -58,7 +60,18 @@
                             <DataGridTextColumn Header="Stadt"          Binding="{Binding City}"/>
                             <DataGridTextColumn Header="Semester"       Binding="{Binding Semester}"/>
                             <DataGridTextColumn Header="Abschluss"      Binding="{Binding Degree}"/>
-                            <!--<DataGridTextColumn Header="Kurse"          Binding="{Binding Courses}"/>-->
+
+                            <!--Detail Button-->
+                            <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <Button x:Name="DetailButton" Content="Details" Click="DetailButton_Click"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -78,7 +91,18 @@
                             <DataGridTextColumn Header="PLZ"            Binding="{Binding Zip}"/>
                             <DataGridTextColumn Header="Stadt"          Binding="{Binding City}"/>
                             <DataGridTextColumn Header="Abschluss"      Binding="{Binding Degree}"/>
-                            <!--<DataGridTextColumn Header="Kurse"          Binding="{Binding Courses}"/>-->
+
+                            <!--Detail Button-->
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button x:Name="DetailButton" Content="Details"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -95,8 +119,18 @@
                             <DataGridTextColumn Header="Semester"       Binding="{Binding Semester}"/>
                             <DataGridTextColumn Header="Start"          Binding="{Binding StartDate}"/>
                             <DataGridTextColumn Header="Ende"           Binding="{Binding EndDate}"/>
-                            <!--<DataGridTextColumn Header="Dozent"         Binding="{Binding Lecturer}"/>-->
-                            <!--<DataGridTextColumn Header="Teilnehmer"     Binding="{Binding Students}"/>-->
+
+                            <!--Detail Button-->
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button x:Name="DetailButton" Content="Details"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

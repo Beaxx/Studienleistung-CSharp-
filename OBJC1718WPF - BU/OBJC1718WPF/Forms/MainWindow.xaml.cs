@@ -43,24 +43,37 @@ namespace StudentManager
             
         }
 
+        //Detail Button
+        private void DetailButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            DetailsWindow detailsWindow = new DetailsWindow(dBManager);
+            detailsWindow.ShowDialog();
+        }
+
+        //Studenten Inhalte
         private void AddStudentMenuButton_Click(object sender, RoutedEventArgs e)
         {
             AddStudentWindow addStudentWindow = new AddStudentWindow(dBManager);
             addStudentWindow.ShowDialog();
         }
 
+
+        //Dozenten Inhalte
         private void AddLecturerMenuButton_Click(object sender, RoutedEventArgs e)
         {
             AddLecturerWindow addLecturer = new AddLecturerWindow(dBManager);
             addLecturer.ShowDialog();
         }
 
+        //Kursinhalte
         private void AddCourseMenuButton_Click(object sender, RoutedEventArgs e)
         {
             AddCourseWindow addCourseWindow = new AddCourseWindow(dBManager);
             addCourseWindow.ShowDialog();
         }
 
+        //Fensster Schließen
         private void ExitApplicationMenuButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -71,5 +84,6 @@ namespace StudentManager
             dBManager.SaveToDatabase();
         }
 
+        
     }
 }

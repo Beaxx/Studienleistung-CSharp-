@@ -97,7 +97,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <Button x:Name="DetailButton" Content="Details"/>
+                                            <Button x:Name="DetailButton" Content="Details" Click="DetailButton_Click"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -125,7 +125,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <Button x:Name="DetailButton" Content="Details"/>
+                                            <Button x:Name="DetailButton" Content="Details" Click="DetailButton_Click"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

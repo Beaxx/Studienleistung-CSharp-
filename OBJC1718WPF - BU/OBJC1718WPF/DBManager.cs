@@ -40,10 +40,59 @@ namespace StudentManager
         SS24, WS2425, SS25, WS2526, SS26, WS2627, SS27, WS2728, SS28, WS2829, SS29, WS2939,
         SS30
     }
-
+    
     [DataContract]
     public class DBManager
     {
+        //Enum ToString()
+        // TODO: Enumerations haben keinen String override.
+        public static string SemesterToString(Semester semester)
+        {
+            string enumTemp = Enum.GetName(typeof(Semester), semester);
+
+            if (enumTemp.Length == 6)
+            {
+                return enumTemp.Substring(0, 2) + " " + enumTemp.Substring(3, 4) + @"/" + enumTemp.Substring(4, 5);
+            }
+            if (enumTemp.Length == 4)
+            {
+                return enumTemp.Substring(0, 2) + " " + enumTemp.Substring(2, 2);
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static string DegreeToString(Degree degree)
+        {
+            string enumTemp = Enum.GetName(typeof(Degree), degree);
+
+            switch (degree)
+            {
+                case Degree.BachelorOfArts:
+                    return "Bachelor of Arts";
+
+                case Degree.BachelorOfScience:
+                    return "Bachelor of Science";
+
+                case Degree.MasterOfArts:
+                    return "Bachelor of Science";
+
+                case Degree.MasterOfScience:
+                    return "Master of Science";
+
+                case Degree.PHD:
+                    return "Promotion (Dr.)";
+
+                case Degree.Professor:
+                    return "Habilitation (Professor)";
+
+                default:
+                    return "";
+            }
+        }
+        
         /// <summary>
         /// Collection hält die in der Anwendung dargestellten Studenten und Dozenten. Aktualisierung erfolgt bei
         /// Änderung - wichtig für aktuelle Darstellung in im Applikationsfenster
@@ -88,6 +137,11 @@ namespace StudentManager
             {
                 if (Validation.CheckMemberZIPInput(zipInput))
                     Number = Int32.Parse(zipInput);
+            }
+
+            public override string ToString()
+            {
+                return Number.ToString();
             }
         }
 

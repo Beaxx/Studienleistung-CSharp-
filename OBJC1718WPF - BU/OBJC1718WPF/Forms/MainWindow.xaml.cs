@@ -40,15 +40,30 @@ namespace StudentManager
             StudentTab.DataContext = dBManager.Students;
             LecturerTab.DataContext = dBManager.Lecturers;
             CourseTab.DataContext = dBManager.Courses;
-            
         }
 
         //Detail Button
         private void DetailButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            DetailsWindow detailsWindow = new DetailsWindow(dBManager);
-            detailsWindow.ShowDialog();
+            var rowMember = ((FrameworkElement)sender).DataContext as dynamic;
+
+            if (rowMember is Student)
+            {
+                StudentDetailWindow detailsWindow = new StudentDetailWindow(dBManager, rowMember);
+                detailsWindow.ShowDialog();
+            }
+
+            if (rowMember is Lecturer)
+            {
+                LecturerDetailWindow detailsWindow = new LecturerDetailWindow(dBManager, rowMember);
+                detailsWindow.ShowDialog();
+            }
+
+            if (rowMember is Course)
+            {
+                CourseDetailWindow detailsWindow = new CourseDetailWindow(dBManager, rowMember);
+                detailsWindow.ShowDialog();
+            }
         }
 
         //Studenten Inhalte

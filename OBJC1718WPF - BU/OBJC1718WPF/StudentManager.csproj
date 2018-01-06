@@ -55,19 +55,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Forms\AddCourseWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Forms\AddLecturerWindow.xaml">
+    <Page Include="Forms\DetailWindows\CourseDetailWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Forms\AddStudentWindow.xaml">
+    <Page Include="Forms\DetailWindows\StudentDetailWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\DialogWindows\AddCourseWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\DetailsWindow.xaml">
+    <Page Include="Forms\DialogWindows\AddLecturerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\DialogWindows\AddStudentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\DetailWindows\LecturerDetailWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -79,17 +87,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Forms\DetailsWindow.xaml.cs">
-      <DependentUpon>DetailsWindow.xaml</DependentUpon>
+    <Compile Include="Forms\DetailWindows\CourseDetailWindow.xaml.cs">
+      <DependentUpon>CourseDetailWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DetailWindows\StudentDetailWindow.xaml.cs">
+      <DependentUpon>StudentDetailWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DetailWindows\LecturerDetailWindow.xaml.cs">
+      <DependentUpon>LecturerDetailWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Member\Listens_Holds.cs" />
-    <Compile Include="Forms\AddCourseWindow.xaml.cs">
+    <Compile Include="Forms\DialogWindows\AddCourseWindow.xaml.cs">
       <DependentUpon>AddCourseWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AddLecturerWindow.xaml.cs">
+    <Compile Include="Forms\DialogWindows\AddLecturerWindow.xaml.cs">
       <DependentUpon>AddLecturerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AddStudentWindow.xaml.cs">
+    <Compile Include="Forms\DialogWindows\AddStudentWindow.xaml.cs">
       <DependentUpon>AddStudentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainWindow.xaml.cs">

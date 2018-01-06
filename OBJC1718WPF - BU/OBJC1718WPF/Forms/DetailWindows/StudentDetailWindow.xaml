@@ -1,0 +1,36 @@
+﻿<Window x:Class="StudentManager.StudentDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentManager"
+        mc:Ignorable="d"
+        Title="{Binding}" Height="278" Width="654.667">
+    <Grid DataContext="{Binding}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="403*"/>
+            <ColumnDefinition Width="239*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Linke Seite Student-->
+        <TextBox x:Name="FirstnameTextbox" HorizontalAlignment="Left" Height="23" Margin="11,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"  />
+        <TextBox x:Name="LastnameTextbox" HorizontalAlignment="Left" Height="23" Margin="162,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+        <DatePicker x:Name="BirthdateDatepPicker" Margin="298,9,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBox x:Name="StreetTextbox" HorizontalAlignment="Left" Height="23" Margin="11,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" />
+        <TextBox x:Name="HouseNumberTextbox" HorizontalAlignment="Left" Height="23" Margin="213,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" />
+        <TextBox x:Name="ZIPTextbox" HorizontalAlignment="Left" Height="23" Margin="11,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="CityTextbox" HorizontalAlignment="Left" Height="23" Margin="112,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
+
+        <ComboBox x:Name="DegreeComboBox" HorizontalAlignment="Left" Height="23" Margin="11,94,0,0" VerticalAlignment="Top" Width="181" />
+        <ComboBox x:Name="SemesterComboBox" HorizontalAlignment="Left" Height="23" Margin="11,122,0,0" VerticalAlignment="Top" Width="181"/>
+
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Margin="0,0,237,0" Height="247" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="1"/>
+        <Button  x:Name="DeleteButton" Width="15" Height="15" Background="White" BorderBrush="White"  Margin="0,0,214,18" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1">
+            <Image x:Name="DeleteButton1" Source="/OBJC1718WPF;component/Forms/Graphics/Delete.ico"/>
+        </Button>
+
+        <!--Rechte Seite Kurse-->
+        <ComboBox x:Name="CourseComboBox" HorizontalAlignment="Right" Margin="0,11,10,0" VerticalAlignment="Top" Height="22" Grid.Column="1" Width="219"/>
+        <ListBox x:Name="CourseListbox" HorizontalAlignment="Right" Margin="0,38,10,38" Grid.Column="1" Width="219"/>
+    </Grid>
+</Window>

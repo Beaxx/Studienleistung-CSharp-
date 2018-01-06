@@ -15,17 +15,20 @@ using System.Windows.Shapes;
 namespace StudentManager
 {
     /// <summary>
-    /// Interaction logic for DetailsWindow.xaml
+    /// Interaction logic for LecturerDetailWindow.xaml
     /// </summary>
-    public partial class DetailsWindow : Window
+    public partial class CourseDetailWindow : Window
     {
             private DBManager dBManager;
             private RuntimeTempData tempData = new RuntimeTempData();
 
-        public DetailsWindow(DBManager dBManager)
+        public CourseDetailWindow(DBManager dBManager, Lecturer member)
         {
             this.dBManager = dBManager;
+            DataContext = member;
+
             InitializeComponent();
+            Textblock.Text = member.ToString(); //testing
         }
     }
 }

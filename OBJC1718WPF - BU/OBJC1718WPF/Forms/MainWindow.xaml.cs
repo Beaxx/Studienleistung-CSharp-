@@ -73,7 +73,6 @@ namespace StudentManager
             addStudentWindow.ShowDialog();
         }
 
-
         //Dozenten Inhalte
         private void AddLecturerMenuButton_Click(object sender, RoutedEventArgs e)
         {

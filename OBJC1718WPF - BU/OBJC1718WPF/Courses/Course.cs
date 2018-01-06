@@ -24,7 +24,7 @@ namespace StudentManager
         public string Name
         {
             get { return name; }
-            private set
+            set
             {
                 if (Validation.CheckInputAllLetters(value))
                 {
@@ -43,7 +43,7 @@ namespace StudentManager
         public string Description
         {
             get { return description; }
-            private set
+            set
             {
                 if (value.Length < 5)
                 {

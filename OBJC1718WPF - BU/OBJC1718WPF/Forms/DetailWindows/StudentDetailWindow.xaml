@@ -24,7 +24,6 @@
         <ComboBox x:Name="DegreeComboBox" HorizontalAlignment="Left" Height="23" Margin="11,94,0,0" VerticalAlignment="Top" Width="181" />
         <ComboBox x:Name="SemesterComboBox" HorizontalAlignment="Left" Height="23" Margin="11,122,0,0" VerticalAlignment="Top" Width="181"/>
 
-        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Margin="0,0,237,0" Height="247" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="1"/>
         <Button  x:Name="DeleteButton" Width="15" Height="15" Background="White" BorderBrush="White"  Margin="0,0,214,18" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1">
             <Image x:Name="DeleteButton1" Source="/OBJC1718WPF;component/Forms/Graphics/Delete.ico"/>
         </Button>
@@ -32,5 +31,6 @@
         <!--Rechte Seite Kurse-->
         <ComboBox x:Name="CourseComboBox" HorizontalAlignment="Right" Margin="0,11,10,0" VerticalAlignment="Top" Height="22" Grid.Column="1" Width="219"/>
         <ListBox x:Name="CourseListbox" HorizontalAlignment="Right" Margin="0,38,10,38" Grid.Column="1" Width="219"/>
+        <Button x:Name="ConfirmationButton" Content="OK" VerticalAlignment="Top" Margin="162,209,0,0" HorizontalAlignment="Left" Width="74" Height="20" Click="ConfirmationButton_Click"/>
     </Grid>
 </Window>

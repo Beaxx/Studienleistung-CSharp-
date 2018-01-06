@@ -19,19 +19,21 @@ namespace StudentManager
     /// </summary>
     public partial class StudentDetailWindow : Window
     {
-            private DBManager dBManager;
-            private RuntimeTempData tempData = new RuntimeTempData();
+        private DBManager dBManager;
+        private Student student;
+        private RuntimeTempData tempData = new RuntimeTempData();
 
         public StudentDetailWindow(DBManager dBManager, Student member)
         {
             this.dBManager = dBManager;
+            student = member;
             DataContext = member;
 
             InitializeComponent();
             Title = member.ToString();
             FirstnameTextbox.Text = member.FirstName;
             LastnameTextbox.Text = member.LastName;
-            BirthdateDatepPicker.DisplayDate = member.Birthdate;
+            BirthdateDatepPicker.SelectedDate = member.Birthdate;
             StreetTextbox.Text = member.Street;
             HouseNumberTextbox.Text = member.HouseNumber;
             ZIPTextbox.Text = member.Zip.ToString();
@@ -45,6 +47,33 @@ namespace StudentManager
 
             CourseComboBox.ItemsSource = dBManager.Courses;
             // TODO: LINQ Befehel, der eine Collection aus den Einträgen der Listens-Klasse Erstellt.
+        }
+
+        private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                student.FirstName = FirstnameTextbox.Text;
+                student.LastName = LastnameTextbox.Text;
+                student.Birthdate = (DateTime)BirthdateDatepPicker.SelectedDate;
+                student.Degree = (Degree)DegreeComboBox.SelectedItem;
+                student.Street = StreetTextbox.Text;
+                student.HouseNumber = HouseNumberTextbox.Text;
+                student.Zip = new DBManager.ZIP(ZIPTextbox.Text).Number;
+                student.City = CityTextbox.Text;
+                student.Semester = (Semester)SemesterComboBox.SelectedItem;
+
+                // TODO: Update der Listens
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            dBManager.JoinStudentAndCourse(dBManager.Students.Last(), tempData.CourseTempCollection);
+
+            Close();
         }
     }
 }

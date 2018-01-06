@@ -5,9 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentManager"
         mc:Ignorable="d"
-        Title="DetailsWindow" Height="300" Width="300">
-    <Grid DataContext="{Binding}">
-        <TextBlock x:Name="Textblock" HorizontalAlignment="Left" Margin="100,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+         Title="{Binding}" Height="278" Width="650">
+    <Grid DataContext="{Binding}" Margin="0,0,2,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="101*"/>
+            <ColumnDefinition Width="59*"/>
+        </Grid.ColumnDefinitions>
 
+        <!--Links, Kursdaten-->
+        <TextBox x:Name="NameTextbox" HorizontalAlignment="Left" Height="23" Margin="11,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="385"  />
+        
+        <Label Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="11,39,0,0" Height="26" Width="34"/>
+        <DatePicker x:Name="StartdateDatePicker" Margin="71,40,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="24" Width="102"/>
+        
+        <Label Content="Ende" VerticalAlignment="Top" Margin="234,40,0,0" Height="23" RenderTransformOrigin="1.426,0.472" HorizontalAlignment="Left" Width="36"/>
+        <DatePicker x:Name="EnddateDatePicker" Margin="294,39,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="102"/>
+        
+        <TextBox x:Name="DescriptionTextbox" HorizontalAlignment="Left" Height="114" Margin="11,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="385"  />
+        <ComboBox x:Name="LecturerComboBox" HorizontalAlignment="Left" Height="23" Margin="11,188,0,0" VerticalAlignment="Top" Width="123" />
+        <ComboBox x:Name="SemesterComboBox" Height="23" Margin="273,186,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="123"/>
+        <Button x:Name="ConfirmationButton" Content="OK" VerticalAlignment="Top" Margin="166,217,0,0" HorizontalAlignment="Left" Width="74" Height="20" Click="ConfirmationButton_Click"/>
+        
+        
+        <!--Rechts, Studenten -->
+        <ComboBox x:Name="StudentComboBox" Margin="9,12,0,0" VerticalAlignment="Top" Height="22" Grid.Column="1" HorizontalAlignment="Left" Width="219"/>
+        <ListBox x:Name="StudentListBox" Margin="9,40,0,36" Grid.Column="1" HorizontalAlignment="Left" Width="219"/>
+        <Button  x:Name="DeleteButton" Height="15" Background="White" BorderBrush="White"  Margin="9,0,0,16" VerticalAlignment="Bottom" Grid.Column="1" HorizontalAlignment="Left" Width="15">
+            <Image x:Name="DeleteButton1" Source="/OBJC1718WPF;component/Forms/Graphics/Delete.ico"/>
+        </Button>
     </Grid>
 </Window>

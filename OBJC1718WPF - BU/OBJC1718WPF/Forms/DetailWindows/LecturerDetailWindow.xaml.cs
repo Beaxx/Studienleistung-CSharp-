@@ -19,19 +19,21 @@ namespace StudentManager
     /// </summary>
     public partial class LecturerDetailWindow : Window
     {
-            private DBManager dBManager;
-            private RuntimeTempData tempData = new RuntimeTempData();
+        private DBManager dBManager;
+        private Lecturer lecturer;
+        private RuntimeTempData tempData = new RuntimeTempData();
 
         public LecturerDetailWindow(DBManager dBManager, Lecturer member)
         {
             this.dBManager = dBManager;
+            lecturer = member;
             DataContext = member;
 
             InitializeComponent();
             Title = member.ToString();
             FirstnameTextbox.Text = member.FirstName;
             LastnameTextbox.Text = member.LastName;
-            BirthdateDatepPicker.DisplayDate = member.Birthdate;
+            BirthdateDatepPicker.SelectedDate = member.Birthdate;
             StreetTextbox.Text = member.Street;
             HouseNumberTextbox.Text = member.HouseNumber;
             ZIPTextbox.Text = member.Zip.ToString();
@@ -41,6 +43,26 @@ namespace StudentManager
 
             CourseComboBox.ItemsSource = dBManager.Courses;
             // TODO: LINQ Befehel, der eine Collection aus den Einträgen der Listens-Klasse Erstellt.
+        }
+
+        private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                lecturer.FirstName = FirstnameTextbox.Text;
+                lecturer.LastName = LastnameTextbox.Text;
+                lecturer.Birthdate = (DateTime)BirthdateDatepPicker.SelectedDate;
+                lecturer.Degree = (Degree)DegreeComboBox.SelectedItem;
+                lecturer.Street = StreetTextbox.Text;
+                lecturer.HouseNumber = HouseNumberTextbox.Text;
+                lecturer.Zip = new DBManager.ZIP(ZIPTextbox.Text).Number;
+                lecturer.City = CityTextbox.Text;
+                // TODO: Update der Listens
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

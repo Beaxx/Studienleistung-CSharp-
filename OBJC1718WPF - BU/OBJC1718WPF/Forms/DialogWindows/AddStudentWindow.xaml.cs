@@ -55,7 +55,6 @@ namespace StudentManager
             dBManager.JoinStudentAndCourse(dBManager.Students.Last(), tempData.CourseTempCollection);
 
             Close();
-            
         }
 
         private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

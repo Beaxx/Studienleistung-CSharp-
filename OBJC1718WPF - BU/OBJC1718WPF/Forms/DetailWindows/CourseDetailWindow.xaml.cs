@@ -20,15 +20,49 @@ namespace StudentManager
     public partial class CourseDetailWindow : Window
     {
             private DBManager dBManager;
+            private Course course;
             private RuntimeTempData tempData = new RuntimeTempData();
 
-        public CourseDetailWindow(DBManager dBManager, Lecturer member)
+        public CourseDetailWindow(DBManager dBManager, Course course)
         {
             this.dBManager = dBManager;
-            DataContext = member;
+            this.course = course;
+            DataContext = course;
 
             InitializeComponent();
-            Textblock.Text = member.ToString(); //testing
+            Title = course.ToString();
+            NameTextbox.Text = course.Name;
+            DescriptionTextbox.Text = course.Description;
+            StartdateDatePicker.SelectedDate = course.StartDate;
+            EnddateDatePicker.SelectedDate = course.EndDate;
+
+            SemesterComboBox.ItemsSource = Enum.GetValues(typeof(Semester));
+            SemesterComboBox.SelectedItem = course.Semester;
+
+            LecturerComboBox.ItemsSource = dBManager.Lecturers;
+            // TODO: Dozent-Kurs Verbindung aus Holds suchen.
+            //DegreeComboBox.SelectedItem = course
+        }
+
+        private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                course.Name = NameTextbox.Text;
+                course.Description = DescriptionTextbox.Text;
+                course.StartDate = (DateTime)StartdateDatePicker.SelectedDate;
+                course.EndDate = (DateTime)EnddateDatePicker.SelectedDate;
+
+                // TODO: Siehe oben -> Dozent- Kurs binding für Combobox
+
+                course.Semester = (Semester)SemesterComboBox.SelectedItem;
+
+                // TODO: Update der Listens
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

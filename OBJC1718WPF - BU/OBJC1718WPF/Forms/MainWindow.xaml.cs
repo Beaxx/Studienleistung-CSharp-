@@ -67,6 +67,9 @@ namespace StudentManager
             }
         }
 
+        //Delete Button
+
+
         //Studenten Inhalte
         private void AddStudentMenuButton_Click(object sender, RoutedEventArgs e)
         {
@@ -99,6 +102,46 @@ namespace StudentManager
             dBManager.SaveToDatabase();
         }
 
-        
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var rowMember = ((FrameworkElement)sender).DataContext as dynamic;
+
+            if (rowMember is Student)
+            {
+                var toRemove = dBManager.Listens.Where(studentListens => rowMember.ID == studentListens.StudentID);
+                for (int i = toRemove.Count() - 1; i >= 0; i--)
+                {
+                    dBManager.Listens.Remove(toRemove.First());
+                }
+                dBManager.Students.Remove(rowMember);
+            }
+
+            if (rowMember is Lecturer)
+            {
+                var toRemove = dBManager.Holds.Where(lecturerHolds => rowMember.ID == lecturerHolds.LecturerID);
+                for (int i = toRemove.Count() - 1; i >= 0; i--)
+                {
+                    dBManager.Holds.Remove(toRemove.First());
+                }
+                dBManager.Lecturers.Remove(rowMember);
+            }
+
+            if (rowMember is Course)
+            {
+                var toRemove1 = dBManager.Holds.Where(lecturerOfCourse => rowMember.ID == lecturerOfCourse.LecturerID);
+                var toRemove2 = from Listens in dBManager.Listens
+                                where (Listens.CourseID == rowMember.ID)
+                                select Listens;
+
+                for (int i = toRemove2.Count() - 1; i >= 0; i--)
+                {
+                    dBManager.Listens.Remove(toRemove2.Last());
+                }
+
+                //Unproblematisch, da Kurse nur einen dozenten haben.
+                dBManager.Holds.Remove(toRemove1.First());
+                dBManager.Courses.Remove(rowMember);
+            }
+        }
     }
 }

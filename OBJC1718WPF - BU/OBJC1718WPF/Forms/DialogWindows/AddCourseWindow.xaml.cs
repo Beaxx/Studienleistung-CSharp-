@@ -43,17 +43,14 @@ namespace StudentManager
                 StartDateDatepicker.SelectedDate,
                 EndDateDatepicker.SelectedDate,
                 (Semester)SemesterComboBox.SelectedItem);
-
             }
             catch (Exception)
             {
                 throw;
             }
 
-
-
             dBManager.JoinLecturerAndCourse((Lecturer)LecturerComboBox.SelectedItem, dBManager.Courses.Last());
-
+            dBManager.JoinStudentAndCourse((Student)StudentComboBox.SelectedItem, dBManager.Courses.Last());
             Close();
             
         }

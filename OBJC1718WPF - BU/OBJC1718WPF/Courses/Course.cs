@@ -119,7 +119,7 @@ namespace StudentManager
 
         public override string ToString()
         {
-            return Name + "(" + DBManager.SemesterToString(Semester) + ")";
+            return Name + " (" + DBManager.SemesterToString(Semester) + ")";
         }
     }
 }

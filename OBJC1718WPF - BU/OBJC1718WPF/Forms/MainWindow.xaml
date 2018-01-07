@@ -71,7 +71,18 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-
+                            
+                            <!--Delete Button-->
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button x:Name="DeleteButton" Content="Löschen" Click="DeleteButton_Click" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -103,6 +114,17 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
 
+                            <!--Delete Button-->
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button x:Name="DeleteButton" Content="Löschen" Click="DeleteButton_Click" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -126,6 +148,17 @@
                                     <DataTemplate>
                                         <StackPanel>
                                             <Button x:Name="DetailButton" Content="Details" Click="DetailButton_Click"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <!--Delete Button-->
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button x:Name="DeleteButton" Content="Löschen" Click="DeleteButton_Click" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>

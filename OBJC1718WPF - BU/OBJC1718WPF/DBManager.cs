@@ -55,11 +55,11 @@ namespace StudentManager
 
             if (enumTemp.Length == 6)
             {
-                return " " + enumTemp.Substring(0, 2) + " " + enumTemp.Substring(3, 4) + @"/" + enumTemp.Substring(4, 5);
+                return enumTemp.Substring(0, 2) + " " + enumTemp.Substring(2, 2) + "/" + enumTemp.Substring(4, 2);
             }
             if (enumTemp.Length == 4)
             {
-                return " " + enumTemp.Substring(0, 2) + " " + enumTemp.Substring(2, 2);
+                return enumTemp.Substring(0, 2) + " " + enumTemp.Substring(2, 2);
             }
             else
             {
@@ -198,33 +198,36 @@ namespace StudentManager
         {
             foreach (Course course in tempCourses)
             {
-                if (!Listens.Contains(new Listens(student.ID, course.ID)))
-                    Listens.Add(new Listens(student.ID, course.ID));
-
-
+                Listens listensEntry = new Listens(student.ID, course.ID);
+                if (student != null && course != null && !Listens.Contains(listensEntry))
+                {
+                    Listens.Add(listensEntry);
+                }
             }
         }
 
-        public void JoinStudentandCourse(Student student, Course course)
+        public void JoinStudentAndCourse(Student student, Course course)
         {
-            if (!Listens.Contains(new Listens(student.ID, course.ID)))
-                Listens.Add(new Listens(student.ID, course.ID));
+            Listens listensEntry = new Listens(student.ID, course.ID);
+            if (student != null && course != null && !Listens.Contains(listensEntry))
+                Listens.Add(listensEntry);
         }
 
         public void JoinLecturerAndCourse(Lecturer lecturer, ObservableCollection<Course> tempCourses)
         {
             foreach (Course course in tempCourses)
             {
-                // TODO: Syntax, besseren ausdruck finden
-                if (!Holds.Contains(new Holds(lecturer.ID, course.ID)))
-                    Holds.Add(new Holds(lecturer.ID, course.ID));
+                Holds holdsEntry = new Holds(lecturer.ID, course.ID);
+                if (lecturer != null && course != null && !Holds.Contains(holdsEntry))
+                    Holds.Add(holdsEntry);
             }
         }
 
         public void JoinLecturerAndCourse(Lecturer lecturer, Course course)
         {
-            if (!Holds.Contains(new Holds(lecturer.ID, course.ID)))
-                Holds.Add(new Holds(lecturer.ID, course.ID));
+            Holds holdsEntry = new Holds(lecturer.ID, course.ID);
+            if (lecturer != null && course != null && !Holds.Contains(holdsEntry))
+                Holds.Add(holdsEntry);
         }
 
         //Datenbank

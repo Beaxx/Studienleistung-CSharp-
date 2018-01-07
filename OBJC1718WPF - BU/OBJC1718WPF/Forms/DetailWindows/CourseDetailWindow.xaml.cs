@@ -36,7 +36,7 @@ namespace StudentManager
             StartdateDatePicker.SelectedDate = course.StartDate;
             EnddateDatePicker.SelectedDate = course.EndDate;
 
-            StudentComboBox.ItemsSource = dBManager.Students;
+           
 
             SemesterComboBox.ItemsSource = Enum.GetValues(typeof(Semester));
             SemesterComboBox.SelectedItem = course.Semester;
@@ -64,7 +64,9 @@ namespace StudentManager
                                   where (courseAttendeesID.Contains(Student.ID))
                                   select Student;
 
+            //Combobox enthält nur Elemente, die nicht bereits in der Listbox sind.
             StudentListBox.ItemsSource = courseAttendees;
+            StudentComboBox.ItemsSource = dBManager.Students.Except(courseAttendees);
         }
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)

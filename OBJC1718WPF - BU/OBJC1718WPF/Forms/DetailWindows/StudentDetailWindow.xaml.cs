@@ -45,8 +45,6 @@ namespace StudentManager
             SemesterComboBox.ItemsSource = Enum.GetValues(typeof(Semester));
             SemesterComboBox.SelectedItem = member.Semester;
 
-            CourseComboBox.ItemsSource = dBManager.Courses;
-            
             //Querry für Kursliste
             var enrolledCoursesID = from Listens in dBManager.Listens
                                     where (Listens.StudentID == student.ID)
@@ -57,7 +55,7 @@ namespace StudentManager
                                   select Course;
 
             CourseListbox.ItemsSource = enrolledCourses;
-
+            CourseComboBox.ItemsSource = dBManager.Courses.Except(enrolledCourses);
         }
 
 

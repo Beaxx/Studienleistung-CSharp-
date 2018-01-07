@@ -41,8 +41,6 @@ namespace StudentManager
             DegreeComboBox.ItemsSource = Enum.GetValues(typeof(Degree));
             DegreeComboBox.SelectedItem = member.Degree;
 
-            CourseComboBox.ItemsSource = dBManager.Courses;
-
             var holdingCoursesID = from Holds in dBManager.Holds
                                     where (Holds.LecturerID == lecturer.ID)
                                     select Holds.CourseIDs;
@@ -52,6 +50,7 @@ namespace StudentManager
                                   select Course;
 
             CourseListbox.ItemsSource = holdingCourses;
+            CourseComboBox.ItemsSource = dBManager.Courses.Except(holdingCourses);
         }
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)

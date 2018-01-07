@@ -29,7 +29,7 @@ namespace StudentManager
             InitializeComponent();
             SemesterComboBox.ItemsSource = Enum.GetValues(typeof(Semester));
             LecturerComboBox.ItemsSource = dBManager.Lecturers;
-            StudentComboBox.ItemsSource = dBManager.Students;
+            StudentComboBox.ItemsSource = dBManager.Students.Except(tempData.StudentTempCollection);
             StudentListbox.ItemsSource = tempData.StudentTempCollection;
         }
 
@@ -58,7 +58,8 @@ namespace StudentManager
 
         private void StudentComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            tempData.StudentTempCollection.Add((Student)StudentComboBox.SelectedItem);
+            if (!StudentListbox.Items.Contains((Student)StudentComboBox.SelectedItem))
+                tempData.StudentTempCollection.Add((Student)StudentComboBox.SelectedItem);
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

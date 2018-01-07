@@ -181,6 +181,7 @@ namespace StudentManager
             Courses.Add(new Course(this, name, description, semester, castStartDate, castEndDate));
         }
 
+        // TODO: Löschfunktion einbinden
         /// <summary>
         /// Entfernt einee Person aus "Students" oder "Lecturers"
         /// </summary>
@@ -197,26 +198,31 @@ namespace StudentManager
         {
             foreach (Course course in tempCourses)
             {
-                Listens.Add(new Listens(student.ID, course.ID));
+                if (!Listens.Contains(new Listens(student.ID, course.ID)))
+                    Listens.Add(new Listens(student.ID, course.ID));
             }
         }
 
         public void JoinStudentandCourse(Student student, Course course)
         {
-            Listens.Add(new Listens(student.ID, course.ID));
+            if (!Listens.Contains(new Listens(student.ID, course.ID)))
+                Listens.Add(new Listens(student.ID, course.ID));
         }
 
         public void JoinLecturerAndCourse(Lecturer lecturer, ObservableCollection<Course> tempCourses)
         {
             foreach (Course course in tempCourses)
             {
-                Holds.Add(new Holds(lecturer.ID, course.ID));
+                // TODO: Syntax, besseren ausdruck finden
+                if (!Holds.Contains(new Holds(lecturer.ID, course.ID)))
+                    Holds.Add(new Holds(lecturer.ID, course.ID));
             }
         }
 
         public void JoinLecturerAndCourse(Lecturer lecturer, Course course)
         {
-            Holds.Add(new Holds(lecturer.ID, course.ID));
+            if (!Holds.Contains(new Holds(lecturer.ID, course.ID)))
+                Holds.Add(new Holds(lecturer.ID, course.ID));
         }
 
         //Datenbank

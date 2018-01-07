@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace StudentManager
 {
-    public class RuntimeTempData
+    public class RuntimeTempData : INotifyPropertyChanged
     {
         /// <summary>
         /// Liste zur temporären Erfassung von Studenten im "AddStudent" Form.
@@ -20,5 +20,12 @@ namespace StudentManager
         /// Liste zur temporären Erfassung von Kursen im "AddCOurse" Form.
         /// </summary
         public ObservableCollection<Course> CourseTempCollection { get; set; } = new ObservableCollection<Course>();
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

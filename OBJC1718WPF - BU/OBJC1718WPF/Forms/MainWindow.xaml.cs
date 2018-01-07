@@ -23,6 +23,7 @@ namespace StudentManager
     //public delegate bool CheckFieldInputDate(string input);
     //public delegate bool CheckFieldInput(string input);
 
+        // TODO: Datum für geburtstadum korrekt darstellen
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

@@ -83,13 +83,15 @@ namespace StudentManager
                 throw;
             }
 
-           
+            dBManager.JoinStudentAndCourse(this.student, tempData.CourseTempCollection);
+
 
             Close();
         }
 
         private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
             tempData.CourseTempCollection.Add((Course)CourseComboBox.SelectedItem);
         }
     }

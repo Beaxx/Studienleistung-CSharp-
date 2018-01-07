@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentManager"
         mc:Ignorable="d"
-        Title="Hinzufügen" Height="345" Width="450" MinHeight="345" MinWidth="450">
+        Title="Kurs Hinzufügen" Height="345" Width="450" MinHeight="345" MinWidth="450">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>

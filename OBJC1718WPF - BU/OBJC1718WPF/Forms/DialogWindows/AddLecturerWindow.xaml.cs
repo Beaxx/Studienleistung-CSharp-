@@ -28,7 +28,7 @@ namespace StudentManager
             InitializeComponent();
             DegreeComboBox.ItemsSource = Enum.GetValues(typeof(Degree));
             CourseListbox.ItemsSource = tempData.CourseTempCollection;
-            CourseComboBox.ItemsSource = dBManager.Courses;
+            CourseComboBox.ItemsSource = dBManager.Courses.Except(tempData.CourseTempCollection);
         }
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
@@ -57,7 +57,8 @@ namespace StudentManager
 
         private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            tempData.CourseTempCollection.Add((Course)CourseComboBox.SelectedItem);
+            if (!CourseListbox.Items.Contains((Course)CourseComboBox.SelectedItem))
+                tempData.CourseTempCollection.Add((Course)CourseComboBox.SelectedItem);
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

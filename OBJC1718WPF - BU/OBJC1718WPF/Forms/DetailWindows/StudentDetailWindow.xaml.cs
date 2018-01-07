@@ -85,14 +85,19 @@ namespace StudentManager
 
             dBManager.JoinStudentAndCourse(this.student, tempData.CourseTempCollection);
 
-
             Close();
         }
 
         private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            tempData.CourseTempCollection.Add((Course)CourseComboBox.SelectedItem);
+
+            if (!CourseListbox.Items.Contains((Course)CourseListbox.SelectedItem))
+                tempData.CourseTempCollection.Add((Course)CourseListbox.SelectedItem);
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            tempData.CourseTempCollection.Remove((Course)CourseListbox.SelectedItem);
         }
     }
 }

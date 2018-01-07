@@ -50,6 +50,8 @@ namespace StudentManager
                 throw;
             }
 
+
+
             dBManager.JoinLecturerAndCourse((Lecturer)LecturerComboBox.SelectedItem, dBManager.Courses.Last());
 
             Close();

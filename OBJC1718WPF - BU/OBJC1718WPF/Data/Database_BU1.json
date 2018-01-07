@@ -1,9 +1,9 @@
 {
   "Courses": [
     {
-      "ID": 0,
       "description": "Ziemlich langweilig",
       "endDate": "\/Date(1286661600000+0200)\/",
+      "ID": 0,
       "name": "Mathematik-1",
       "semester": 9,
       "startDate": "\/Date(1128895200000+0200)\/"
@@ -74,6 +74,30 @@
     {
       "courseID": 2,
       "studentID": 1
+    },
+    {
+      "courseID": 2,
+      "studentID": 2
+    },
+    {
+      "courseID": 0,
+      "studentID": 2
+    },
+    {
+      "courseID": 1,
+      "studentID": 2
+    },
+    {
+      "courseID": 0,
+      "studentID": 3
+    },
+    {
+      "courseID": 1,
+      "studentID": 3
+    },
+    {
+      "courseID": 2,
+      "studentID": 3
     }
   ],
   "Students": [
@@ -90,16 +114,40 @@
       "semester": 20
     },
     {
+      "ID": 1,
+      "Zip": 99999,
       "birthdate": "\/Date(174088800000+0200)\/",
       "city": "London",
-      "degree": 3,
       "firstName": "Magred",
       "houseNumber": "10",
-      "ID": 1,
       "lastName": "Thatcher",
-      "semester": 3,
       "street": "Downing Str.",
-      "Zip": 99999
+      "degree": 3,
+      "semester": 3
+    },
+    {
+      "ID": 2,
+      "Zip": 58774,
+      "birthdate": "\/Date(-140234400000+0200)\/",
+      "city": "Berlin",
+      "firstName": "Astrid",
+      "houseNumber": "78",
+      "lastName": "Völler",
+      "street": "Herbertmayer Str.",
+      "degree": 2,
+      "semester": 2
+    },
+    {
+      "ID": 3,
+      "Zip": 45411,
+      "birthdate": "\/Date(445302000000+0100)\/",
+      "city": "Bremen",
+      "firstName": "Test",
+      "houseNumber": "13",
+      "lastName": "Testtt",
+      "street": "Irgendweoi",
+      "degree": 3,
+      "semester": 2
     }
   ]
 }

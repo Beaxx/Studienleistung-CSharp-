@@ -28,9 +28,9 @@
 
 
         <!--Rechts, Studenten -->
-        <ComboBox x:Name="StudentComboBox" Margin="0,12,8,0" VerticalAlignment="Top" Height="22" Grid.Column="1" HorizontalAlignment="Right" Width="219"/>
+        <ComboBox x:Name="StudentComboBox" Margin="0,12,8,0" VerticalAlignment="Top" Height="22" Grid.Column="1" HorizontalAlignment="Right" Width="219" SelectionChanged="StudentComboBox_SelectionChanged"/>
         <ListBox x:Name="StudentListBox" Margin="0,40,8,36" Grid.Column="1" HorizontalAlignment="Right" Width="219"/>
-        <Button  x:Name="DeleteButton" Height="15" Background="White" BorderBrush="White"  Margin="9,0,0,16" VerticalAlignment="Bottom" Grid.Column="1" HorizontalAlignment="Left" Width="15">
+        <Button  x:Name="DeleteButton" Height="15" Background="White" BorderBrush="White"  Margin="9,0,0,16" VerticalAlignment="Bottom" Grid.Column="1" HorizontalAlignment="Left" Width="15" Click="DeleteButton_Click">
             <Image x:Name="DeleteButton1" Source="/OBJC1718WPF;component/Forms/Graphics/Delete.ico"/>
         </Button>
     </Grid>

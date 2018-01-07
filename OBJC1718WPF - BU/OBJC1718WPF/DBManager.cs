@@ -200,6 +200,8 @@ namespace StudentManager
             {
                 if (!Listens.Contains(new Listens(student.ID, course.ID)))
                     Listens.Add(new Listens(student.ID, course.ID));
+
+
             }
         }
 

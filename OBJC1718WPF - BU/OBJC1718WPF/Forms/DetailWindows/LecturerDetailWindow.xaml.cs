@@ -71,5 +71,16 @@ namespace StudentManager
                 throw;
             }
         }
+
+        private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!CourseListbox.Items.Contains((Course)CourseListbox.SelectedItem))
+                tempData.CourseTempCollection.Add((Course)CourseListbox.SelectedItem);
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            tempData.CourseTempCollection.Remove((Course)CourseListbox.SelectedItem);
+        }
     }
 }

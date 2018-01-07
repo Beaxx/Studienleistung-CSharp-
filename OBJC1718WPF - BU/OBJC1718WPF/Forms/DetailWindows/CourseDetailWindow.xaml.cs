@@ -41,15 +41,16 @@ namespace StudentManager
 
             //Querry für Lecturer Combobox
             var courseLecturer = from Holds in dBManager.Holds
-                                   from Lecturer in dBManager.Lecturers
-                                   where (Holds.CourseID == course.ID && Holds.LecturerID == Lecturer.ID)
-                                   select Lecturer;
+                                 from Lecturer in dBManager.Lecturers
+                                 where (Holds.CourseID == course.ID && Holds.LecturerID == Lecturer.ID)
+                                 select Lecturer;
 
             LecturerComboBox.ItemsSource = dBManager.Lecturers;
             // TODO: Kombobox bleibt trotz zugewiesenem Wert Null.
             LecturerComboBox.SelectedItem = courseLecturer;
 
             //Querry für Kursteilnehmer (Studenten)
+            // TODO: Evtl. Union. operator nutzen für schöneren code?
             var courseAttendees = from Listens in dBManager.Listens
                                   from Student in dBManager.Students
                                   where (Listens.CourseID == course.ID && Listens.StudentID == Student.ID)
@@ -58,6 +59,14 @@ namespace StudentManager
             //Combobox enthält nur Elemente, die nicht bereits in der Listbox sind.
             StudentListBox.ItemsSource = courseAttendees;
             StudentComboBox.ItemsSource = dBManager.Students.Except(courseAttendees);
+
+            // TODO: Bessere möglichkeit für die Interpretation einer Querry Liste, Cast geht nicht? 
+            //tempData.StudentTempCollection = courseAttendees;
+
+            foreach (var student in courseAttendees)
+            {
+                tempData.StudentTempCollection.Add(student);
+            }
         }
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
@@ -79,6 +88,17 @@ namespace StudentManager
             {
                 throw;
             }
+        }
+
+        private void StudentComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!StudentListBox.Items.Contains((Student)StudentComboBox.SelectedItem))
+                tempData.StudentTempCollection.Add((Student)StudentComboBox.SelectedItem);
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            tempData.StudentTempCollection.Remove((Student)StudentListBox.SelectedItem);
         }
     }
 }

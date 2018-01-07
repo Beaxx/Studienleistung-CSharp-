@@ -54,10 +54,16 @@ namespace StudentManager
                                     select Course;
 
             //Combobox enthält nur Elemente, die nicht bereits in der Listbox sind.
-            CourseListbox.ItemsSource = enrolledInCourses;
-            CourseComboBox.ItemsSource = dBManager.Courses.Except(enrolledInCourses);
-        }
+            //Tempdata notwendig um daten bearbeiten zu können
+            foreach (var course in enrolledInCourses)
+            {
+                tempData.CourseTempCollection.Add(course);
+            }
 
+            // TODO: Listbox updatet nicht
+            CourseListbox.ItemsSource = tempData.CourseTempCollection;
+            CourseComboBox.ItemsSource = dBManager.Courses.Except(tempData.CourseTempCollection);
+        }
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
         {
@@ -90,7 +96,6 @@ namespace StudentManager
 
         private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             if (!CourseListbox.Items.Contains((Course)CourseListbox.SelectedItem))
                 tempData.CourseTempCollection.Add((Course)CourseListbox.SelectedItem);
         }

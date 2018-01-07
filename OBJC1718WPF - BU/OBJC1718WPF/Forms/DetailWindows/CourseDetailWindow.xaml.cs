@@ -57,16 +57,19 @@ namespace StudentManager
                                   select Student;
 
             //Combobox enthält nur Elemente, die nicht bereits in der Listbox sind.
-            StudentListBox.ItemsSource = courseAttendees;
-            StudentComboBox.ItemsSource = dBManager.Students.Except(courseAttendees);
-
-            // TODO: Bessere möglichkeit für die Interpretation einer Querry Liste, Cast geht nicht? 
-            //tempData.StudentTempCollection = courseAttendees;
-
+            //Tempdata notwendig um daten bearbeiten zu können
             foreach (var student in courseAttendees)
             {
                 tempData.StudentTempCollection.Add(student);
             }
+
+            StudentListBox.ItemsSource = tempData.StudentTempCollection;
+            StudentComboBox.ItemsSource = dBManager.Students.Except(tempData.StudentTempCollection);
+
+            // TODO: Bessere möglichkeit für die Interpretation einer Querry Liste, Cast geht nicht? 
+            //tempData.StudentTempCollection = courseAttendees;
+
+            
         }
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)

@@ -46,8 +46,20 @@ namespace StudentManager
             SemesterComboBox.SelectedItem = member.Semester;
 
             CourseComboBox.ItemsSource = dBManager.Courses;
-            // TODO: LINQ Befehel, der eine Collection aus den Einträgen der Listens-Klasse Erstellt.
+            
+            //Querry für Kursliste
+            var enrolledCoursesID = from Listens in dBManager.Listens
+                                    where (Listens.StudentID == student.ID)
+                                    select Listens.CourseIDs;
+
+            var enrolledCourses = from Course in dBManager.Courses
+                                  where (enrolledCoursesID.Contains(Course.ID))
+                                  select Course;
+
+            CourseListbox.ItemsSource = enrolledCourses;
+
         }
+
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
         {
@@ -63,7 +75,9 @@ namespace StudentManager
                 student.City = CityTextbox.Text;
                 student.Semester = (Semester)SemesterComboBox.SelectedItem;
 
-                // TODO: Update der Listens
+                // TODO: LINQ zuweisung über querry möglich?
+                // für die in der lsite hinzugefügten
+                //dBManager.JoinStudentAndCourse(student, );
 
             }
             catch (Exception)
@@ -71,7 +85,7 @@ namespace StudentManager
                 throw;
             }
 
-            dBManager.JoinStudentAndCourse(dBManager.Students.Last(), tempData.CourseTempCollection);
+           
 
             Close();
         }

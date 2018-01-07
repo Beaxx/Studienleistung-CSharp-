@@ -36,12 +36,35 @@ namespace StudentManager
             StartdateDatePicker.SelectedDate = course.StartDate;
             EnddateDatePicker.SelectedDate = course.EndDate;
 
+            StudentComboBox.ItemsSource = dBManager.Students;
+
             SemesterComboBox.ItemsSource = Enum.GetValues(typeof(Semester));
             SemesterComboBox.SelectedItem = course.Semester;
 
+            //Querry für Lecturer Combobox
+            var courseLecturerID = from Holds in dBManager.Holds
+                                 where (Holds.CourseIDs == course.ID)
+                                 select Holds.LecturerID;
+
+            var courseLecturer = from Lecturer in dBManager.Lecturers
+                                  where (courseLecturerID.Contains(Lecturer.ID))
+                                  select Lecturer;
+
             LecturerComboBox.ItemsSource = dBManager.Lecturers;
-            // TODO: Dozent-Kurs Verbindung aus Holds suchen.
-            //DegreeComboBox.SelectedItem = course
+            
+            // TODO: Kombobox bleibt trotz zugewiesenem Wert Null.
+            LecturerComboBox.SelectedItem = courseLecturer;
+
+            //Querry für Kursteilnehmer (Studenten)
+            var courseAttendeesID = from Listens in dBManager.Listens
+                                    where (Listens.CourseIDs == course.ID)
+                                    select Listens.CourseIDs;
+
+            var courseAttendees = from Student in dBManager.Students
+                                  where (courseAttendeesID.Contains(Student.ID))
+                                  select Student;
+
+            StudentListBox.ItemsSource = courseAttendees;
         }
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)

@@ -42,7 +42,16 @@ namespace StudentManager
             DegreeComboBox.SelectedItem = member.Degree;
 
             CourseComboBox.ItemsSource = dBManager.Courses;
-            // TODO: LINQ Befehel, der eine Collection aus den Einträgen der Listens-Klasse Erstellt.
+
+            var holdingCoursesID = from Holds in dBManager.Holds
+                                    where (Holds.LecturerID == lecturer.ID)
+                                    select Holds.CourseIDs;
+
+            var holdingCourses = from Course in dBManager.Courses
+                                  where (holdingCoursesID.Contains(Course.ID))
+                                  select Course;
+
+            CourseListbox.ItemsSource = holdingCourses;
         }
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)

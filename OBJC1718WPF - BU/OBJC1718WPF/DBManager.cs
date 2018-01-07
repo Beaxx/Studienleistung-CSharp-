@@ -52,11 +52,11 @@ namespace StudentManager
 
             if (enumTemp.Length == 6)
             {
-                return enumTemp.Substring(0, 2) + " " + enumTemp.Substring(3, 4) + @"/" + enumTemp.Substring(4, 5);
+                return " " + enumTemp.Substring(0, 2) + " " + enumTemp.Substring(3, 4) + @"/" + enumTemp.Substring(4, 5);
             }
             if (enumTemp.Length == 4)
             {
-                return enumTemp.Substring(0, 2) + " " + enumTemp.Substring(2, 2);
+                return " " + enumTemp.Substring(0, 2) + " " + enumTemp.Substring(2, 2);
             }
             else
             {
@@ -93,6 +93,7 @@ namespace StudentManager
             }
         }
         
+        //Collections
         /// <summary>
         /// Collection hält die in der Anwendung dargestellten Studenten und Dozenten. Aktualisierung erfolgt bei
         /// Änderung - wichtig für aktuelle Darstellung in im Applikationsfenster
@@ -110,9 +111,7 @@ namespace StudentManager
         public ObservableCollection<Course> Courses { get; set; } = new ObservableCollection<Course>();
         #endregion
 
-        /// <summary>
-        /// Construktor
-        /// </summary>
+        //Konstruktor
         public DBManager()
         {
         ////lecturers.add(new lecturer(this, "hans", "meier", new datetime(1990, 10, 10), degree.bachelorofarts, "westfalenweg", "25a", 49086, "osnabrück"));
@@ -145,41 +144,7 @@ namespace StudentManager
             }
         }
 
-
-        /// <summary>
-        /// Entfernt einee Person aus "Students" oder "Lecturers"
-        /// </summary>
-        /// <param name="person"></param>
-        public void RemovePerson(Person person)
-        {
-            if (person is Student)
-                Students.Remove((Student)person);
-            else
-                Lecturers.Remove((Lecturer)person);
-        }
-
-        public void JoinStudentAndCourse(Student student, ObservableCollection<Course> tempCourses)
-        {
-            foreach (Course course in tempCourses)
-            {
-                Listens.Add(new Listens(student.ID, course.ID));
-            }
-        }
-
-        public void JoinLecturerAndCourse(Lecturer lecturer, ObservableCollection<Course> tempCourses)
-        {
-            foreach(Course course in tempCourses)
-            {
-                Holds.Add(new Holds(lecturer.ID, course.ID));
-            }
-        }
-
-        public void JoinLecturerAndCourse(Lecturer lecturer, Course course)
-        {
-                Holds.Add(new Holds(lecturer.ID, course.ID));
-        }
-
-        //Collections
+        //Collections Methoden
         public void AddStudent(
             string firstName,
             string lastName,
@@ -220,7 +185,45 @@ namespace StudentManager
             DateTime castEndDate = (DateTime)endDate;
             Courses.Add(new Course(this, name, description, semester, castStartDate, castEndDate));
         }
-        
+
+        /// <summary>
+        /// Entfernt einee Person aus "Students" oder "Lecturers"
+        /// </summary>
+        /// <param name="person"></param>
+        public void RemovePerson(Person person)
+        {
+            if (person is Student)
+                Students.Remove((Student)person);
+            else
+                Lecturers.Remove((Lecturer)person);
+        }
+
+        public void JoinStudentAndCourse(Student student, ObservableCollection<Course> tempCourses)
+        {
+            foreach (Course course in tempCourses)
+            {
+                Listens.Add(new Listens(student.ID, course.ID));
+            }
+        }
+
+        public void JoinStudentandCourse(Student student, Course course)
+        {
+            Listens.Add(new Listens(student.ID, course.ID));
+        }
+
+        public void JoinLecturerAndCourse(Lecturer lecturer, ObservableCollection<Course> tempCourses)
+        {
+            foreach (Course course in tempCourses)
+            {
+                Holds.Add(new Holds(lecturer.ID, course.ID));
+            }
+        }
+
+        public void JoinLecturerAndCourse(Lecturer lecturer, Course course)
+        {
+            Holds.Add(new Holds(lecturer.ID, course.ID));
+        }
+
         //Datenbank
         /// <summary>
         /// Serialisiert das DBManager Objekt, dass alle Listen enthält und schreibt es in die Datenbank

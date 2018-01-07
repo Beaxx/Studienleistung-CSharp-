@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="{Binding}" Height="278" Width="654.667">
     <Grid DataContext="{Binding}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="410*"/>
+            <ColumnDefinition Width="237*"/>
+        </Grid.ColumnDefinitions>
         <!--Linke Seite Student-->
         <TextBox x:Name="FirstnameTextbox" HorizontalAlignment="Left" Height="23" Margin="11,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"  />
         <TextBox x:Name="LastnameTextbox" HorizontalAlignment="Left" Height="23" Margin="162,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>

@@ -8,14 +8,14 @@
         Title="{Binding}" Height="278" Width="654.667">
     <Grid DataContext="{Binding}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="403*"/>
-            <ColumnDefinition Width="239*"/>
+            <ColumnDefinition Width="412*"/>
+            <ColumnDefinition Width="235*"/>
         </Grid.ColumnDefinitions>
 
         <!--Linke Seite Student-->
         <TextBox x:Name="FirstnameTextbox" HorizontalAlignment="Left" Height="23" Margin="11,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"  />
         <TextBox x:Name="LastnameTextbox" HorizontalAlignment="Left" Height="23" Margin="162,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
-        <DatePicker x:Name="BirthdateDatepPicker" Margin="298,9,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <DatePicker x:Name="BirthdateDatepPicker" Margin="298,9,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="24" Width="102"/>
         <TextBox x:Name="StreetTextbox" HorizontalAlignment="Left" Height="23" Margin="11,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" />
         <TextBox x:Name="HouseNumberTextbox" HorizontalAlignment="Left" Height="23" Margin="213,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" />
         <TextBox x:Name="ZIPTextbox" HorizontalAlignment="Left" Height="23" Margin="11,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>

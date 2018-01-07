@@ -29,7 +29,7 @@
         </Button>
 
         <!--Rechte Seite Kurse-->
-        <ComboBox x:Name="CourseComboBox" HorizontalAlignment="Right" Margin="0,11,10,0" VerticalAlignment="Top" Height="22" Grid.Column="1" Width="219"/>
+        <ComboBox x:Name="CourseComboBox" HorizontalAlignment="Right" Margin="0,11,10,0" VerticalAlignment="Top" Height="22" Grid.Column="1" Width="219" SelectionChanged="CourseComboBox_SelectionChanged"/>
         <ListBox x:Name="CourseListbox" HorizontalAlignment="Right" Margin="0,38,10,38" Grid.Column="1" Width="219"/>
         <Button x:Name="ConfirmationButton" Content="OK" VerticalAlignment="Top" Margin="162,209,0,0" HorizontalAlignment="Left" Width="74" Height="20" Click="ConfirmationButton_Click"/>
     </Grid>

@@ -19,17 +19,17 @@ namespace StudentManager
         }
 
         [DataMember]
-        private int courseIDs;
-        public int CourseIDs
+        private int courseID;
+        public int CourseID
         {
-            get { return courseIDs; }
-            set { courseIDs = value; }
+            get { return courseID; }
+            set { courseID = value; }
         }
 
-        public Listens(int studentID, int courseIDs)
+        public Listens(int studentID, int courseID)
         {
             StudentID = studentID;
-            CourseIDs = courseIDs;
+            CourseID = courseID;
         }
     }
 
@@ -45,17 +45,17 @@ namespace StudentManager
         }
 
         [DataMember]
-        private int courseIDs;
-        public int CourseIDs
+        private int courseID;
+        public int CourseID
         {
-            get { return courseIDs; }
-            set { courseIDs = value; }
+            get { return courseID; }
+            set { courseID = value; }
         }
 
-        public Holds(int lecturerID, int courseIDs)
+        public Holds(int lecturerID, int courseID)
         {
             LecturerID = LecturerID;
-            CourseIDs = courseIDs;
+            CourseID = courseID;
         }
     }
 

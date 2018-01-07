@@ -36,32 +36,23 @@ namespace StudentManager
             StartdateDatePicker.SelectedDate = course.StartDate;
             EnddateDatePicker.SelectedDate = course.EndDate;
 
-           
-
             SemesterComboBox.ItemsSource = Enum.GetValues(typeof(Semester));
             SemesterComboBox.SelectedItem = course.Semester;
 
             //Querry für Lecturer Combobox
-            var courseLecturerID = from Holds in dBManager.Holds
-                                 where (Holds.CourseIDs == course.ID)
-                                 select Holds.LecturerID;
-
-            var courseLecturer = from Lecturer in dBManager.Lecturers
-                                  where (courseLecturerID.Contains(Lecturer.ID))
-                                  select Lecturer;
+            var courseLecturer = from Holds in dBManager.Holds
+                                   from Lecturer in dBManager.Lecturers
+                                   where (Holds.CourseID == course.ID && Holds.LecturerID == Lecturer.ID)
+                                   select Lecturer;
 
             LecturerComboBox.ItemsSource = dBManager.Lecturers;
-            
             // TODO: Kombobox bleibt trotz zugewiesenem Wert Null.
             LecturerComboBox.SelectedItem = courseLecturer;
 
             //Querry für Kursteilnehmer (Studenten)
-            var courseAttendeesID = from Listens in dBManager.Listens
-                                    where (Listens.CourseIDs == course.ID)
-                                    select Listens.CourseIDs;
-
-            var courseAttendees = from Student in dBManager.Students
-                                  where (courseAttendeesID.Contains(Student.ID))
+            var courseAttendees = from Listens in dBManager.Listens
+                                  from Student in dBManager.Students
+                                  where (Listens.CourseID == course.ID && Listens.StudentID == Student.ID)
                                   select Student;
 
             //Combobox enthält nur Elemente, die nicht bereits in der Listbox sind.

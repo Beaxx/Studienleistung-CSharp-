@@ -44,8 +44,11 @@ namespace StudentManager
     [DataContract]
     public class DBManager
     {
+        // TODO: Enumerations für semester und Degree haben keinen String override.
+        // TODO: Enumeration Tostring hat leerzeichen vor semesterkürzel auch in Tostring methode von Kursen
+        // TODO: Datepicker mit erstem gültigen Datum beginnen lassen.
+
         //Enum ToString()
-        // TODO: Enumerations haben keinen String override.
         public static string SemesterToString(Semester semester)
         {
             string enumTemp = Enum.GetName(typeof(Semester), semester);
@@ -114,15 +117,7 @@ namespace StudentManager
         //Konstruktor
         public DBManager()
         {
-        ////lecturers.add(new lecturer(this, "hans", "meier", new datetime(1990, 10, 10), degree.bachelorofarts, "westfalenweg", "25a", 49086, "osnabrück"));
-        ////lecturers.add(new lecturer(this, "friedirch", "schiller", new datetime(1990, 10, 10), degree.bachelorofarts, "hasenheide", "25a", 96050, "bamberg"));
-        ////students.add(new student(this, "pter", "arndt", new datetime(1980, 10, 15), degree.masterofarts, "straßestraße", "34", 58874, "oldenburg", semester.ws0910));
-        ////courses.add(new course(this, "mathematik-1", "ziemlich langweilig", semester.ss04, new datetime(2005, 10, 10), new datetime(2010, 10, 10)));
-        ////    holds.add(new holds(0, 0));
-        ////    listens.add(new listens(1, 0));
-        ////courses.add(new course(this, "informatik", "höchstspannend", semester.ss08, new datetime(2015, 10, 10), new datetime(2017, 10, 10)));
-        ////    holds.add(new holds(1, 1));
-        ////    listens.add(new listens(0, 1));
+
         }
 
         /// <summary>

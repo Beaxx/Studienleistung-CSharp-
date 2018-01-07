@@ -41,14 +41,13 @@ namespace StudentManager
             DegreeComboBox.ItemsSource = Enum.GetValues(typeof(Degree));
             DegreeComboBox.SelectedItem = member.Degree;
 
-            var holdingCoursesID = from Holds in dBManager.Holds
-                                    where (Holds.LecturerID == lecturer.ID)
-                                    select Holds.CourseIDs;
+            //Querry für Kursliste und Combobox
+            var holdingCourses = from Holds in dBManager.Holds
+                                   from Course in dBManager.Courses
+                                   where (Holds.LecturerID == lecturer.ID && Holds.CourseID == Course.ID)
+                                   select Course;
 
-            var holdingCourses = from Course in dBManager.Courses
-                                  where (holdingCoursesID.Contains(Course.ID))
-                                  select Course;
-
+            //Combobox enthält nur Elemente, die nicht bereits in der Listbox sind.
             CourseListbox.ItemsSource = holdingCourses;
             CourseComboBox.ItemsSource = dBManager.Courses.Except(holdingCourses);
         }

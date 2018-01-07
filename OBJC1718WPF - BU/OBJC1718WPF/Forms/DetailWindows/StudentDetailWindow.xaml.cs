@@ -45,17 +45,17 @@ namespace StudentManager
             SemesterComboBox.ItemsSource = Enum.GetValues(typeof(Semester));
             SemesterComboBox.SelectedItem = member.Semester;
 
+            // TODO: Ordby für alphabetische ordnung?
+
             //Querry für Kursliste
-            var enrolledCoursesID = from Listens in dBManager.Listens
-                                    where (Listens.StudentID == student.ID)
-                                    select Listens.CourseIDs;
+            var enrolledInCourses = from Listens in dBManager.Listens
+                                    from Course in dBManager.Courses
+                                    where (Listens.StudentID == student.ID && Listens.CourseID == Course.ID)
+                                    select Course;
 
-            var enrolledCourses = from Course in dBManager.Courses
-                                  where (enrolledCoursesID.Contains(Course.ID))
-                                  select Course;
-
-            CourseListbox.ItemsSource = enrolledCourses;
-            CourseComboBox.ItemsSource = dBManager.Courses.Except(enrolledCourses);
+            //Combobox enthält nur Elemente, die nicht bereits in der Listbox sind.
+            CourseListbox.ItemsSource = enrolledInCourses;
+            CourseComboBox.ItemsSource = dBManager.Courses.Except(enrolledInCourses);
         }
 
 
@@ -86,6 +86,11 @@ namespace StudentManager
            
 
             Close();
+        }
+
+        private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tempData.CourseTempCollection.Add((Course)CourseComboBox.SelectedItem);
         }
     }
 }

@@ -42,18 +42,22 @@
         </Menu>
 
         <!--Reiter für Listen-->
-        <TabControl HorizontalAlignment="Stretch" Height="294" VerticalAlignment="Bottom">
+        <TabControl HorizontalAlignment="Stretch" Height="377" VerticalAlignment="Bottom">
 
             <!--Studenten Tab-->
             <TabItem x:Name="StudentTab" Header="Studenten">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="StudentDataGrid" AlternatingRowBackground="LightBlue" SelectionMode="Extended" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="47*"/>
+                        <ColumnDefinition Width="374*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="StudentDataGrid" AlternatingRowBackground="LightBlue" SelectionMode="Extended" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding}" AutoGenerateColumns="False" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
 
                             <DataGridTextColumn Header="ID"             Binding="{Binding ID}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Vorname"        Binding="{Binding FirstName}" />
                             <DataGridTextColumn Header="Nachname"       Binding="{Binding LastName}"/>
-                            <DataGridTextColumn Header="Geburtsdatum"   Binding="{Binding Birthdate}"/>
+                            <DataGridTextColumn Header="Geburtsdatum"   Binding="{Binding Birthdate, StringFormat=dd/mm/yyy}"/>
                             <DataGridTextColumn Header="Straße"         Binding="{Binding Street}"/>
                             <DataGridTextColumn Header="Hausnummer"     Binding="{Binding HouseNumber}"/>
                             <DataGridTextColumn Header="PLZ"            Binding="{Binding Zip}"/>
@@ -63,15 +67,15 @@
 
                             <!--Detail Button-->
                             <DataGridTemplateColumn>
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <Button x:Name="DetailButton" Content="Details" Click="DetailButton_Click"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button x:Name="DetailButton" Content="Details" Click="DetailButton_Click"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            
+
                             <!--Delete Button-->
                             <DataGridTemplateColumn>
                                 <DataGridTemplateColumn.CellTemplate>
@@ -82,7 +86,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            
+
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -96,7 +100,7 @@
                             <DataGridTextColumn Header="ID"             Binding="{Binding ID}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Vorname"        Binding="{Binding FirstName}"/>
                             <DataGridTextColumn Header="Nachname"       Binding="{Binding LastName}"/>
-                            <DataGridTextColumn Header="Geburtsdatum"   Binding="{Binding Birthdate}"/>
+                            <DataGridTextColumn Header="Geburtsdatum"   Binding="{Binding Birthdate, StringFormat=dd/mm/yyy}}"/>
                             <DataGridTextColumn Header="Straße"         Binding="{Binding Street}"/>
                             <DataGridTextColumn Header="Hausnummer"     Binding="{Binding HouseNumber}"/>
                             <DataGridTextColumn Header="PLZ"            Binding="{Binding Zip}"/>
@@ -139,8 +143,8 @@
                             <DataGridTextColumn Header="Name"           Binding="{Binding Name}"/>
                             <DataGridTextColumn Header="Beschreibung"   Binding="{Binding Description}"/>
                             <DataGridTextColumn Header="Semester"       Binding="{Binding Semester}"/>
-                            <DataGridTextColumn Header="Start"          Binding="{Binding StartDate}"/>
-                            <DataGridTextColumn Header="Ende"           Binding="{Binding EndDate}"/>
+                            <DataGridTextColumn Header="Start"          Binding="{Binding StartDate, StringFormat=dd/mm/yyy}"/>
+                            <DataGridTextColumn Header="Ende"           Binding="{Binding EndDate, StringFormat=dd/mm/yyy}"/>
 
                             <!--Detail Button-->
                             <DataGridTemplateColumn>

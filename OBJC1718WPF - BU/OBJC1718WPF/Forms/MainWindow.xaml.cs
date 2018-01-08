@@ -82,7 +82,7 @@ namespace StudentManager
                     {
                         dBManager.Listens.Remove(toRemove.First());
                     }
-                    dBManager.Students.Remove(rowMember);
+                    dBManager.RemovePersonOrCourse(rowMember);
                 }            
             }
 
@@ -96,7 +96,7 @@ namespace StudentManager
                     {
                         dBManager.Holds.Remove(toRemove.First());
                     }
-                    dBManager.Lecturers.Remove(rowMember);
+                    dBManager.RemovePersonOrCourse(rowMember);
                 }
             }
 
@@ -117,7 +117,7 @@ namespace StudentManager
 
                     //Unproblematisch, da Kurse nur einen dozenten haben.
                     dBManager.Holds.Remove(toRemove1.First());
-                    dBManager.Courses.Remove(rowMember);
+                    dBManager.RemovePersonOrCourse(rowMember);
                 }
             }
         }

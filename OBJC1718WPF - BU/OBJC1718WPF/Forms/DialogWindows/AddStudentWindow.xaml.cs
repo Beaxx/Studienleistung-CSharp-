@@ -28,6 +28,7 @@ namespace StudentManager
             InitializeComponent();
             SemesterComboBox.ItemsSource = Enum.GetValues(typeof(Semester));
             DegreeComboBox.ItemsSource = Enum.GetValues(typeof(Degree));
+            BirthdateDatepicker.DisplayDateStart = DateTime.Today.AddYears(-14);
 
             CourseComboBox.ItemsSource = dBManager.Courses;
             CourseListbox.ItemsSource = tempData.CourseTempCollection;

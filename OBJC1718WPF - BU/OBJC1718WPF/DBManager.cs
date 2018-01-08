@@ -45,8 +45,6 @@ namespace StudentManager
     public class DBManager
     {
         // TODO: Enumerations für semester und Degree haben keinen String override.
-        // TODO: Enumeration Tostring hat leerzeichen vor semesterkürzel auch in Tostring methode von Kursen
-        // TODO: Datepicker mit erstem gültigen Datum beginnen lassen.
 
         //Enum ToString()
         public static string SemesterToString(Semester semester)
@@ -181,17 +179,18 @@ namespace StudentManager
             Courses.Add(new Course(this, name, description, semester, castStartDate, castEndDate));
         }
 
-        // TODO: Löschfunktion einbinden
         /// <summary>
         /// Entfernt einee Person aus "Students" oder "Lecturers"
         /// </summary>
         /// <param name="person"></param>
-        public void RemovePerson(Person person)
+        public void RemovePersonOrCourse(dynamic element)
         {
-            if (person is Student)
-                Students.Remove((Student)person);
+            if (element is Student)
+                Students.Remove((Student)element);
+            if (element is Lecturer)
+                Lecturers.Remove((Lecturer)element);
             else
-                Lecturers.Remove((Lecturer)person);
+                Courses.Remove((Course)element);  
         }
 
         public void JoinStudentAndCourse(Student student, ObservableCollection<Course> tempCourses)

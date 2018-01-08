@@ -29,6 +29,7 @@ namespace StudentManager
             DegreeComboBox.ItemsSource = Enum.GetValues(typeof(Degree));
             CourseListbox.ItemsSource = tempData.CourseTempCollection;
             CourseComboBox.ItemsSource = dBManager.Courses.Except(tempData.CourseTempCollection);
+            BirthdateDatepicker.DisplayDateStart = DateTime.Today.AddYears(-14);
         }
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)

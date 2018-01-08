@@ -34,7 +34,10 @@ namespace StudentManager
             Title = member.ToString();
             FirstnameTextbox.Text = member.FirstName;
             LastnameTextbox.Text = member.LastName;
+
+            BirthdateDatepPicker.DisplayDateStart = DateTime.Today.AddYears(-14);
             BirthdateDatepPicker.SelectedDate = member.Birthdate;
+
             StreetTextbox.Text = member.Street;
             HouseNumberTextbox.Text = member.HouseNumber;
             ZIPTextbox.Text = member.Zip.ToString();

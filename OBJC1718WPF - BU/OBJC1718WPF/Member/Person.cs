@@ -187,5 +187,21 @@ namespace StudentManager
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public virtual string ObjectToText()
+        {
+            string output = 
+                ID + "." +
+                firstName + "." +
+                lastName + "." +
+                Birthdate + "." +
+                street + "." +
+                houseNumber + "." +
+                Zip + "." +
+                city;
+
+            return output.ToLower();
+
+        }
     }
 }

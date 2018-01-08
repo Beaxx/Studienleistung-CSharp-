@@ -44,5 +44,11 @@ namespace StudentManager
             ID = manager.Lecturers.Count;
             Degree = degree;
         }
+
+        public override string ObjectToText()
+        {
+            string output = base.ObjectToText();
+            return (output + "." + degree).ToLower();
+        }
     }
 }

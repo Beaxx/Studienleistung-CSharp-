@@ -63,5 +63,11 @@ namespace StudentManager
             Degree = degree;
             Semester = semester;
         }
+
+        public override string ObjectToText()
+        {
+            string output = base.ObjectToText();
+            return (output + "." + Semester + "." + degree).ToLower();
+        }
     }
 }

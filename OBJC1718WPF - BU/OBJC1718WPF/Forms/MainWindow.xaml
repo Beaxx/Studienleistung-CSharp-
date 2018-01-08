@@ -41,6 +41,10 @@
             </MenuItem>
         </Menu>
 
+        <!--Suchleiste-->
+        <TextBox x:Name="SearchTextBox" HorizontalAlignment="Left" Height="23" Margin="718,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="SearchTextBox_TextChanged" />
+        <Label  x:Name="SearchLabel" Content="Suche: " HorizontalAlignment="Left" Margin="665,66,0,0" VerticalAlignment="Top" Height="26"/>
+
         <!--Reiter für Listen-->
         <TabControl HorizontalAlignment="Stretch" Height="377" VerticalAlignment="Bottom">
 
@@ -100,7 +104,7 @@
                             <DataGridTextColumn Header="ID"             Binding="{Binding ID}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Vorname"        Binding="{Binding FirstName}"/>
                             <DataGridTextColumn Header="Nachname"       Binding="{Binding LastName}"/>
-                            <DataGridTextColumn Header="Geburtsdatum"   Binding="{Binding Birthdate, StringFormat=dd/mm/yyy}}"/>
+                            <DataGridTextColumn Header="Geburtsdatum"   Binding="{Binding Birthdate, StringFormat=dd/mm/yyy}"/>
                             <DataGridTextColumn Header="Straße"         Binding="{Binding Street}"/>
                             <DataGridTextColumn Header="Hausnummer"     Binding="{Binding HouseNumber}"/>
                             <DataGridTextColumn Header="PLZ"            Binding="{Binding Zip}"/>
@@ -173,5 +177,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        
     </Grid>
 </Window>

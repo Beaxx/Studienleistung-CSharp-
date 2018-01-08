@@ -121,5 +121,19 @@ namespace StudentManager
         {
             return Name + " (" + DBManager.SemesterToString(Semester) + ")";
         }
+
+        public virtual string ObjectToText()
+        {
+            string output =
+                ID + "." +
+                Name + "." +
+                Description + "." +
+                Semester + "." +
+                StartDate + "." +
+                EndDate;
+
+            return output.ToLower();
+
+        }
     }
 }

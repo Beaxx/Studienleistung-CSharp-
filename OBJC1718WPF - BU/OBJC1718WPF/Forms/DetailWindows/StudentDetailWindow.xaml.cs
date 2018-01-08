@@ -30,6 +30,7 @@ namespace StudentManager
             DataContext = member;
 
             InitializeComponent();
+
             Title = member.ToString();
             FirstnameTextbox.Text = member.FirstName;
             LastnameTextbox.Text = member.LastName;
@@ -60,9 +61,9 @@ namespace StudentManager
                 tempData.CourseTempCollection.Add(course);
             }
 
-            // TODO: Listbox updatet nicht
-            CourseListbox.ItemsSource = tempData.CourseTempCollection;
+            
             CourseComboBox.ItemsSource = dBManager.Courses.Except(tempData.CourseTempCollection);
+            CourseListbox.ItemsSource = tempData.CourseTempCollection;
         }
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
@@ -94,6 +95,7 @@ namespace StudentManager
             Close();
         }
 
+        // TODO: Listbox updatet nicht
         private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!CourseListbox.Items.Contains((Course)CourseListbox.SelectedItem))

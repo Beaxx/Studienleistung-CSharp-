@@ -83,33 +83,34 @@ namespace StudentManager
                 throw;
             }
 
-            //Update der Listens
+            //Entfernen der gelöschten Kurseverbindungen aus der Datenbank
             var query = from Course in tempDataDeleted.CourseTempCollection
-                        join Holds in dBManager.Listens on lecturer.ID equals Holds.StudentID
+                        join Holds in dBManager.Holds on lecturer.ID equals Holds.LecturerID
                         where (Course.ID == Holds.CourseID)
                         select Holds;
 
-            List<Listens> toRemove = query.ToList();
-            foreach (Listens item in toRemove)
+            List<Holds> toRemove = query.ToList();
+            foreach (Holds item in toRemove)
             {
-                dBManager.Listens.Remove(item);
+                dBManager.Holds.Remove(item);
             }
 
             //Hinzufügen der neuen Kursverbindungen in die Datenbank
             dBManager.JoinLecturerAndCourse(lecturer, tempData.CourseTempCollection);
+
             Close();
         }
 
         private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!CourseListbox.Items.Contains((Course)CourseComboBox.SelectedItem))
+            if (!CourseListbox.Items.Contains(CourseComboBox.SelectedItem))
                 tempData.CourseTempCollection.Add((Course)CourseComboBox.SelectedItem);
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            tempData.CourseTempCollection.Remove((Course)CourseListbox.SelectedItem);
             tempDataDeleted.CourseTempCollection.Add((Course)CourseListbox.SelectedItem);
+            tempData.CourseTempCollection.Remove((Course)CourseListbox.SelectedItem);
         }
     }
 }

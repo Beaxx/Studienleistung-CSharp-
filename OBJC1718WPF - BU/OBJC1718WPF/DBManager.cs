@@ -187,13 +187,23 @@ namespace StudentManager
         public void RemovePersonOrCourse(dynamic element)
         {
             if (element is Student)
+            {
                 Students.Remove((Student)element);
-            if (element is Lecturer)
+            }
+
+            else if (element is Lecturer)
+            {
                 Lecturers.Remove((Lecturer)element);
+            }
+
             else
-                Courses.Remove((Course)element);  
+            {
+                Courses.Remove((Course)element);
+            }
+                
         }
 
+        // Methode zuer Erstellung einer Verbindung zwischen Student und Kurs (vom Studenten aus)
         public void JoinStudentsAndCourse(ObservableCollection<Student> tempStudents, Course course)
         {
             var query = from Student in tempStudents
@@ -214,7 +224,7 @@ namespace StudentManager
             }
         }
 
-        // Dieser Code funktioniert
+        // Methode zur Erstellung einer Verbindung zwischen Kurs und Student (vom Kurs aus)
         public void JoinStudentAndCourse(Student student, ObservableCollection<Course> tempCourses)
         {
             var query = from Course in tempCourses
@@ -235,42 +245,28 @@ namespace StudentManager
             }
         }
 
-        public void JoinStudentAndCourse(Student student, Course course)
-        {
-            Listens listensEntry = new Listens(student.ID, course.ID);
-            List<Listens> toAdd = new List<Listens>();
-            foreach (Listens listens in Listens)
-            {
-                if (!(listens.StudentID.Equals((listensEntry.StudentID)) && listens.CourseID.Equals((listensEntry.CourseID))))
-                {
-                    toAdd.Add(listensEntry);
-                }
-            }
-
-            foreach (Listens entry in toAdd)
-            {
-                Listens.Add(entry);
-            }
-        }
-
+        // Methode zur Erstellung einer Verbindung zwischen Dozent und Kurs (beidseitig)
         public void JoinLecturerAndCourse(Lecturer lecturer, ObservableCollection<Course> tempCourses)
         {
+            var query = from Course in tempCourses
+                        join Holds in Holds on lecturer.ID equals Holds.LecturerID
+                        where (Course.ID == Holds.CourseID)
+                        select Course;
+
+            List<Course> notToAdd = query.ToList();
+
+            foreach (Course course in notToAdd)
+            {
+                tempCourses.Remove((course));
+            }
+
             foreach (Course course in tempCourses)
             {
-                Holds holdsEntry = new Holds(lecturer.ID, course.ID);
-                if (lecturer != null && course != null && !Holds.Contains(holdsEntry))
-                    Holds.Add(holdsEntry);
+                Listens.Add(new Listens(lecturer.ID, course.ID));
             }
         }
 
-        public void JoinLecturerAndCourse(Lecturer lecturer, Course course)
-        {
-            Holds holdsEntry = new Holds(lecturer.ID, course.ID);
-            if (lecturer != null && course != null && !Holds.Contains(holdsEntry))
-                Holds.Add(holdsEntry);
-        }
-
-        //Datenbank
+        //Datenbank Methoden
         /// <summary>
         /// Serialisiert das DBManager Objekt, dass alle Listen enthält und schreibt es in die Datenbank
         /// </summary>

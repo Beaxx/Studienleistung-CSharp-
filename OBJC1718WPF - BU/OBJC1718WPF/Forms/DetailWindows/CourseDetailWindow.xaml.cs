@@ -22,6 +22,7 @@ namespace StudentManager
             private DBManager dBManager;
             private Course course;
             private RuntimeTempData tempData = new RuntimeTempData();
+            private RuntimeTempData tempDataDeleted = new RuntimeTempData();
 
         public CourseDetailWindow(DBManager dBManager, Course course)
         {
@@ -70,7 +71,6 @@ namespace StudentManager
                 tempData.StudentTempCollection.Add(student);
             }
 
-            // TODO: Ordby für alphabetische ordnung?
             StudentComboBox.ItemsSource = dBManager.Students.Except(tempData.StudentTempCollection);
             StudentListBox.ItemsSource = tempData.StudentTempCollection;
         }
@@ -91,7 +91,7 @@ namespace StudentManager
             }
 
             //Update der Holds und Listens
-            dBManager.JoinLecturerAndCourse(tempData.LecturerTempCollection.First(), course);
+            //dBManager.JoinLecturerAndCourse(tempData.LecturerTempCollection.First(), course);
             dBManager.JoinStudentsAndCourse(tempData.StudentTempCollection, course);
 
             Close();

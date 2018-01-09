@@ -49,8 +49,8 @@ namespace StudentManager
                 throw;
             }
 
-            dBManager.JoinLecturerAndCourse((Lecturer)LecturerComboBox.SelectedItem, dBManager.Courses.Last());
-            dBManager.JoinStudentAndCourse((Student)StudentComboBox.SelectedItem, dBManager.Courses.Last());
+            //dBManager.JoinLecturerAndCourse((Lecturer)LecturerComboBox.SelectedItem, dBManager.Courses.Last());
+            //dBManager.JoinStudentAndCourse((Student)StudentComboBox.SelectedItem, dBManager.Courses.Last());
 
             Close();
         }

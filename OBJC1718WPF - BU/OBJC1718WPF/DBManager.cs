@@ -45,8 +45,6 @@ namespace StudentManager
     [DataContract]
     public class DBManager
     {
-        // TODO: Enumerations für semester und Degree haben keinen String override.
-
         //Enum ToString()
         public static string SemesterToString(Semester semester)
         {

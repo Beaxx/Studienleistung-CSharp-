@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace StudentManager
 {
     /// <summary>
-    /// Interaktionslogik des Dozent-Bearbeiten Dialogs
+    /// Interaktionslogik des Kurs-Bearbeiten Dialogs
     /// </summary>
     public partial class CourseDetailWindow : Window
     {
@@ -30,7 +30,7 @@ namespace StudentManager
         /// Initialisiert XAML Bindungen
         /// </summary>
         /// <param name="dBManager">Eine Instanz des DBManagers</param>
-        /// <param name="member">Der zu bearbeitende Dozent</param>
+        /// <param name="member">Der zu bearbeitende Kurs</param>
         public CourseDetailWindow(DBManager dBManager, Course course)
         {
             this.dBManager = dBManager;
@@ -86,20 +86,19 @@ namespace StudentManager
             StudentListBox.ItemsSource = tempData.StudentTempCollection;
         }
 
+        /// <summary>
+        /// Event für den Klick des "OK"-Buttons. Fügt die Änderungen am Kurs der Datenbank hinzu. 
+        /// Ändert die Bindungen zwischen Dozenten und Kurs sowie zwischen Studenten und Kurs, wenn es Änderungen gab.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                course.Name = NameTextbox.Text;
-                course.Description = DescriptionTextbox.Text;
-                course.StartDate = (DateTime)StartdateDatePicker.SelectedDate;
-                course.EndDate = (DateTime)EnddateDatePicker.SelectedDate;
-                course.Semester = (Semester)SemesterComboBox.SelectedItem;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            course.Name = NameTextbox.Text;
+            course.Description = DescriptionTextbox.Text;
+            course.StartDate = (DateTime)StartdateDatePicker.SelectedDate;
+            course.EndDate = (DateTime)EnddateDatePicker.SelectedDate;
+            course.Semester = (Semester) SemesterComboBox.SelectedItem;
 
             //Entfernen der gelöschten Studentenverbindung aus der Datenbank
             var studentQuery = from Student in tempDataDeleted.StudentTempCollection
@@ -138,12 +137,23 @@ namespace StudentManager
             Close();
         }
 
+        /// <summary>
+        /// Event für das Auswählen eines Studenten aus der Studenten-Kombobox.
+        /// Übernimmt den Studenten in die temporären Daten.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StudentComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!StudentListBox.Items.Contains(StudentComboBox.SelectedItem))
                 tempData.StudentTempCollection.Add((Student)StudentComboBox.SelectedItem);
         }
 
+        /// <summary>
+        /// Event für das Klicken des X-Buttons, löscht den ausgewählten Listeneintrag.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             tempDataDeleted.StudentTempCollection.Add((Student)StudentListBox.SelectedItem);

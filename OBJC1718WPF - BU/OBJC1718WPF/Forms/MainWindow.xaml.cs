@@ -16,15 +16,8 @@ using System.Data;
 
 namespace StudentManager
 {
-    ////Delegates
-    //public delegate bool CheckFieldInputAllLetter(string input);
-    //public delegate bool CheckFieldInputAllNumber(string input);
-    //public delegate bool CheckFieldInputNumberOrLetterShort(string input);
-    //public delegate bool CheckFieldInputDate(string input);
-    //public delegate bool CheckFieldInput(string input);
-
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaktionslogik des Hauptfensters
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -32,8 +25,6 @@ namespace StudentManager
         /// DBManager Instanzierung zum Programstart
         /// </summary>
         public DBManager dBManager = DBManager.LoadFromDatabase();
-        private RuntimeTempData tempData = new RuntimeTempData();
-        //dynamic rowMember
 
         public MainWindow()
         {
@@ -67,7 +58,7 @@ namespace StudentManager
             }
         }
 
-        //Delete Button
+        //Löschen Button
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             var rowMember = ((FrameworkElement) sender).DataContext as dynamic;
@@ -131,21 +122,21 @@ namespace StudentManager
             }
         }
 
-        //Studenten Inhalte
+        //Studenten Hinzufügen
         private void AddStudentMenuButton_Click(object sender, RoutedEventArgs e)
         {
             AddStudentWindow addStudentWindow = new AddStudentWindow(dBManager);
             addStudentWindow.ShowDialog();
         }
 
-        //Dozenten Inhalte
+        //Dozenten Hinzufügen
         private void AddLecturerMenuButton_Click(object sender, RoutedEventArgs e)
         {
             AddLecturerWindow addLecturer = new AddLecturerWindow(dBManager);
             addLecturer.ShowDialog();
         }
 
-        //Kursinhalte
+        //Hurse Hinzufügen
         private void AddCourseMenuButton_Click(object sender, RoutedEventArgs e)
         {
             AddCourseWindow addCourseWindow = new AddCourseWindow(dBManager);
@@ -169,7 +160,5 @@ namespace StudentManager
         {
             dBManager.SaveToDatabase();
         }
-
-     
     }
 }

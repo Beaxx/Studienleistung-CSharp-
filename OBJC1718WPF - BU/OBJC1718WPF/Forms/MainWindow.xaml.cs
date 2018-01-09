@@ -41,7 +41,6 @@ namespace StudentManager
             StudentTab.DataContext = dBManager.Students;
             LecturerTab.DataContext = dBManager.Lecturers;
             CourseTab.DataContext = dBManager.Courses;
-            
         }
 
         //Detail Button
@@ -71,11 +70,13 @@ namespace StudentManager
         //Delete Button
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            var rowMember = ((FrameworkElement)sender).DataContext as dynamic;
+            var rowMember = ((FrameworkElement) sender).DataContext as dynamic;
 
             if (rowMember is Student)
             {
-                MessageBoxResult messageBoxResult = MessageBox.Show(String.Format("Sind Sie sicher, dass Sie {0} löschen wollen?", rowMember),"Bestätigen", MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
+                MessageBoxResult messageBoxResult =
+                    MessageBox.Show(String.Format("Sind Sie sicher, dass Sie {0} löschen wollen?", rowMember),
+                        "Bestätigen", MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
                 if (messageBoxResult == MessageBoxResult.OK)
                 {
                     var toRemove = dBManager.Listens.Where(studentListens => rowMember.ID == studentListens.StudentID);
@@ -83,13 +84,16 @@ namespace StudentManager
                     {
                         dBManager.Listens.Remove(toRemove.First());
                     }
+
                     dBManager.RemovePersonOrCourse(rowMember);
-                }            
+                }
             }
 
             if (rowMember is Lecturer)
             {
-                MessageBoxResult messageBoxResult = MessageBox.Show(String.Format("Sind Sie sicher, dass Sie {0} löschen wollen?", rowMember), "Bestätigen", MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
+                MessageBoxResult messageBoxResult =
+                    MessageBox.Show(String.Format("Sind Sie sicher, dass Sie {0} löschen wollen?", rowMember),
+                        "Bestätigen", MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
                 if (messageBoxResult == MessageBoxResult.OK)
                 {
                     var toRemove = dBManager.Holds.Where(lecturerHolds => rowMember.ID == lecturerHolds.LecturerID);
@@ -97,19 +101,23 @@ namespace StudentManager
                     {
                         dBManager.Holds.Remove(toRemove.First());
                     }
+
                     dBManager.RemovePersonOrCourse(rowMember);
                 }
             }
 
             if (rowMember is Course)
             {
-                MessageBoxResult messageBoxResult = MessageBox.Show(String.Format("Sind Sie sicher, dass Sie {0} löschen wollen?", rowMember), "Bestätigen", MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
+                MessageBoxResult messageBoxResult =
+                    MessageBox.Show(String.Format("Sind Sie sicher, dass Sie {0} löschen wollen?", rowMember),
+                        "Bestätigen", MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel);
                 if (messageBoxResult == MessageBoxResult.OK)
                 {
-                    var toRemove1 = dBManager.Holds.Where(lecturerOfCourse => rowMember.ID == lecturerOfCourse.LecturerID);
+                    var toRemove1 =
+                        dBManager.Holds.Where(lecturerOfCourse => rowMember.ID == lecturerOfCourse.LecturerID);
                     var toRemove2 = from Listens in dBManager.Listens
-                                    where (Listens.CourseID == rowMember.ID)
-                                    select Listens;
+                        where (Listens.CourseID == rowMember.ID)
+                        select Listens;
 
                     for (int i = toRemove2.Count() - 1; i >= 0; i--)
                     {
@@ -120,18 +128,6 @@ namespace StudentManager
                     dBManager.Holds.Remove(toRemove1.First());
                     dBManager.RemovePersonOrCourse(rowMember);
                 }
-            }
-        }
-
-        //Tabcontroll + Details im oberen Teil des Fensters
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            switch (TabControl.SelectedIndex)
-            {
-                case 0:
-                    
-                default:
-                    break;
             }
         }
 
@@ -174,8 +170,6 @@ namespace StudentManager
             dBManager.SaveToDatabase();
         }
 
-       
-
-        // TODO: Details Darstellung in main Window
+     
     }
 }

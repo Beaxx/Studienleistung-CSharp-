@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace StudentManager
 {
@@ -195,33 +196,61 @@ namespace StudentManager
 
         public void JoinStudentsAndCourse(ObservableCollection<Student> tempStudents, Course course)
         {
+            var query = from Student in tempStudents
+                        join Listens in Listens on course.ID equals course.ID
+                        where (course.ID == Listens.CourseID)
+                        select Student;
+
+            List<Student> notToAdd = query.ToList();
+
+            foreach (Student student in notToAdd)
+            {
+                tempStudents.Remove((student));
+            }
+
             foreach (Student student in tempStudents)
             {
-                Listens listensEntry = new Listens(student.ID, course.ID);
-                if (student != null && course != null && !Listens.Contains(listensEntry))
-                {
-                    Listens.Add(listensEntry);
-                }
+                Listens.Add(new Listens(student.ID, course.ID));
             }
         }
 
+        // Dieser Code funktioniert
         public void JoinStudentAndCourse(Student student, ObservableCollection<Course> tempCourses)
         {
+            var query = from Course in tempCourses
+                        join Listens in Listens on student.ID equals Listens.StudentID
+                        where (Course.ID == Listens.CourseID)
+                        select Course;
+
+            List<Course> notToAdd = query.ToList();
+
+            foreach (Course course in notToAdd)
+            {
+                tempCourses.Remove((course));
+            }
+
             foreach (Course course in tempCourses)
             {
-                Listens listensEntry = new Listens(student.ID, course.ID);
-                if (student != null && course != null && !Listens.Contains(listensEntry))
-                {
-                    Listens.Add(listensEntry);
-                }
+                Listens.Add(new Listens(student.ID, course.ID));
             }
         }
 
         public void JoinStudentAndCourse(Student student, Course course)
         {
             Listens listensEntry = new Listens(student.ID, course.ID);
-            if (student != null && course != null && !Listens.Contains(listensEntry))
-                Listens.Add(listensEntry);
+            List<Listens> toAdd = new List<Listens>();
+            foreach (Listens listens in Listens)
+            {
+                if (!(listens.StudentID.Equals((listensEntry.StudentID)) && listens.CourseID.Equals((listensEntry.CourseID))))
+                {
+                    toAdd.Add(listensEntry);
+                }
+            }
+
+            foreach (Listens entry in toAdd)
+            {
+                Listens.Add(entry);
+            }
         }
 
         public void JoinLecturerAndCourse(Lecturer lecturer, ObservableCollection<Course> tempCourses)

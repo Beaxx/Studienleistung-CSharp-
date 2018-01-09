@@ -22,6 +22,7 @@ namespace StudentManager
         private DBManager dBManager;
         private Lecturer lecturer;
         private RuntimeTempData tempData = new RuntimeTempData();
+        private RuntimeTempData tempDataDeleted = new RuntimeTempData();
 
         public LecturerDetailWindow(DBManager dBManager, Lecturer member)
         {
@@ -53,20 +54,19 @@ namespace StudentManager
                                  select Course;
 
             var holdingCoursesList = holdingCourses.ToList();
-
-            //Combobox enthält nur Elemente, die nicht bereits in der Listbox sind.
             foreach (var course in holdingCoursesList)
             {
                 tempData.CourseTempCollection.Add(course);
             }
 
-            // TODO: Ordby für alphabetische ordnung?
+            //Combobox enthält nur Elemente, die nicht bereits in der Listbox sind.
             CourseListbox.ItemsSource = tempData.CourseTempCollection;
             CourseComboBox.ItemsSource = dBManager.Courses.Except(tempData.CourseTempCollection);
         }
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
         {
+            // Übertragen der Änderungen am Dozenten in die Datenbank
             try
             {
                 lecturer.FirstName = FirstnameTextbox.Text;
@@ -84,8 +84,19 @@ namespace StudentManager
             }
 
             //Update der Listens
-            dBManager.JoinLecturerAndCourse(lecturer, tempData.CourseTempCollection);
+            var query = from Course in tempDataDeleted.CourseTempCollection
+                        join Holds in dBManager.Listens on lecturer.ID equals Holds.StudentID
+                        where (Course.ID == Holds.CourseID)
+                        select Holds;
 
+            List<Listens> toRemove = query.ToList();
+            foreach (Listens item in toRemove)
+            {
+                dBManager.Listens.Remove(item);
+            }
+
+            //Hinzufügen der neuen Kursverbindungen in die Datenbank
+            dBManager.JoinLecturerAndCourse(lecturer, tempData.CourseTempCollection);
             Close();
         }
 
@@ -98,6 +109,8 @@ namespace StudentManager
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             tempData.CourseTempCollection.Remove((Course)CourseListbox.SelectedItem);
+            tempDataDeleted.CourseTempCollection.Add((Course)CourseListbox.SelectedItem);
         }
     }
 }
+

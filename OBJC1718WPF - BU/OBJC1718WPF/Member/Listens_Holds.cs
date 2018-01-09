@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Converters;
 
 namespace StudentManager
 {
@@ -31,6 +32,23 @@ namespace StudentManager
             StudentID = studentID;
             CourseID = courseID;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Listens temp)
+            {
+                return CourseID == temp.CourseID && StudentID == temp.StudentID;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 
     [DataContract]
@@ -56,6 +74,23 @@ namespace StudentManager
         {
             LecturerID = LecturerID;
             CourseID = courseID;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Holds temp)
+            {
+                return CourseID == temp.CourseID && LecturerID == temp.LecturerID;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 

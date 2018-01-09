@@ -46,7 +46,7 @@
         <Label  x:Name="SearchLabel" Content="Suche: " HorizontalAlignment="Left" Margin="665,66,0,0" VerticalAlignment="Top" Height="26"/>
 
         <!--Reiter für Listen-->
-        <TabControl x:Name="TabControl" HorizontalAlignment="Stretch" Height="377" VerticalAlignment="Bottom" SelectionChanged="TabControl_SelectionChanged">
+        <TabControl x:Name="TabControl" HorizontalAlignment="Stretch" Height="377" VerticalAlignment="Bottom">
 
             <!--Studenten Tab-->
             <TabItem x:Name="StudentTab" Header="Studenten">
@@ -177,16 +177,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Grid HorizontalAlignment="Left" Height="72" Margin="0,20,0,0" VerticalAlignment="Top" Width="665">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="154*"/>
-                <ColumnDefinition Width="178*"/>
-                <ColumnDefinition Width="175*"/>
-                <ColumnDefinition Width="158*"/>
-            </Grid.ColumnDefinitions>
-            <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Label x:Name="NameLabel" Content="{Binding}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="49,0,0,0" Height="26" Width="105" FontWeight="Bold" />
-        </Grid>
 
     </Grid>
 </Window>

@@ -1,9 +1,10 @@
 {
-  "Courses": [
+  "Courses":
+  [
     {
+      "ID": 0,
       "description": "Ziemlich langweilig",
       "endDate": "\/Date(1286661600000+0200)\/",
-      "ID": 0,
       "name": "Mathematik-1",
       "semester": 9,
       "startDate": "\/Date(1128895200000+0200)\/"
@@ -25,13 +26,9 @@
       "startDate": "\/Date(1198191600000+0100)\/"
     }
   ],
-  "Holds": [
-    {
-      "courseID": 0,
-      "lecturerID": 0
-    }
-  ],
-  "Lecturers": [
+  "Holds": [{ "courseID": 0, "lecturerID": 1 }],
+  "Lecturers":
+  [
     {
       "ID": 0,
       "Zip": 49086,
@@ -66,39 +63,11 @@
       "degree": 6
     }
   ],
-  "Listens": [
-    {
-      "courseID": 0,
-      "studentID": 1
-    },
-    {
-      "courseID": 2,
-      "studentID": 1
-    },
-    {
-      "courseID": 2,
-      "studentID": 2
-    },
-    {
-      "courseID": 0,
-      "studentID": 2
-    },
-    {
-      "courseID": 1,
-      "studentID": 2
-    },
-    {
-      "courseID": 0,
-      "studentID": 3
-    },
-    {
-      "courseID": 1,
-      "studentID": 3
-    },
-    {
-      "courseID": 2,
-      "studentID": 3
-    }
+  "Listens":
+  [
+    { "courseID": 0, "studentID": 1 }, { "courseID": 2, "studentID": 1 }, { "courseID": 2, "studentID": 2 },
+    { "courseID": 0, "studentID": 2 }, { "courseID": 1, "studentID": 2 }, { "courseID": 0, "studentID": 3 },
+    { "courseID": 1, "studentID": 3 }, { "courseID": 2, "studentID": 3 }
   ],
   "Students": [
     {

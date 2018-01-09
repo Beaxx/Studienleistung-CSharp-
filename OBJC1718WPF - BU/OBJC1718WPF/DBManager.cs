@@ -245,7 +245,7 @@ namespace StudentManager
             }
         }
 
-        // Methode zur Erstellung einer Verbindung zwischen Dozent und Kurs (beidseitig)
+        // Methode zur Erstellung eienr Verbindung zwischen Kurs und Dozent (beidseitig)
         public void JoinLecturerAndCourse(Lecturer lecturer, ObservableCollection<Course> tempCourses)
         {
             var query = from Course in tempCourses

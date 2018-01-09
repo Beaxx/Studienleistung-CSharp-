@@ -46,17 +46,26 @@ namespace StudentManager
             SemesterComboBox.SelectedItem = course.Semester;
 
             //Querry für Lecturer Combobox
-            var courseLecturer = from Holds in dBManager.Holds
-                                 from Lecturer in dBManager.Lecturers
-                                 where (Holds.CourseID == course.ID && Holds.LecturerID == Lecturer.ID)
-                                 select Lecturer;
+            var courseLecturerHold = from Holds in dBManager.Holds
+                                     where (course.ID == Holds.CourseID)
+                                     select Holds;
 
-            var courseLecturerList = courseLecturer.ToList();
-            tempData.LecturerTempCollection.Add(courseLecturerList.First());
+            var courseLecturerList = courseLecturerHold.ToList();
+            if (courseLecturerList.FirstOrDefault() != null) //Handling, falls noch kein Dozent zugewiesen ist.
+            {
+                Holds hold = (Holds) courseLecturerList.First();
+                var courseLecturer = from Lecturer in dBManager.Lecturers
+                                     where (Lecturer.ID == hold.LecturerID)
+                                     select Lecturer;
 
+                var lecturer = courseLecturer.ToList();
+                tempData.LecturerTempCollection.Add(lecturer.First());
+            }
+           
             LecturerComboBox.ItemsSource = dBManager.Lecturers;
-            LecturerComboBox.SelectedItem = courseLecturerList.FirstOrDefault(); //Es existiert immer nur ein Dozent.
+            LecturerComboBox.SelectedItem = tempData.LecturerTempCollection.FirstOrDefault(); //Es existiert immer nur ein Dozent.
 
+            // TODO: LINQ mit join statt 2 from
             //Querry für Kursteilnehmer (Studenten)
             var courseAttendees = from Listens in dBManager.Listens
                                   from Student in dBManager.Students
@@ -90,8 +99,38 @@ namespace StudentManager
                 throw;
             }
 
-            //Update der Holds und Listens
-            //dBManager.JoinLecturerAndCourse(tempData.LecturerTempCollection.First(), course);
+            //Entfernen der gelöschten Studentenverbindung aus der Datenbank
+            var studentQuery = from Student in tempDataDeleted.StudentTempCollection
+                        join Listens in dBManager.Listens on course.ID equals Listens.CourseID
+                        where (Student.ID == Listens.StudentID)
+                        select Listens;
+
+            List<Listens> studentToRemove = studentQuery.ToList();
+            foreach (Listens item in studentToRemove)
+            {
+                dBManager.Listens.Remove(item);
+            }
+
+            //Überschreiben des Dozenten
+            if (LecturerComboBox.SelectedItem != null) // Handling, falls noch kein Dozent zugewiesen war.
+            {
+                Lecturer chosenLecturer = (Lecturer)LecturerComboBox.SelectedItem;
+                if (tempData.LecturerTempCollection.FirstOrDefault() != null) 
+                {
+                    var lecturerQuery = from Holds in dBManager.Holds
+                                        where (tempData.LecturerTempCollection.First().ID == Holds.LecturerID)
+                                        select Holds;
+
+                    List<Holds> lecturerToRemove = lecturerQuery.ToList();
+                    if (lecturerToRemove.FirstOrDefault() != null)
+                    { 
+                        dBManager.Holds.Remove(lecturerToRemove.First());
+                    }
+                }
+                dBManager.Holds.Add(new Holds(chosenLecturer.ID, course.ID));
+            }
+
+            //Hinzufügen der neuen Studentenverbindungen in die Datenbank
             dBManager.JoinStudentsAndCourse(tempData.StudentTempCollection, course);
 
             Close();
@@ -99,13 +138,14 @@ namespace StudentManager
 
         private void StudentComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!StudentListBox.Items.Contains((Student)StudentComboBox.SelectedItem))
+            if (!StudentListBox.Items.Contains(StudentComboBox.SelectedItem))
                 tempData.StudentTempCollection.Add((Student)StudentComboBox.SelectedItem);
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            tempData.StudentTempCollection.Remove((Student)StudentListBox.SelectedItem);
+            tempDataDeleted.StudentTempCollection.Add((Student)StudentListBox.SelectedItem);
+            tempData.StudentTempCollection.Remove((Student) StudentListBox.SelectedItem);
         }
     }
 }

@@ -72,7 +72,7 @@ namespace StudentManager
 
         public Holds(int lecturerID, int courseID)
         {
-            LecturerID = LecturerID;
+            LecturerID = lecturerID;
             CourseID = courseID;
         }
 

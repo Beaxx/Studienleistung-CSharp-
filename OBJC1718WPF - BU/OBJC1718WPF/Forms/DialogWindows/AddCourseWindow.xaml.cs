@@ -15,13 +15,17 @@ using System.Windows.Shapes;
 namespace StudentManager
 {
     /// <summary>
-    /// Interaction logic for AddCourse.xaml
+    /// Interaktionslogik des Hinzufügen Dialogs
     /// </summary>
     public partial class AddCourseWindow : Window
     {
         private DBManager dBManager;
         private RuntimeTempData tempData = new RuntimeTempData();
 
+        /// <summary>
+        /// Konstruktor des "Kurs Hinzufügen" Dialogs
+        /// Initialisiert XAML Bindungen.
+        /// </summary>
         public AddCourseWindow(DBManager dBManager)
         {
             this.dBManager = dBManager;
@@ -33,6 +37,12 @@ namespace StudentManager
             StudentListbox.ItemsSource = tempData.StudentTempCollection;
         }
 
+        /// <summary>
+        /// Event für den Klick des "OK"-Buttons. Fügt den Kurs der Datenbank hinzu und 
+        /// richtet die Bindungen ziwschen Dozent und Kursen sowie Studenten und Kurs ein, wenn diese erstellt wurden.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -55,6 +65,12 @@ namespace StudentManager
             Close();
         }
 
+        /// <summary>
+        /// Event für das Auswählen eines Studenten aus der Studenten-Kombobox.
+        /// Übernimmt den Studenten in die temporären Daten.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StudentComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!StudentListbox.Items.Contains(StudentComboBox.SelectedItem))

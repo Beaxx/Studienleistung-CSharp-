@@ -22,6 +22,11 @@ namespace StudentManager
         private DBManager dBManager;
         private RuntimeTempData tempData = new RuntimeTempData();
 
+        /// <summary>
+        /// Konstruktor des "Student Hinzufügen Dialogs
+        /// Initialisiert XAML Bindungen.
+        /// </summary>
+        /// <param name="dBManager"></param>
         public AddStudentWindow(DBManager dBManager)
         {
             this.dBManager = dBManager;
@@ -34,37 +39,47 @@ namespace StudentManager
             CourseListbox.ItemsSource = tempData.CourseTempCollection;
         }
 
+        /// <summary>
+        /// Event für den Klick des "OK"-Buttons. Fügt den Studenten der Datenbank hinzu und 
+        /// richtet die Bindungen ziwschen Student und Kursen ein, wenn diese erstellt wurden
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                dBManager.AddStudent(
+            dBManager.AddStudent(
                 FirstnameTextbox.Text,
                 LastnameTextbox.Text,
                 BirthdateDatepicker.SelectedDate,
-                (Degree)DegreeComboBox.SelectedItem,
+                (Degree) DegreeComboBox.SelectedItem,
                 StreetTextbox.Text,
                 HouseNumberTextbox.Text,
                 ZIPTextbox.Text,
                 CityTextbox.Text,
-                (Semester)SemesterComboBox.SelectedItem);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+                (Semester) SemesterComboBox.SelectedItem);
 
             dBManager.JoinStudentAndCourse(dBManager.Students.Last(), tempData.CourseTempCollection);
 
             Close();
         }
 
+        /// <summary>
+        /// Event für das Auswählen eines Kurses aus der Kurs-Kombobox.
+        /// Übernimmt Kurs in die temporären Daten.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!CourseListbox.Items.Contains(CourseComboBox.SelectedItem))
                 tempData.CourseTempCollection.Add((Course)CourseComboBox.SelectedItem);
         }
 
+        /// <summary>
+        /// Event für das Klicken des X-Buttons, löscht den ausgewählten Listeneintrag.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             tempData.CourseTempCollection.Remove((Course)CourseListbox.SelectedItem);

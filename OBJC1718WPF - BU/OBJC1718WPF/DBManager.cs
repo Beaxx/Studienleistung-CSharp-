@@ -193,6 +193,18 @@ namespace StudentManager
                 Courses.Remove((Course)element);  
         }
 
+        public void JoinStudentsAndCourse(ObservableCollection<Student> tempStudents, Course course)
+        {
+            foreach (Student student in tempStudents)
+            {
+                Listens listensEntry = new Listens(student.ID, course.ID);
+                if (student != null && course != null && !Listens.Contains(listensEntry))
+                {
+                    Listens.Add(listensEntry);
+                }
+            }
+        }
+
         public void JoinStudentAndCourse(Student student, ObservableCollection<Course> tempCourses)
         {
             foreach (Course course in tempCourses)

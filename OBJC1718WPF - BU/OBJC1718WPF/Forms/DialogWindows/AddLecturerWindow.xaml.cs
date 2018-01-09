@@ -29,7 +29,7 @@ namespace StudentManager
             DegreeComboBox.ItemsSource = Enum.GetValues(typeof(Degree));
             CourseListbox.ItemsSource = tempData.CourseTempCollection;
             CourseComboBox.ItemsSource = dBManager.Courses.Except(tempData.CourseTempCollection);
-            BirthdateDatepicker.DisplayDateStart = DateTime.Today.AddYears(-14);
+            BirthdateDatepicker.DisplayDateEnd = DateTime.Today.AddYears(-14); ;
         }
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
@@ -58,7 +58,7 @@ namespace StudentManager
 
         private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!CourseListbox.Items.Contains((Course)CourseComboBox.SelectedItem))
+            if (!CourseListbox.Items.Contains(CourseComboBox.SelectedItem))
                 tempData.CourseTempCollection.Add((Course)CourseComboBox.SelectedItem);
         }
 

@@ -33,6 +33,7 @@ namespace StudentManager
         /// </summary>
         public DBManager dBManager = DBManager.LoadFromDatabase();
         private RuntimeTempData tempData = new RuntimeTempData();
+        //dynamic rowMember
 
         public MainWindow()
         {
@@ -40,6 +41,7 @@ namespace StudentManager
             StudentTab.DataContext = dBManager.Students;
             LecturerTab.DataContext = dBManager.Lecturers;
             CourseTab.DataContext = dBManager.Courses;
+            
         }
 
         //Detail Button
@@ -121,6 +123,17 @@ namespace StudentManager
             }
         }
 
+        //Tabcontroll + Details im oberen Teil des Fensters
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (TabControl.SelectedIndex)
+            {
+                case 0:
+                    
+                default:
+                    break;
+            }
+        }
 
         //Studenten Inhalte
         private void AddStudentMenuButton_Click(object sender, RoutedEventArgs e)
@@ -143,22 +156,26 @@ namespace StudentManager
             addCourseWindow.ShowDialog();
         }
 
-        //Fenster Schließen
-        private void ExitApplicationMenuButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            dBManager.SaveToDatabase();
-        }
-
+        //Suchbox
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             StudentTab.DataContext = dBManager.Students.Where(student => student.ObjectToText().Contains(SearchTextBox.Text));
             LecturerTab.DataContext = dBManager.Lecturers.Where(lecturer => lecturer.ObjectToText().Contains(SearchTextBox.Text));
             CourseTab.DataContext = dBManager.Courses.Where(course => course.ObjectToText().Contains(SearchTextBox.Text));
         }
+
+        //Fenster Schließen
+        private void ExitApplicationMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            dBManager.SaveToDatabase();
+        }
+
+       
+
+        // TODO: Details Darstellung in main Window
     }
 }

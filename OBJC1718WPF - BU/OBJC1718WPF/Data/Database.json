@@ -1,1 +1,153 @@
-{"Courses":[{"ID":0,"description":"Ziemlich langweilig","endDate":"\/Date(1286661600000+0200)\/","name":"Mathematik-1","semester":9,"startDate":"\/Date(1128895200000+0200)\/"},{"ID":1,"description":"Noch langweiliger als Mathe 1","endDate":"\/Date(1516921200000+0100)\/","name":"Mathematik2","semester":33,"startDate":"\/Date(1510700400000+0100)\/"},{"ID":2,"description":"Dauert ewig","endDate":"\/Date(1515020400000+0100)\/","name":"Germanisch 1","semester":1,"startDate":"\/Date(1198191600000+0100)\/"}],"Holds":[{"courseID":0,"lecturerID":0}],"Lecturers":[{"ID":0,"Zip":49086,"birthdate":"\/Date(655509600000+0200)\/","city":"Osnabrück","firstName":"Hans","houseNumber":"25a","lastName":"Meier","street":"Westfalenweg","degree":1},{"ID":1,"Zip":96050,"birthdate":"\/Date(655509600000+0200)\/","city":"Bamberg","firstName":"Friedirch","houseNumber":"85a","lastName":"Schiller","street":"Hasenheide","degree":1},{"ID":2,"Zip":78457,"birthdate":"\/Date(142120800000+0200)\/","city":"Bremen","firstName":"Ahsn","houseNumber":"21","lastName":"Herrmann","street":"Hermannsdamm","degree":6}],"Listens":[{"courseID":0,"studentID":1},{"courseID":2,"studentID":1},{"courseID":2,"studentID":2},{"courseID":0,"studentID":2},{"courseID":1,"studentID":2},{"courseID":0,"studentID":3},{"courseID":1,"studentID":3},{"courseID":2,"studentID":3}],"Students":[{"ID":0,"Zip":58874,"birthdate":"\/Date(340408800000+0200)\/","city":"Oldenburg","firstName":"Peter","houseNumber":"34","lastName":"Arndt","street":"Stestraße","degree":3,"semester":20},{"ID":1,"Zip":99999,"birthdate":"\/Date(174088800000+0200)\/","city":"London","firstName":"Magred","houseNumber":"10","lastName":"Thatcher","street":"Downing Str.","degree":3,"semester":3},{"ID":2,"Zip":58774,"birthdate":"\/Date(-140234400000+0200)\/","city":"Berlin","firstName":"Astrid","houseNumber":"78","lastName":"Völler","street":"Herbertmayer Str.","degree":2,"semester":2},{"ID":3,"Zip":45411,"birthdate":"\/Date(445302000000+0100)\/","city":"Bremen","firstName":"Test","houseNumber":"13","lastName":"Testtt","street":"Irgendweoi","degree":3,"semester":2}]}
+{
+  "Courses": [
+    {
+      "description": "Ziemlich langweilig",
+      "endDate": "\/Date(1286661600000+0200)\/",
+      "ID": 0,
+      "name": "Mathematik-1",
+      "semester": 9,
+      "startDate": "\/Date(1128895200000+0200)\/"
+    },
+    {
+      "ID": 1,
+      "description": "Noch langweiliger als Mathe 1",
+      "endDate": "\/Date(1516921200000+0100)\/",
+      "name": "Mathematik2",
+      "semester": 33,
+      "startDate": "\/Date(1510700400000+0100)\/"
+    },
+    {
+      "ID": 2,
+      "description": "Dauert ewig",
+      "endDate": "\/Date(1515020400000+0100)\/",
+      "name": "Germanisch 1",
+      "semester": 1,
+      "startDate": "\/Date(1198191600000+0100)\/"
+    }
+  ],
+  "Holds": [
+    {
+      "courseID": 0,
+      "lecturerID": 0
+    }
+  ],
+  "Lecturers": [
+    {
+      "ID": 0,
+      "Zip": 49086,
+      "birthdate": "\/Date(655509600000+0200)\/",
+      "city": "Osnabrück",
+      "firstName": "Hans",
+      "houseNumber": "25a",
+      "lastName": "Meier",
+      "street": "Westfalenweg",
+      "degree": 1
+    },
+    {
+      "ID": 1,
+      "Zip": 96050,
+      "birthdate": "\/Date(655509600000+0200)\/",
+      "city": "Bamberg",
+      "firstName": "Friedirch",
+      "houseNumber": "85a",
+      "lastName": "Schiller",
+      "street": "Hasenheide",
+      "degree": 1
+    },
+    {
+      "ID": 2,
+      "Zip": 78457,
+      "birthdate": "\/Date(142120800000+0200)\/",
+      "city": "Bremen",
+      "firstName": "Ahsn",
+      "houseNumber": "21",
+      "lastName": "Herrmann",
+      "street": "Hermannsdamm",
+      "degree": 6
+    }
+  ],
+  "Listens": [
+    {
+      "courseID": 0,
+      "studentID": 1
+    },
+    {
+      "courseID": 2,
+      "studentID": 1
+    },
+    {
+      "courseID": 2,
+      "studentID": 2
+    },
+    {
+      "courseID": 0,
+      "studentID": 2
+    },
+    {
+      "courseID": 1,
+      "studentID": 2
+    },
+    {
+      "courseID": 0,
+      "studentID": 3
+    },
+    {
+      "courseID": 1,
+      "studentID": 3
+    },
+    {
+      "courseID": 2,
+      "studentID": 3
+    }
+  ],
+  "Students": [
+    {
+      "ID": 0,
+      "Zip": 58874,
+      "birthdate": "\/Date(340408800000+0200)\/",
+      "city": "Oldenburg",
+      "firstName": "Peter",
+      "houseNumber": "34",
+      "lastName": "Arndt",
+      "street": "Stestraße",
+      "degree": 3,
+      "semester": 20
+    },
+    {
+      "ID": 1,
+      "Zip": 99999,
+      "birthdate": "\/Date(174088800000+0200)\/",
+      "city": "London",
+      "firstName": "Magred",
+      "houseNumber": "10",
+      "lastName": "Thatcher",
+      "street": "Downing Str.",
+      "degree": 3,
+      "semester": 3
+    },
+    {
+      "ID": 2,
+      "Zip": 58774,
+      "birthdate": "\/Date(-140234400000+0200)\/",
+      "city": "Berlin",
+      "firstName": "Astrid",
+      "houseNumber": "78",
+      "lastName": "Völler",
+      "street": "Herbertmayer Str.",
+      "degree": 2,
+      "semester": 2
+    },
+    {
+      "ID": 3,
+      "Zip": 45411,
+      "birthdate": "\/Date(445302000000+0100)\/",
+      "city": "Bremen",
+      "firstName": "Test",
+      "houseNumber": "13",
+      "lastName": "Testtt",
+      "street": "Irgendweoi",
+      "degree": 3,
+      "semester": 2
+    }
+  ]
+}

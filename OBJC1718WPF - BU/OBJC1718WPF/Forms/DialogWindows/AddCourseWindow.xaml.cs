@@ -51,13 +51,13 @@ namespace StudentManager
 
             dBManager.JoinLecturerAndCourse((Lecturer)LecturerComboBox.SelectedItem, dBManager.Courses.Last());
             dBManager.JoinStudentAndCourse((Student)StudentComboBox.SelectedItem, dBManager.Courses.Last());
+
             Close();
-            
         }
 
         private void StudentComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!StudentListbox.Items.Contains((Student)StudentComboBox.SelectedItem))
+            if (!StudentListbox.Items.Contains(StudentComboBox.SelectedItem))
                 tempData.StudentTempCollection.Add((Student)StudentComboBox.SelectedItem);
         }
 

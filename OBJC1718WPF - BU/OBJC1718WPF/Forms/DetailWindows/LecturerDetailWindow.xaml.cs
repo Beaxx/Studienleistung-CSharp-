@@ -30,32 +30,37 @@ namespace StudentManager
             DataContext = member;
 
             InitializeComponent();
+
             Title = member.ToString();
             FirstnameTextbox.Text = member.FirstName;
             LastnameTextbox.Text = member.LastName;
 
-            BirthdateDatepPicker.DisplayDateStart = DateTime.Today.AddYears(-14);
-            BirthdateDatepPicker.SelectedDate = member.Birthdate;
+            BirthdateDatepicker.DisplayDateEnd = DateTime.Today.AddYears(-14);
+            BirthdateDatepicker.SelectedDate = member.Birthdate;
 
             StreetTextbox.Text = member.Street;
             HouseNumberTextbox.Text = member.HouseNumber;
             ZIPTextbox.Text = member.Zip.ToString();
+            CityTextbox.Text = member.City;
 
             DegreeComboBox.ItemsSource = Enum.GetValues(typeof(Degree));
             DegreeComboBox.SelectedItem = member.Degree;
 
-            //Querry für Kursliste und Combobox
+            //Querry für Kursliste
             var holdingCourses = from Holds in dBManager.Holds
-                                   from Course in dBManager.Courses
-                                   where (Holds.LecturerID == lecturer.ID && Holds.CourseID == Course.ID)
-                                   select Course;
+                                 from Course in dBManager.Courses
+                                 where (Holds.LecturerID == lecturer.ID && Holds.CourseID == Course.ID)
+                                 select Course;
+
+            var holdingCoursesList = holdingCourses.ToList();
 
             //Combobox enthält nur Elemente, die nicht bereits in der Listbox sind.
-            //Tempdata notwendig um daten bearbeiten zu können
-            foreach (var course in holdingCourses)
+            foreach (var course in holdingCoursesList)
             {
                 tempData.CourseTempCollection.Add(course);
             }
+
+            // TODO: Ordby für alphabetische ordnung?
             CourseListbox.ItemsSource = tempData.CourseTempCollection;
             CourseComboBox.ItemsSource = dBManager.Courses.Except(tempData.CourseTempCollection);
         }
@@ -66,24 +71,28 @@ namespace StudentManager
             {
                 lecturer.FirstName = FirstnameTextbox.Text;
                 lecturer.LastName = LastnameTextbox.Text;
-                lecturer.Birthdate = (DateTime)BirthdateDatepPicker.SelectedDate;
+                lecturer.Birthdate = (DateTime)BirthdateDatepicker.SelectedDate;
                 lecturer.Degree = (Degree)DegreeComboBox.SelectedItem;
                 lecturer.Street = StreetTextbox.Text;
                 lecturer.HouseNumber = HouseNumberTextbox.Text;
                 lecturer.Zip = new DBManager.ZIP(ZIPTextbox.Text).Number;
                 lecturer.City = CityTextbox.Text;
-                // TODO: Update der Listens
             }
             catch (Exception)
             {
                 throw;
             }
+
+            //Update der Listens
+            dBManager.JoinLecturerAndCourse(lecturer, tempData.CourseTempCollection);
+
+            Close();
         }
 
         private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!CourseListbox.Items.Contains((Course)CourseListbox.SelectedItem))
-                tempData.CourseTempCollection.Add((Course)CourseListbox.SelectedItem);
+            if (!CourseListbox.Items.Contains((Course)CourseComboBox.SelectedItem))
+                tempData.CourseTempCollection.Add((Course)CourseComboBox.SelectedItem);
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

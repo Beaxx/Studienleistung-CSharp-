@@ -49,22 +49,21 @@ namespace StudentManager
             SemesterComboBox.ItemsSource = Enum.GetValues(typeof(Semester));
             SemesterComboBox.SelectedItem = member.Semester;
 
-            // TODO: Ordby für alphabetische ordnung?
-
             //Querry für Kursliste
             var enrolledInCourses = from Listens in dBManager.Listens
                                     from Course in dBManager.Courses
                                     where (Listens.StudentID == student.ID && Listens.CourseID == Course.ID)
                                     select Course;
 
+            var enrolledInCoursesList = enrolledInCourses.ToList();
+
             //Combobox enthält nur Elemente, die nicht bereits in der Listbox sind.
-            //Tempdata notwendig um daten bearbeiten zu können
-            foreach (var course in enrolledInCourses)
+            foreach (var course in enrolledInCoursesList)
             {
                 tempData.CourseTempCollection.Add(course);
             }
-
             
+            // TODO: Ordby für alphabetische ordnung?
             CourseComboBox.ItemsSource = dBManager.Courses.Except(tempData.CourseTempCollection);
             CourseListbox.ItemsSource = tempData.CourseTempCollection;
         }
@@ -82,27 +81,21 @@ namespace StudentManager
                 student.Zip = new DBManager.ZIP(ZIPTextbox.Text).Number;
                 student.City = CityTextbox.Text;
                 student.Semester = (Semester)SemesterComboBox.SelectedItem;
-
-                // TODO: LINQ zuweisung über querry möglich?
-                // für die in der lsite hinzugefügten
-                //dBManager.JoinStudentAndCourse(student, );
-
             }
             catch (Exception)
             {
                 throw;
             }
 
-            dBManager.JoinStudentAndCourse(this.student, tempData.CourseTempCollection);
+            // TODO: Wenn ein Element nicht in der Listbox ist, muss es bei confirmation aus dBmanager.Listens gelöscht werden.
 
             Close();
         }
 
-        // TODO: Listbox updatet nicht
         private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!CourseListbox.Items.Contains((Course)CourseListbox.SelectedItem))
-                tempData.CourseTempCollection.Add((Course)CourseListbox.SelectedItem);
+            if (!CourseListbox.Items.Contains(CourseComboBox.SelectedItem))
+                tempData.CourseTempCollection.Add((Course)CourseComboBox.SelectedItem);
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)

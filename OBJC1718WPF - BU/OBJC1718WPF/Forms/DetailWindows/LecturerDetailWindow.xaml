@@ -14,7 +14,7 @@
         <!--Linke Seite Student-->
         <TextBox x:Name="FirstnameTextbox" HorizontalAlignment="Left" Height="23" Margin="11,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"  />
         <TextBox x:Name="LastnameTextbox" HorizontalAlignment="Left" Height="23" Margin="162,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
-        <DatePicker x:Name="BirthdateDatepPicker" Margin="298,9,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <DatePicker x:Name="BirthdateDatepicker" Margin="298,9,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <TextBox x:Name="StreetTextbox" HorizontalAlignment="Left" Height="23" Margin="11,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" />
         <TextBox x:Name="HouseNumberTextbox" HorizontalAlignment="Left" Height="23" Margin="213,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" />
         <TextBox x:Name="ZIPTextbox" HorizontalAlignment="Left" Height="23" Margin="11,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>

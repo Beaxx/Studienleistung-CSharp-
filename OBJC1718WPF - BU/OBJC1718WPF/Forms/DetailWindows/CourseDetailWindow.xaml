@@ -15,11 +15,11 @@
         <!--Links, Kursdaten-->
         <TextBox x:Name="NameTextbox" HorizontalAlignment="Left" Height="23" Margin="11,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="385"  />
 
-        <Label Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="11,39,0,0" Height="26" Width="34"/>
-        <DatePicker x:Name="StartdateDatePicker" Margin="71,40,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="24" Width="102"/>
+        <Label Content="Start:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,37,0,0" Height="26" Width="45"/>
+        <DatePicker x:Name="StartdateDatePicker" Margin="50,39,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="24" Width="102"/>
 
-        <Label Content="Ende" VerticalAlignment="Top" Margin="234,40,0,0" Height="23" RenderTransformOrigin="1.426,0.472" HorizontalAlignment="Left" Width="36"/>
-        <DatePicker x:Name="EnddateDatePicker" Margin="294,39,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="102"/>
+        <Label Content="Ende:" VerticalAlignment="Top" Margin="234,38,0,0" Height="23" RenderTransformOrigin="1.426,0.472" HorizontalAlignment="Left" Width="45"/>
+        <DatePicker x:Name="EnddateDatePicker" Margin="273,39,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="102"/>
 
         <TextBox x:Name="DescriptionTextbox" HorizontalAlignment="Left" Height="114" Margin="11,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="385"  />
         <ComboBox x:Name="LecturerComboBox" HorizontalAlignment="Left" Height="23" Margin="11,188,0,0" VerticalAlignment="Top" Width="123" />

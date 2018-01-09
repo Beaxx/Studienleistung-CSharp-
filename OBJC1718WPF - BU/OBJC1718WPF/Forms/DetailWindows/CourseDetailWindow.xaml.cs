@@ -25,6 +25,11 @@ namespace StudentManager
 
         public CourseDetailWindow(DBManager dBManager, Course course)
         {
+
+            // TODO: Evtl. Union. operator nutzen für schöneren code?
+            // TODO: Bessere möglichkeit für die Interpretation einer Querry Liste, Cast geht nicht? 
+            //tempData.StudentTempCollection = courseAttendees;
+
             this.dBManager = dBManager;
             this.course = course;
             DataContext = course;
@@ -45,31 +50,29 @@ namespace StudentManager
                                  where (Holds.CourseID == course.ID && Holds.LecturerID == Lecturer.ID)
                                  select Lecturer;
 
+            var courseLecturerList = courseLecturer.ToList();
+            tempData.LecturerTempCollection.Add(courseLecturerList.First());
+
             LecturerComboBox.ItemsSource = dBManager.Lecturers;
-            // TODO: Kombobox bleibt trotz zugewiesenem Wert Null.
-            LecturerComboBox.SelectedItem = courseLecturer;
+            LecturerComboBox.SelectedItem = courseLecturerList.FirstOrDefault(); //Es existiert immer nur ein Dozent.
 
             //Querry für Kursteilnehmer (Studenten)
-            // TODO: Evtl. Union. operator nutzen für schöneren code?
             var courseAttendees = from Listens in dBManager.Listens
                                   from Student in dBManager.Students
                                   where (Listens.CourseID == course.ID && Listens.StudentID == Student.ID)
                                   select Student;
 
+            var courseAttendeesList = courseAttendees.ToList();
+
             //Combobox enthält nur Elemente, die nicht bereits in der Listbox sind.
-            //Tempdata notwendig um daten bearbeiten zu können
-            foreach (var student in courseAttendees)
+            foreach (var student in courseAttendeesList)
             {
                 tempData.StudentTempCollection.Add(student);
             }
 
-            StudentListBox.ItemsSource = tempData.StudentTempCollection;
+            // TODO: Ordby für alphabetische ordnung?
             StudentComboBox.ItemsSource = dBManager.Students.Except(tempData.StudentTempCollection);
-
-            // TODO: Bessere möglichkeit für die Interpretation einer Querry Liste, Cast geht nicht? 
-            //tempData.StudentTempCollection = courseAttendees;
-
-            
+            StudentListBox.ItemsSource = tempData.StudentTempCollection;
         }
 
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
@@ -80,17 +83,18 @@ namespace StudentManager
                 course.Description = DescriptionTextbox.Text;
                 course.StartDate = (DateTime)StartdateDatePicker.SelectedDate;
                 course.EndDate = (DateTime)EnddateDatePicker.SelectedDate;
-
-                // TODO: Siehe oben -> Dozent- Kurs binding für Combobox
-
                 course.Semester = (Semester)SemesterComboBox.SelectedItem;
-
-                // TODO: Update der Listens
             }
             catch (Exception)
             {
                 throw;
             }
+
+            //Update der Holds und Listens
+            dBManager.JoinLecturerAndCourse(tempData.LecturerTempCollection.First(), course);
+            dBManager.JoinStudentsAndCourse(tempData.StudentTempCollection, course);
+
+            Close();
         }
 
         private void StudentComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -15,15 +15,22 @@ using System.Windows.Shapes;
 namespace StudentManager
 {
     /// <summary>
-    /// Interaction logic for LecturerDetailWindow.xaml
+    /// Interaktionslogik des Dozent-Bearbeiten Dialogs
     /// </summary>
     public partial class LecturerDetailWindow : Window
     {
+        // TODO: Code in DBManager
         private DBManager dBManager;
         private Lecturer lecturer;
         private RuntimeTempData tempData = new RuntimeTempData();
         private RuntimeTempData tempDataDeleted = new RuntimeTempData();
 
+        /// <summary>
+        /// Konstruktor des "Dozent Bearbeiten" Dialogs
+        /// Initialisiert XAML Bindungen
+        /// </summary>
+        /// <param name="dBManager">Eine Instanz des DBManagers</param>
+        /// <param name="member">Der zu bearbeitende Dozent</param>
         public LecturerDetailWindow(DBManager dBManager, Lecturer member)
         {
             this.dBManager = dBManager;
@@ -64,24 +71,23 @@ namespace StudentManager
             CourseComboBox.ItemsSource = dBManager.Courses.Except(tempData.CourseTempCollection);
         }
 
+        /// <summary>
+        /// Event für den Klick des "OK"-Buttons. Fügt die Änderungen am Dozenten der Datenbank hinzu. 
+        /// Ändert die Bindungen zwischen Dozenten und Kurs, wenn es Änderungen gab.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
         {
             // Übertragen der Änderungen am Dozenten in die Datenbank
-            try
-            {
-                lecturer.FirstName = FirstnameTextbox.Text;
-                lecturer.LastName = LastnameTextbox.Text;
-                lecturer.Birthdate = (DateTime)BirthdateDatepicker.SelectedDate;
-                lecturer.Degree = (Degree)DegreeComboBox.SelectedItem;
-                lecturer.Street = StreetTextbox.Text;
-                lecturer.HouseNumber = HouseNumberTextbox.Text;
-                lecturer.Zip = new DBManager.ZIP(ZIPTextbox.Text).Number;
-                lecturer.City = CityTextbox.Text;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            lecturer.FirstName = FirstnameTextbox.Text;
+            lecturer.LastName = LastnameTextbox.Text;
+            lecturer.Birthdate = (DateTime)BirthdateDatepicker.SelectedDate;
+            lecturer.Degree = (Degree)DegreeComboBox.SelectedItem;
+            lecturer.Street = StreetTextbox.Text;
+            lecturer.HouseNumber = HouseNumberTextbox.Text;
+            lecturer.Zip = new DBManager.ZIP(ZIPTextbox.Text).Number;
+            lecturer.City = CityTextbox.Text;
 
             //Entfernen der gelöschten Kurseverbindungen aus der Datenbank
             var query = from Course in tempDataDeleted.CourseTempCollection
@@ -101,12 +107,23 @@ namespace StudentManager
             Close();
         }
 
+        /// <summary>
+        /// Event für das Auswählen eines Kurses aus der Kurs-Kombobox.
+        /// Übernimmt den Kurs in die temporären Daten.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CourseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!CourseListbox.Items.Contains(CourseComboBox.SelectedItem))
                 tempData.CourseTempCollection.Add((Course)CourseComboBox.SelectedItem);
         }
 
+        /// <summary>
+        /// Event für das Klicken des X-Buttons, löscht den ausgewählten Listeneintrag.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             tempDataDeleted.CourseTempCollection.Add((Course)CourseListbox.SelectedItem);

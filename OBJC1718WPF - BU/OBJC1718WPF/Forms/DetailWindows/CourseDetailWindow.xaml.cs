@@ -15,27 +15,30 @@ using System.Windows.Shapes;
 namespace StudentManager
 {
     /// <summary>
-    /// Interaction logic for LecturerDetailWindow.xaml
+    /// Interaktionslogik des Dozent-Bearbeiten Dialogs
     /// </summary>
     public partial class CourseDetailWindow : Window
     {
-            private DBManager dBManager;
-            private Course course;
-            private RuntimeTempData tempData = new RuntimeTempData();
-            private RuntimeTempData tempDataDeleted = new RuntimeTempData();
+        // TODO: Code in DBManager
+        private DBManager dBManager;
+        private Course course;
+        private RuntimeTempData tempData = new RuntimeTempData();
+        private RuntimeTempData tempDataDeleted = new RuntimeTempData();
 
+        /// <summary>
+        /// Konstruktor des "Dozent Bearbeiten" Dialogs
+        /// Initialisiert XAML Bindungen
+        /// </summary>
+        /// <param name="dBManager">Eine Instanz des DBManagers</param>
+        /// <param name="member">Der zu bearbeitende Dozent</param>
         public CourseDetailWindow(DBManager dBManager, Course course)
         {
-
-            // TODO: Evtl. Union. operator nutzen für schöneren code?
-            // TODO: Bessere möglichkeit für die Interpretation einer Querry Liste, Cast geht nicht? 
-            //tempData.StudentTempCollection = courseAttendees;
-
             this.dBManager = dBManager;
             this.course = course;
             DataContext = course;
 
             InitializeComponent();
+
             Title = course.ToString();
             NameTextbox.Text = course.Name;
             DescriptionTextbox.Text = course.Description;
@@ -65,7 +68,6 @@ namespace StudentManager
             LecturerComboBox.ItemsSource = dBManager.Lecturers;
             LecturerComboBox.SelectedItem = tempData.LecturerTempCollection.FirstOrDefault(); //Es existiert immer nur ein Dozent.
 
-            // TODO: LINQ mit join statt 2 from
             //Querry für Kursteilnehmer (Studenten)
             var courseAttendees = from Listens in dBManager.Listens
                                   from Student in dBManager.Students

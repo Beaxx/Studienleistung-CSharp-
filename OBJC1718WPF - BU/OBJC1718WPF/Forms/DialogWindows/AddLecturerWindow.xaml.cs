@@ -26,6 +26,7 @@ namespace StudentManager
         /// Konstruktor des "Dozent Hinzufügen" Dialogs
         /// Initialisiert XAML Bindungen.
         /// </summary>
+        /// <param name="dBManager">Eine DBManager Instanz</param>
         public AddLecturerWindow(DBManager dBManager)
         {
             this.dBManager = dBManager;

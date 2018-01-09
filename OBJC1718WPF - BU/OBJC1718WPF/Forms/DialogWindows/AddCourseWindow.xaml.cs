@@ -24,9 +24,10 @@ namespace StudentManager
         private RuntimeTempData tempData = new RuntimeTempData();
 
         /// <summary>
-        /// Konstruktor des "Kurs Hinzufügen" Dialogs
+        ///  Konstruktor des "Kurs Hinzufügen" Dialogs
         /// Initialisiert XAML Bindungen.
         /// </summary>
+        /// <param name="dBManager">Eine Instanz des DBManagers</param>
         public AddCourseWindow(DBManager dBManager)
         {
             this.dBManager = dBManager;

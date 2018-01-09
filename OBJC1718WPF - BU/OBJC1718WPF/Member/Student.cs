@@ -12,38 +12,32 @@ namespace StudentManager
     public class Student : Person
     {
         /// <summary>
-        /// Semester, in dem sich ein Student befindet. Überprüfung der Eingabe.
+        /// Semester, in dem sich ein Student befindet.
         /// </summary>
         [DataMember]
         private Semester semester;
         public Semester Semester
         {
-            get { return semester; }
+            get => semester;
             set
             {
-                if (Validation.CheckSemesterComboboxInput(value))
-                {
-                    semester = value;
-                    NotifyPropertyChanged();
-                }
+                semester = value;
+                NotifyPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Angestrebter Abschluss eines Studenten. Überprüfung der Eingabe.
+        /// Angestrebter Abschluss eines Studenten.
         /// </summary>
         [DataMember]
         private Degree degree;
         public Degree Degree
         {
-            get { return degree; }
+            get => degree;
             set
             {
-                if (Validation.CheckDegreeComboboxInput(value))
-                {
-                    degree = value;
-                    NotifyPropertyChanged();
-                }
+                degree = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -55,7 +49,7 @@ namespace StudentManager
             Degree degree,
             string street,
             string houseNumber,
-            int zip,
+            string zip,
             string city,
             Semester semester) : base(firstName, lastName, birthdate, street, houseNumber, zip, city)
         {
@@ -64,10 +58,14 @@ namespace StudentManager
             Semester = semester;
         }
 
+        /// <summary>
+        /// Erweiterung der ObjectToText aus der Basisklasse + Semester und Abschluss
+        /// </summary>
+        /// <returns>Alle Propertys einer Person als verketten String + Erweiterung</returns>
         public override string ObjectToText()
         {
             string output = base.ObjectToText();
-            return (output + "." + Semester + "." + degree).ToLower();
+            return (output + "." + Semester + "." + Degree).ToLower();
         }
     }
 }

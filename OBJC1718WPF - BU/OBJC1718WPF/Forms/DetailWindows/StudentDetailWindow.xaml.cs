@@ -90,7 +90,7 @@ namespace StudentManager
             student.Degree = (Degree)DegreeComboBox.SelectedItem;
             student.Street = StreetTextbox.Text;
             student.HouseNumber = HouseNumberTextbox.Text;
-            student.Zip = new DBManager.ZIP(ZIPTextbox.Text).Number;
+            student.Zip = ZIPTextbox.Text;
             student.City = CityTextbox.Text;
             student.Semester = (Semester) SemesterComboBox.SelectedItem;
 

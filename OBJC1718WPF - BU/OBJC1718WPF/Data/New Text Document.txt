@@ -1,6 +1,0 @@
- var query = from Course in tempData.CourseTempCollection
-                        join Listen in dBManager.Listen on Course.ID equals Listen.CourseID
-                        where (student.ID == Listen.StudentID)
-                        select Listen;
-
-            List<Listens> toRemove = query.ToList();

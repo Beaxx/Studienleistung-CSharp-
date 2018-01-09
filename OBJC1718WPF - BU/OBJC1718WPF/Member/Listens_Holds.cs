@@ -8,6 +8,10 @@ using System.Windows.Media.Converters;
 
 namespace StudentManager
 {
+    /// <summary>
+    /// Listens stellt die Verknüpfung zwischen Kurs und Student dar, in dem die IDs der 
+    /// beiden Objekte gekoppelt werden. So werden Studenten und Kurse selbst von ihren Zugehörigkeiten entkoppelt.
+    /// </summary>
     [DataContract]
     public class Listens
     {
@@ -51,6 +55,10 @@ namespace StudentManager
         }
     }
 
+    /// <summary>
+    /// Holds stellt die Verknüpfung zwischen Kurs und Dozent dar, in dem die IDs der 
+    /// beiden Objekte gekoppelt werden. So werden Dozenten und Kurse selbst von ihren Zugehörigkeiten entkoppelt.
+    /// </summary>
     [DataContract]
     public class Holds
     {

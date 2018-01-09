@@ -13,20 +13,17 @@ namespace StudentManager
     public class Lecturer : Person
     {
         /// <summary>
-        /// Höchster Abschluss eines Dozenten. Überprüfung der Eingabe
+        /// Höchster Abschluss eines Dozenten.
         /// </summary>
         [DataMember]
         private Degree degree;
         public Degree Degree
         {
-            get { return degree; }
+            get => degree;
             set
             {
-                if (Validation.CheckDegreeComboboxInput(value))
-                {
-                    degree = value;
-                    NotifyPropertyChanged();
-                }
+                degree = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -38,13 +35,17 @@ namespace StudentManager
             Degree degree,
             string street,
             string houseNumber,
-            int zip,
-            string city) : base(firstName,lastName,birthdate,street,houseNumber,zip,city)
+            string zip,
+            string city) : base(firstName, lastName, birthdate, street, houseNumber, zip, city)
         {
             ID = manager.Lecturers.Count;
             Degree = degree;
         }
 
+        /// <summary>
+        /// Erweiterung der ObjectToText aus der Basisklasse + Abschluss
+        /// </summary>
+        /// <returns>Alle Propertys einer Person als verketten String + Erweiterung</returns>
         public override string ObjectToText()
         {
             string output = base.ObjectToText();

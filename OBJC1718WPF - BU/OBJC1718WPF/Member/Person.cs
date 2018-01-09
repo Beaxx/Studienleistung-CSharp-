@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Dynamic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -14,127 +15,117 @@ namespace StudentManager
     [DataContract]
     public abstract class Person : INotifyPropertyChanged
     {
+        /// <summary>
+        /// ID einer Person.
+        /// </summary>
         [DataMember]
         public int ID { get; set; }
 
         /// <summary>
-        /// Vorname einer Person. Überprüfung des Eingabeparameters
+        /// Vorname einer Person.
         /// </summary>
         [DataMember]
         private string firstName;
         public string FirstName
         {
-            get { return firstName; }
+            get => firstName;
+
             set
             {
-                if (Validation.CheckInputAllLetters(value))
-                {
-                    firstName = value;
-                    NotifyPropertyChanged();
-                }
-
+                firstName = value;
+                NotifyPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Nachname einer Person. Übeprüfung des Eingabeparameter
+        /// Nachname einer Person.
         /// </summary>
         [DataMember]
         private string lastName;
         public string LastName
         {
-            get { return lastName; }
+            get => lastName;
             set
             {
-                if (Validation.CheckInputAllLetters(value))
-                {
-                    lastName = value;
-                    NotifyPropertyChanged();
-                }
+                lastName = value;
+                NotifyPropertyChanged();
             }
         }
 
-
         /// <summary>
-        /// Geburtsdatum einer Person. Überprüfung des Eingabeparameters
+        /// Geburtsdatum einer Person.
         /// </summary>
         [DataMember]
         private DateTime birthdate;
         public DateTime Birthdate
         {
-            get { return birthdate; }
+            get => birthdate;
             set
             {
-                if (Validation.CheckMemberBirthdateInput(value))
-                {
-                    birthdate = (DateTime)value;
-                    NotifyPropertyChanged();
-                }
-                
+                birthdate = (DateTime)value;
+                NotifyPropertyChanged();  
             }
         }
 
         // Adresse
         /// <summary>
-        /// Wohnstraße einer Person. Überprüfung des Eingabeparameters
+        /// Wohnstraße einer Person.
         /// </summary>
         [DataMember]
         private string street;
         public string Street
         {
-            get { return street; }
+            get => street;
             set
-            {
-                if (Validation.CheckInputAllLetters(value))
-                {
-                    street = value;
-                    NotifyPropertyChanged();
-                }
-
+            { 
+                street = value;
+                NotifyPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Hausnummer einer Person. Überprüfung des Eingabeparameters
+        /// Hausnummer einer Person.
         /// </summary>
         [DataMember]
         private string houseNumber;
         public string HouseNumber
         {
-            get { return houseNumber; }
+            get => houseNumber;
             set
             {
-                if (Validation.CheckMemberHouseNumberInput(value))
-                {
-                    houseNumber = value;
-                    NotifyPropertyChanged();
-                } 
+                houseNumber = value;
+                NotifyPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Postleitzahl einer Person. Überprüfung erfolgt in Methode die 
-        /// den Konstruktor aufruft, da für Überprüfung ein komplexer Datentyp verwendet wird.
+        /// Postleitzahl einer Person
         /// </summary>
         [DataMember]
-        public int Zip { get; set; }
+        private string zip;
+        public string Zip
+        {
+            get => zip;
 
-        /// <summary>
-        /// Stadt einer Person. Überprüfung des Eingabeparameters
-        /// </summary>
-        [DataMember]
+            set
+            {
+                zip = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+    /// <summary>
+    /// Stadt einer Person.
+    /// </summary>
+    [DataMember]
         private string city;
         public string City
         {
-            get { return city; }
+            get => city;
             set
             {
-                if (Validation.CheckInputAllLetters(value))
-                {
-                    city = value;
-                    NotifyPropertyChanged();
-                }
-                    
+                city = value;
+                NotifyPropertyChanged();                   
             }
         }
 
@@ -147,7 +138,7 @@ namespace StudentManager
             DateTime birthdate,
             string street,
             string houseNumber,
-            int zip,
+            string zip,
             string city)
         {
             ID = id;
@@ -160,13 +151,14 @@ namespace StudentManager
             City = city;
         }
 
+        // TODO: Überflüssig?
         public Person(
             string firstName, 
             string lastName, 
             DateTime birthdate,
             string street, 
-            string houseNumber, 
-            int zip, 
+            string houseNumber,
+            string zip, 
             string city)
         {
             FirstName = firstName;
@@ -178,16 +170,19 @@ namespace StudentManager
             City = city;
         }
 
+        /// <summary>
+        /// Tostring Überladung zur Darstellung einer Person mit Vor- und Nachnamen
+        /// </summary>
+        /// <returns>Vor und Namname einer Person</returns>
         public override string ToString()
         {
             return FirstName + " " + LastName;
         }
 
-        protected void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
+        /// <summary>
+        /// String-Serialisierung einer Person, um diese für die Suchfunktion durchsuchbar zu machen.
+        /// </summary>
+        /// <returns>Alle Propertys einer Person als verketten String</returns>
         public virtual string ObjectToText()
         {
             string output = 
@@ -201,7 +196,11 @@ namespace StudentManager
                 city;
 
             return output.ToLower();
+        }
 
+        protected void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

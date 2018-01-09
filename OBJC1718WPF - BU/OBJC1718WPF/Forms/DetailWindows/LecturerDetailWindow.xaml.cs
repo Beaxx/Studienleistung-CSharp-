@@ -86,7 +86,7 @@ namespace StudentManager
             lecturer.Degree = (Degree)DegreeComboBox.SelectedItem;
             lecturer.Street = StreetTextbox.Text;
             lecturer.HouseNumber = HouseNumberTextbox.Text;
-            lecturer.Zip = new DBManager.ZIP(ZIPTextbox.Text).Number;
+            lecturer.Zip = ZIPTextbox.Text;
             lecturer.City = CityTextbox.Text;
 
             //Entfernen der gelöschten Kurseverbindungen aus der Datenbank

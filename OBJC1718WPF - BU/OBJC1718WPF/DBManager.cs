@@ -117,25 +117,6 @@ namespace StudentManager
 
         }
 
-        /// <summary>
-        /// Klasse für komplexen Datentyp ZIP. Dieser wird gebraucht, um die Konvertierung der Benutzereingabe
-        /// von ZIP im Form von String zu Interger vorzunehmen, die nicht im Setter der Property erfolgen kann.
-        /// </summary>
-        public class ZIP
-        {
-            public int Number { get; private set; }
-            public ZIP(string zipInput)
-            {
-                if (Validation.CheckMemberZIPInput(zipInput))
-                    Number = Int32.Parse(zipInput);
-            }
-
-            public override string ToString()
-            {
-                return Number.ToString();
-            }
-        }
-
         //Collections Methoden
         public void AddStudent(
             string firstName,
@@ -149,7 +130,7 @@ namespace StudentManager
             Semester semester)
         {
             DateTime castBirthdate = (DateTime)birthdate;
-            Students.Add(new Student(this, firstName, lastName, castBirthdate, degree, street, houseNumber, new ZIP(zip).Number, city, semester));
+            Students.Add(new Student(this, firstName, lastName, castBirthdate, degree, street, houseNumber, zip, city, semester));
         }
 
         public void AddLecturer(
@@ -163,7 +144,7 @@ namespace StudentManager
             string city)
         {
             DateTime castBirthdate = (DateTime)birthdate;
-            Lecturers.Add(new Lecturer(this, firstName, lastName, castBirthdate, degree, street, houseNumber, new ZIP(zip).Number, city));
+            Lecturers.Add(new Lecturer(this, firstName, lastName, castBirthdate, degree, street, houseNumber, zip, city));
         }
 
         public void AddCourse(

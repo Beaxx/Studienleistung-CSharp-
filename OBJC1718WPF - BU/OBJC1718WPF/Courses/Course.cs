@@ -13,74 +13,65 @@ namespace StudentManager
     [DataContract]
     public class Course: INotifyPropertyChanged
     {
+        /// <summary>
+        /// Die ID eines Kurses
+        /// </summary>
         [DataMember]
         public int ID { get; set; }
 
         /// <summary>
-        /// Name eines Kurses. Überprüfung des Eingabeparameters
+        /// Name eines Kurses.
         /// </summary>
         [DataMember]
         private string name;
         public string Name
         {
-            get { return name; }
+            get => name;
             set
             {
-                if (Validation.CheckInputAllLetters(value))
-                {
                     name = value;
                     NotifyPropertyChanged();
-                }
-
             }
         }
 
         /// <summary>
-        /// Beschreibung eines Kurses. Überprüfung des Eingabeparameters
-        /// </summary>
+        /// Beschreibung eines Kurses.
+        ///  </summary>
         [DataMember]
         private string description;
         public string Description
         {
-            get { return description; }
+            get => description;
             set
             {
-                if (value.Length < 5)
-                {
-                    throw new ArgumentException("Bitte geben Sie eine längere Beschreibung ein");
-                }
-                else
-                {
-                    description = value;
-                    NotifyPropertyChanged();
-                }
-
+                description = value;
+                NotifyPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Semester, in dem der Kurs stattfindet. Überprüfung der Eingabe.
+        /// Semester, in dem der Kurs stattfindet.
         /// </summary>
         [DataMember]
         private Semester semester;
         public Semester Semester
         {
-            get { return semester; }
+            get => semester;
             set
-            {
-                if (Validation.CheckSemesterComboboxInput(value))
-                {
-                    semester = value;
-                    NotifyPropertyChanged();
-                }
+            { 
+                semester = value;
+                NotifyPropertyChanged();
             }
         }
 
+        /// <summary>
+        /// Das Startdatum eines Kurses
+        /// </summary>
         [DataMember]
         private DateTime startDate;
         public DateTime StartDate
         {
-            get { return startDate; }
+            get => startDate;
             set
             {
                 startDate = value;
@@ -88,11 +79,14 @@ namespace StudentManager
             }
         }
 
+        /// <summary>
+        /// Das Enddatum eines Kurses.
+        /// </summary>
         [DataMember]
         private DateTime endDate;
         public DateTime EndDate
         {
-            get { return endDate; }
+            get => endDate;
             set
             {
                 endDate = value;
@@ -112,16 +106,19 @@ namespace StudentManager
             EndDate = endDate;
         }
 
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
+        /// <summary>
+        /// String override zur Darstellung des Kurses
+        /// </summary>
+        /// <returns>Kursname + Semester</returns>
         public override string ToString()
         {
             return Name + " (" + DBManager.SemesterToString(Semester) + ")";
         }
 
+        /// <summary>
+        /// String-Serialisierung eines Kurses, um diesen für die Suchfunktion durchsuchbar zu machen.
+        /// </summary>
+        /// <returns>Alle Propertys eines Kurses als verketten String</returns>
         public virtual string ObjectToText()
         {
             string output =
@@ -133,7 +130,11 @@ namespace StudentManager
                 EndDate;
 
             return output.ToLower();
+        }
 
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

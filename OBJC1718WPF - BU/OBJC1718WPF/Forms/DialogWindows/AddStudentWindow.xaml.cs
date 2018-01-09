@@ -58,7 +58,7 @@ namespace StudentManager
                 CityTextbox.Text,
                 (Semester) SemesterComboBox.SelectedItem);
 
-            dBManager.JoinStudentAndCourse(dBManager.Students.Last(), tempData.CourseTempCollection);
+            dBManager.JoinStudentsAndCourse(dBManager.Students.Last(), tempData.CourseTempCollection);
 
             Close();
         }

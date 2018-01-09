@@ -204,7 +204,7 @@ namespace StudentManager
         }
 
         // Methode zuer Erstellung einer Verbindung zwischen Student und Kurs (vom Studenten aus)
-        public void JoinStudentsAndCourse(ObservableCollection<Student> tempStudents, Course course)
+        public void JoinStudentAndCourse(ObservableCollection<Student> tempStudents, Course course)
         {
             var query = from Student in tempStudents
                         join Listens in Listens on course.ID equals course.ID
@@ -225,8 +225,19 @@ namespace StudentManager
         }
 
         // Methode zur Erstellung einer Verbindung zwischen Kurs und Student (vom Kurs aus)
-        public void JoinStudentAndCourse(Student student, ObservableCollection<Course> tempCourses)
+        public void JoinStudentsAndCourse(Student student, dynamic input)
         {
+            //Anpassung des Inputparameters
+            ObservableCollection<Course> tempCourses;
+            if (input is ObservableCollection<Course>)
+            {
+                tempCourses = input;
+            }
+            else
+            {
+                tempCourses = new ObservableCollection<Course> { (Course)input };
+            }
+
             var query = from Course in tempCourses
                         join Listens in Listens on student.ID equals Listens.StudentID
                         where (Course.ID == Listens.CourseID)
@@ -246,8 +257,19 @@ namespace StudentManager
         }
 
         // Methode zur Erstellung eienr Verbindung zwischen Kurs und Dozent (beidseitig)
-        public void JoinLecturerAndCourse(Lecturer lecturer, ObservableCollection<Course> tempCourses)
+        public void JoinLecturerAndCourse(Lecturer lecturer, dynamic input)
         {
+            //Anpassung des Inputparameters
+            ObservableCollection<Course> tempCourses;
+            if (input is ObservableCollection<Course>)
+            {
+                tempCourses = input;
+            }
+            else
+            {
+                tempCourses = new ObservableCollection<Course> { (Course)input };
+            }
+
             var query = from Course in tempCourses
                         join Holds in Holds on lecturer.ID equals Holds.LecturerID
                         where (Course.ID == Holds.CourseID)
@@ -262,7 +284,7 @@ namespace StudentManager
 
             foreach (Course course in tempCourses)
             {
-                Listens.Add(new Listens(lecturer.ID, course.ID));
+                Holds.Add(new Holds(lecturer.ID, course.ID));
             }
         }
 

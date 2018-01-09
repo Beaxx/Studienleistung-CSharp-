@@ -131,7 +131,7 @@ namespace StudentManager
             }
 
             //Hinzufügen der neuen Studentenverbindungen in die Datenbank
-            dBManager.JoinStudentsAndCourse(tempData.StudentTempCollection, course);
+            dBManager.JoinStudentAndCourse(tempData.StudentTempCollection, course);
 
             Close();
         }

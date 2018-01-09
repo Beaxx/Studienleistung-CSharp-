@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,22 +46,15 @@ namespace StudentManager
         /// <param name="e"></param>
         private void ConfirmationButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
                 dBManager.AddCourse(
                 NameTextbox.Text,
                 DescriptionTextbox.Text,
                 StartDateDatepicker.SelectedDate,
                 EndDateDatepicker.SelectedDate,
                 (Semester)SemesterComboBox.SelectedItem);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-            //dBManager.JoinLecturerAndCourse((Lecturer)LecturerComboBox.SelectedItem, dBManager.Courses.Last());
-            //dBManager.JoinStudentAndCourse((Student)StudentComboBox.SelectedItem, dBManager.Courses.Last());
+            
+            dBManager.JoinLecturerAndCourse((Lecturer)LecturerComboBox.SelectedItem, dBManager.Courses.Last());
+            dBManager.JoinStudentsAndCourse((Student)StudentComboBox.SelectedItem, dBManager.Courses.Last());
 
             Close();
         }
@@ -77,6 +71,11 @@ namespace StudentManager
                 tempData.StudentTempCollection.Add((Student)StudentComboBox.SelectedItem);
         }
 
+        /// <summary>
+        /// Event für das Klicken des X-Buttons, löscht den ausgewählten Listeneintrag.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             tempData.StudentTempCollection.Remove((Student)StudentListbox.SelectedItem);
